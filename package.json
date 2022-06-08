@@ -8,6 +8,7 @@
     "test": "",
     "build": "babel src --out-dir dist"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/atlp-rwanda/phantom-be-dream-team.git"
