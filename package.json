@@ -9,7 +9,7 @@
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
     "coverage:badge": "coverage-badge-creator",
-    "coverage": "nyc --reporter=text npm run test --coverage --watchAll=false"
+    "coverage": "cc-test-reporter format-coverage --prefix src/tests/index.js"
   },
   "repository": {
     "type": "git",
