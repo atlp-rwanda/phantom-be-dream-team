@@ -1,3 +1,3 @@
 import app from './app.js';
-const PORT =3000;
-app.listen(PORT, () => { console.log("Server listening on port " + PORT) });
+app.listen(process.env.PORT || 3000);
+console.log("Listening to port 3000")
