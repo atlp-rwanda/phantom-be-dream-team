@@ -7,7 +7,8 @@
     "dev:start": " nodemon --exec babel-node src/index.js",
     "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/index.js",
     "build": "babel src --out-dir dist",
-    "start": "nodemon --exec babel-node src/index.js"
+    "start": "nodemon --exec babel-node src/index.js",
+    "coverage": "nyc --reporter=text npm run test"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,9 @@
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
+    "coveralls": "^3.1.1",
     "eslint": "^8.17.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.30.0",
@@ -32,11 +35,11 @@
     "mocha": "^10.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
+    "nyc": "^15.1.0",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0"
   },
   "dependencies": {
-    "@babel/node": "^7.17.10",
-    "chai-http": "^4.3.0"
+    "@babel/node": "^7.17.10"
   }
 }
