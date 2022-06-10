@@ -6,7 +6,8 @@
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
     "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/index.js",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "start": "nodemon --exec babel-node src/index.js"
   },
   "repository": {
     "type": "git",
