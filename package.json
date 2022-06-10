@@ -8,7 +8,8 @@
     "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/index.js",
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
-    "coverage": "nyc --reporter=text npm run test"
+    "coverage:badge": "coverage-badge-creator",
+    "coverage": "nyc --reporter=text npm run test --coverage --watchAll=false"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-env": "^7.18.2", 
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
