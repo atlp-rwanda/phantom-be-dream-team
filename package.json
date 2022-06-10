@@ -9,7 +9,7 @@
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
     "coverage:badge": "coverage-badge-creator",
-    "coverage": "cc-test-reporter format-coverage --prefix src/tests/index.js"
+    "coverage": "c8 --check-coverage-r Icov npm test"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2", 
+    "@babel/preset-env": "^7.18.2",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
@@ -41,6 +41,7 @@
     "swagger-ui-express": "^4.4.0"
   },
   "dependencies": {
-    "@babel/node": "^7.17.10"
+    "@babel/node": "^7.17.10",
+    "c8": "^7.11.3"
   }
 }
