@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ develop, ch-setup-continous-continous-integration-#18 ]
+    branches: [ ch-setup-continous-continous-integration-#18 ]
  
 jobs:
   build:
@@ -27,9 +27,15 @@ jobs:
 
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
+      codecov:
+        token: f3068969-f4f8-42f3-be26-3f19aea87b7e
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
 
+
     - name: Build
       run: npm run build 
+
+
+
