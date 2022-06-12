@@ -1,6 +1,10 @@
 # Phantom
 ## Maintainability Badge
+<a href="https://codeclimate.com/github/atlp-rwanda/phantom-be-dream-team/maintainability"><img src="https://api.codeclimate.com/v1/badges/d9ba62bb03c827308555/maintainability" /></a>
+## CI/CD
+![Codecov](https://github.com/atlp-rwanda/phantom-be-dream-team/workflows/CI/CD/badge.svg)
 ## Coverage Badge
+![Codecov](https://img.shields.io/codecov/c/github/atlp-rwanda/phantom-be-dream-team/ch-setup-continous-continous-integration-#18)
 ## Tests
 ## Description
 Phantom is an application that allows simulating bus movements and enabling passengers to track their locations & movements. 
@@ -61,7 +65,7 @@ To run the app in production build of the app, use either of the following.
 -[ArthurJunior](#https://github.com/arthurjunior250)
 -[JulesHabarurema](#https://github.com/Juleshb)
 -[KwizeraSteven](#https://github.com/Stevenkwizera06)
--[GisagaraPrince](#https://github.com/gyssa-prince)
+-[GyssagaraPrince](#https://github.com/gyssa-prince)
 -[BenjaminByiringiro](#https://github.com/Benafrica)
 -[GermainRukundo](#https://github.com/Rukundo725)
 ## License
