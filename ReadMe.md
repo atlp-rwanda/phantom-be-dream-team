@@ -1,8 +1,6 @@
 # Phantom
 ## Maintainability Badge
 <a href="https://codeclimate.com/github/atlp-rwanda/phantom-be-dream-team/maintainability"><img src="https://api.codeclimate.com/v1/badges/d9ba62bb03c827308555/maintainability" /></a>
-## CI/CD
-![Codecov](https://github.com/atlp-rwanda/phantom-be-dream-team/workflows/CI/CD/badge.svg)
 ## Coverage Badge
 ![Codecov](https://img.shields.io/codecov/c/github/atlp-rwanda/phantom-be-dream-team/ch-setup-continous-continous-integration-#18)
 ## Tests
