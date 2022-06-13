@@ -3,7 +3,6 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import swaggerDoc from "./data.json";
 import cors from "cors";
-// import Transalator from "./multiple-languages/multipleLanguages"
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
