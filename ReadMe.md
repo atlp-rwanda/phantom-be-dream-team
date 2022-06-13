@@ -55,6 +55,12 @@ To run the app in production build of the app, use either of the following.
 ```bash
  npm start
 ```
+## Running the Migrations
+
+```bash
+ sequelize db:migrate
+
+```
 ## Collaborators
 -[Dodo](#https://github.com/mukunzidd)
 -[Achillesonga](#https://github.com/songa1)
