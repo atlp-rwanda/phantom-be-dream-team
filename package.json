@@ -40,6 +40,9 @@
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.20.1",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "i18next": "^21.8.9",
+    "i18next-fs-backend": "^1.1.4",
+    "i18next-http-middleware": "^3.2.1"
   }
 }
