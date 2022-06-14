@@ -6,7 +6,9 @@
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
     "test": "",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "migrate": "sequelize db:migrate",
+    "seed": " sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
+    "@types/node": "^17.0.41",
     "cors": "^2.8.5",
     "eslint": "^8.17.0",
     "eslint-config-google": "^0.14.0",
@@ -34,7 +37,12 @@
   },
   "dependencies": {
     "@babel/node": "^7.17.10",
+    "@babel/register": "^7.17.7",
     "dotenv": "^16.0.1",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.20.1",
+    "sequelize-cli": "^6.4.1",
     "i18next": "^21.8.9",
     "i18next-fs-backend": "^1.1.4",
     "i18next-http-middleware": "^3.2.1"
