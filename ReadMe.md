@@ -58,6 +58,18 @@ To run the app in production build of the app, use either of the following.
 ```bash
  npm start
 ```
+## Running the Migrations
+
+```bash
+ npm run migrate
+
+```
+## Running the Seeds
+
+```bash
+ npm run seed
+
+```
 ## Collaborators
 -[Dodo](#https://github.com/mukunzidd)
 -[Achillesonga](#https://github.com/songa1)
