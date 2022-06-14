@@ -58,13 +58,13 @@ To run the app in production build of the app, use either of the following.
 ## Running the Migrations
 
 ```bash
- sequelize db:migrate
+ npm run migrate
 
 ```
 ## Running the Seeds
 
 ```bash
- sequelize db:seed:all
+ npm run seed
 
 ```
 ## Collaborators
