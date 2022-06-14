@@ -4,7 +4,7 @@
 ## CI/CD
 ![Codecov](https://github.com/atlp-rwanda/phantom-be-dream-team/workflows/CI/CD/badge.svg)
 ## Coverage Badge
-![Codecov](https://img.shields.io/codecov/c/github/atlp-rwanda/phantom-be-dream-team/ch-setup-continous-continous-integration-#18)
+![Codecov](https://img.shields.io/codecov/c/github/atlp-rwanda/phantom-be-dream-team)
 ## Tests
 ## Description
 Phantom is an application that allows simulating bus movements and enabling passengers to track their locations & movements. 
