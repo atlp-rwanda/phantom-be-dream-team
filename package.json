@@ -6,7 +6,9 @@
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
     "test": "",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "migrate": "sequelize db:migrate",
+    "seed": " sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
