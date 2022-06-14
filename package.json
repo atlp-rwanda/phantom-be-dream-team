@@ -9,7 +9,7 @@
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
     "coverage:badge": "coverage-badge-creator",
-    "coverage": "c8 --check-coverage-r Icov npm test"
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
