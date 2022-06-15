@@ -10,11 +10,6 @@ app.use(express.json());
 
 route(app);
 
-// const PORT =3000;
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log('Server listening on port ' + PORT);
-})
-
-
-
+//To listen the server
+app.listen(process.env.PORT || 3000);
+console.log("Listening to port 3000");
