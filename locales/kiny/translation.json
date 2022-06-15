@@ -1,4 +1,9 @@
 {
     "message": "Murakaza neza ku rubuga rwa Dream team Phantom",
-    "success": "Success"
+    "success": "Success",
+    "verificationEmail": "Nyamuneka reba imeri yawe kugirango usubize ijambo ryibanga",
+    "WrongPassword": "Ijambobanga ryinjiye ntirihuye",
+    "UserNotFound": "Ukoresha iyi email ntabonetse",
+    "resetComfirmation": "Ijambo ryibanga ryongeye gushyirwaho",
+    "failedComfirmation": "Ijambo ryibanga ntirisubirwamo, Gerageza nanone"
 }

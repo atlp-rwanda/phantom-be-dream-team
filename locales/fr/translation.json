@@ -1,4 +1,9 @@
 {
     "message": "Bienvenue dans l'application Dream Team Phantom",
-    "success": "Succès"
+    "success": "Succès",
+    "verificationEmail": "Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe",
+    "WrongPassword": "Le mot de passe saisi ne correspond pas",
+    "UserNotFound": "L'utilisateur avec l'e-mail est introuvable",
+    "resetComfirmation": "Votre mot de passe est réinitialisé",
+    "failedComfirmation": "Oups votre mot de passe n'a pas été réinitialisé, réessayez"
 }
