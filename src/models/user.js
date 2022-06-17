@@ -1,49 +1,40 @@
-import { Model } from 'sequelize';
+import {Model} from 'sequelize';
 
-const PROTECTED_ATTRIBUTES = ['password'];
-
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
+  // eslint-disable-next-line require-jsdoc
   class User extends Model {
-    toJSON() {
-      const attributes = { ...this.get() };
-      for (const a of PROTECTED_ATTRIBUTES) {
-        delete attributes[a];
-      }
-      return attributes;
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate() {
+      // define association here
     }
-    static associate(models) {
-    }
-  };
-  User.init({
-    name: DataTypes.STRING,
-    email: {
-      type: DataTypes.STRING,
-      allowNull: {
-        args: false,
-        msg: 'Please enter your email address',
-      },
-      unique: {
-        args: true,
-        msg: 'Email already exists',
-      },
-      validate: {
-        isEmail: {
-          args: true,
-          msg: 'Please enter a valid email address',
+  }
+  User.init(
+      {
+        firstName: {type: DataTypes.STRING, allowNull: false},
+        lastName: {type: DataTypes.STRING, allowNull: false},
+        email: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          unique: true,
+          validate: {isEmail: true},
+          lowercase: true,
+        },
+        role: {type: DataTypes.STRING, allowNull: false},
+        password: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {min: 4},
         },
       },
-    },
-    phone: {
-      type: DataTypes.STRING,
-      unique: true,
-    },
-    password: DataTypes.STRING,
-    status: DataTypes.STRING,
-    last_login_at: DataTypes.DATE,
-    last_ip_address: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+      {
+        sequelize,
+        modelName: 'User',
+      },
+  );
+
   return User;
 };

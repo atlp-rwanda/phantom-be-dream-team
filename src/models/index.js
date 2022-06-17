@@ -1,29 +1,39 @@
-import fs from 'fs';
-import path from 'path';
-import Sequelize from 'sequelize';
-import enVariables from '../config/config';
+import {readdirSync} from 'fs';
+import {basename as _basename, join} from 'path';
+import Sequelize, {DataTypes} from 'sequelize';
+import prop from '../config/config';
 
-const basename = path.basename(__filename);
+const basename = _basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = enVariables[env];
+const config = prop[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (config.url) {
+  sequelize = new Sequelize(config.url, {
+    dialect: 'postgres',
+  });
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(
+      config.database,
+      config.username,
+      config.password,
+      config,
+  );
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-  .forEach(file => {
-    const model = require(path.join(__dirname, file)).default(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
+readdirSync(__dirname)
+    .filter(
+        (file) =>
+          // eslint-disable-next-line max-len
+          file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js',
+    )
+    .forEach((file) => {
+      const model = require(join(__dirname, file))(sequelize, DataTypes);
+      db[model.name] = model;
+    });
 
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
@@ -31,5 +41,13 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connected! Database Status : ON 🔥.');
+    })
+    .catch((err) => {
+      console.error('Failed to connect! Database Status : OFF:', err);
+    });
 
 export default db;
