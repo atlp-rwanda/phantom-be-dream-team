@@ -6,7 +6,9 @@ import cors from "cors";
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
+import cookieParser from 'cookie-parser';
 
+import userRoute from './routes/updateProfile'
 
 i18next
   .use(Backend)
@@ -20,8 +22,6 @@ i18next
 
 const server=express();
 server.use(middleware.handle(i18next));
-
-
 server.use(express.json());
 
 server.get("/", (req, res) => {
@@ -31,15 +31,14 @@ server.get("/", (req, res) => {
   });
 });
 
-
-
-
-
 server.use(morgan("dev"));
 server.use(cors());
+server.use(cookieParser())
 
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
-server.use("*", (req, res, next) => {
-	res.status(404).json({ error: "NOT FOUND", });
-});
+// server.use("*", (req, res, next) => {
+// 	res.status(404).json({ error: "NOT FOUND", });
+// });
+server.use("/profile",userRoute);
+
 export default server;
