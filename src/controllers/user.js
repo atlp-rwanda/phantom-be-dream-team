@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import e from 'express';
 import model from '../models';
 
 const User = model.User;
@@ -16,7 +15,7 @@ const  getUser = async (req, res) => {
   
     if (!user) {
       return res.status(400).send({
-        message: `No user found with the id ${id}`,
+        message: `No user found with this  id ${id}`,
       });
     }
   
