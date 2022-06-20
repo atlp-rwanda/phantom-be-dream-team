@@ -1,5 +1,8 @@
+const bcrypt = require("bcryptjs/dist/bcrypt");
+
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.bulkInsert(
+ async up (queryInterface, Sequelize) {
+   await queryInterface.bulkInsert(
     'Users',
     [
       {
@@ -7,8 +10,8 @@ module.exports = {
         name: 'Jon Doe',
         email: 'jondoe@example.com',
         phone:'123457688',
-        password:'34567dhhdhdh',
-        status:'yes',
+        password:await bcrypt.hash('34567dhhdhdh', 12),
+        role:'admin',
         last_login_at: new Date(),
         last_ip_address:'192.158. 1.38',
         createdAt: new Date(),
@@ -19,8 +22,8 @@ module.exports = {
         name: 'Doe',
         email: 'doe@example.com',
         phone:'1457688',
-        password:'3456hhdhdh',
-        status:'yes',
+        password:await bcrypt.hash('3456hhdhdh',12),
+        role:'admin',
         last_login_at: new Date(),
         last_ip_address:'192.158. 1.38',
         createdAt: new Date(),
@@ -28,9 +31,12 @@ module.exports = {
       },
     ],
     {},
-  ),
+  );
+ },
 
-  down: (queryInterface, Sequelize) => queryInterface.bulkDelete('Users', null, {}),
+  async down (queryInterface, Sequelize) { 
+    await queryInterface.bulkDelete('Users', null, {});
+  },
 };
 
  

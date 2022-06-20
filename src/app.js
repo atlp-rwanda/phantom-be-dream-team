@@ -6,6 +6,7 @@ import cors from "cors";
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
+import userRoute from "./routes/api/userRoutes"
 
 
 i18next
@@ -31,6 +32,8 @@ server.get("/", (req, res) => {
   });
 });
 
+
+server.use("/users", userRoute)
 
 
 

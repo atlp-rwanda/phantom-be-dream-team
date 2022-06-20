@@ -38,7 +38,7 @@ export default (sequelize, DataTypes) => {
       unique: true,
     },
     password: DataTypes.STRING,
-    status: DataTypes.STRING,
+    role: DataTypes.STRING,
     last_login_at: DataTypes.DATE,
     last_ip_address: DataTypes.STRING
   }, {

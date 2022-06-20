@@ -22,7 +22,7 @@ export default {
       password: {
         type: Sequelize.STRING
       },
-      status: {
+      role: {
         type: Sequelize.STRING
       },
       last_login_at: {
