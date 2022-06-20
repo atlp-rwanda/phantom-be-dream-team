@@ -1,4 +1,6 @@
 {
     "message": "Bienvenue dans l'application Dream Team Phantom",
-    "success": "Succès"
+    "success": "Succès",  
+    "profileUpdate":"Mise à jour du profil réussie",
+    "noUserFound":"Aucun utilisateur ne possède cet identifiant "
 }

@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import model from '../models';
+import { Sequelize } from 'sequelize';
 
 const User = model.User;
 dotenv.config();
@@ -15,7 +16,7 @@ const  getUser = async (req, res) => {
   
     if (!user) {
       return res.status(400).send({
-        message: `No user found with this  id ${id}`,
+        message: req.t('noUserFound')+' '+id
       });
     }
   
@@ -34,7 +35,7 @@ const  getUser = async (req, res) => {
   
     if (!user) {
       return res.status(400).send({
-        message: `No user found with the id ${id}`,
+        message: req.t('noUserFound')+' '+id
       });
     }
   
@@ -52,10 +53,11 @@ const  getUser = async (req, res) => {
       if(password){
         user.password = password;  
       }
+      user.updated = Sequelize.fn('NOW');
   
       user.save();
       return res.send({
-        message: `Profile updated`,
+        message: req.t('profileUpdate')
       });
     } catch (err) {
       return res.status(500).send({
