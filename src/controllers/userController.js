@@ -38,6 +38,19 @@ const addUser = async (req, res) => {
       role,
       password,
     })
+        .then((data) => {
+          if (data) {
+            const message = `
+            email:${req.body.email}
+            password:${userpassword}
+            `;
+            res.status(201).json({
+              message: req.t('user_created'),
+              data,
+              message,
+            });
+          }
+        })
         .catch((err) =>
           res.status(400).json({
             error: err.message,

@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
           validate: {isEmail: true},
           lowercase: true,
         },
-        role: {type: DataTypes.STRING, allowNull: false},
+        role: {
+          type: DataTypes.STRING, allowNull: false},
         password: {
           type: DataTypes.STRING,
           allowNull: false,
