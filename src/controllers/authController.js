@@ -18,6 +18,7 @@ const createSendToken = (user, statusCode, res) => {
     data: {
       user,
     },
+    message: 'Login Successful',
   });
 };
 
@@ -34,13 +35,14 @@ exports.login = async (req, res, next) => {
 
   const user = await models.User.findOne({where: {email}});
   // eslint-disable-next-line max-len
-  if (!user) return res.status(401).json({status: 'fail', message: 'Invalid email'});
+  if (!user) return res.status(401).json({status: 'fail', message: 'Incorrect email or password'});
   const correctPassword = async function(candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
   };
 
   if (!user || !(await correctPassword(password, user.password))) {
-    return res.status(401).json({status: 'fail', message: 'Invalid password'});
+    // eslint-disable-next-line max-len
+    return res.status(401).json({status: 'fail', message: 'Incorrect email or password'});
   }
   createSendToken(user, 200, res);
 };

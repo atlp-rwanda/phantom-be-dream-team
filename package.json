@@ -6,31 +6,24 @@
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
     "dev": "better-npm-run dev",
-    "test": "cross-env NODE_ENV=dev nyc mocha --require @babel/register ./src/tests/ --recursive  --exit --timeout 100000",
+    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/*.test.js -watch",
     "build": "babel src --out-dir dist",
     "migrate": "sequelize db:migrate",
     "seed": " sequelize db:seed:all"
   },
   "betterScripts": {
     "dev": {
-      "command": "nodemon --exec babel-node ./src/server",
+      "command": "nodemon --exec babel-node ./src/index",
       "env": {
         "NODE_ENV": "development",
         "PORT": 3000
       }
     },
     "prod": {
-      "command": "node ./dist/server",
+      "command": "node ./dist/index",
       "env": {
         "NODE_ENV": "production",
         "PORT": 8000
-      }
-    },
-    "test": {
-      "command": "nyc mocha --recursive src/**/*.test.js --require @babel/register src/**/*_test.js __test__/",
-      "env": {
-        "NODE_ENV": "test",
-        "PORT": 5000
       }
     }
   },
