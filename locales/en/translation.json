@@ -4,6 +4,7 @@
     "verificationEmail": "Please check your email to reset your password",
     "WrongPassword": "The password entered don't match",
     "UserNotFound": "The user with the email not found",
+    "verificationEmailFailed": "Email not sent",
     "resetComfirmation": "Your password is reset",
     "failedComfirmation": "Oops your password wasn't reset, Try again" 
 }

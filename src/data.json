@@ -45,6 +45,86 @@
                     }
                 }
             }
+        },
+        "/api/v1/forgotpassword": {
+            "post": {
+                "tags": [
+                    "Forgot Password"
+                ],
+                "summary": "",
+                "description": "u",
+                "operationId": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Please check your email to reset your password"
+                    }
+                }
+            }
+        },
+        "/api/v1/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiS3dpemVyYSBTdGV2ZW4iLCJlbWFpbCI6ImRyZWFtdG04N0BnbWFpbC5jb20iLCJwaG9uZSI6IjA3ODcyMzk1MzQiLCJzdGF0dXMiOiJ5ZXMiLCJsYXN0X2xvZ2luX2F0IjoiMjAyMi0wNi0yMVQxMjozMTozNi45NTZaIiwibGFzdF9pcF9hZGRyZXNzIjoiMTkyLjE1OC4gMS4zOCIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjFUMTI6MzE6MzYuOTU2WiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjFUMTM6MTg6MjguMDQ4WiJ9LCJpYXQiOjE2NTU4MTc1NDQsImV4cCI6MTY1NTkwMzk0NH0.-nlUpbtEb2cXkQX48vnF-q1krejI3D3L_wNsPSrFo-M": {
+            "post": {
+                "tags": [
+                    "Reset password"
+                ],
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "comfirmPassword": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email",
+                                "password",
+                                "comfirmPassword"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "The password entered dont match"
+                    }
+                }
+            }
         }
+
+
+        
+        
     }
 }
