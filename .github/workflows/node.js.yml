@@ -2,10 +2,8 @@ name: CI/CD
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+    branches: [ develop, ch-setup-continous-continous-integration-#18 ]
+ 
 jobs:
   build:
 
@@ -13,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
 
     steps:
     - name: Checkout repository
@@ -27,8 +25,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run the tests
-      run: npm test
-
-    - name: Build
-      run: npm test && npm run coverage
+    - name: Run the tests and generate coverage report
+      run: npm run coverage
+   
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1

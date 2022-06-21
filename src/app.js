@@ -37,9 +37,6 @@ server.use(cors());
 server.use(cookieParser())
 
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
-// server.use("*", (req, res, next) => {
-// 	res.status(404).json({ error: "NOT FOUND", });
-// });
 
 server.use(forgotPasssword)
 server.use(resetPassword)

@@ -32,7 +32,7 @@ const resetPassword = async (req, res) => {
       })
     } else {
       res.status(404).json({
-        message: "Oops your password wasn't reset, Try again"
+        message: req.t('failedComfirmation')
       })
     }
   }
