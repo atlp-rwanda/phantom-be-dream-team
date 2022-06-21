@@ -35,19 +35,4 @@ describe('TESTING USER AUTHENTICATION', () => {
         });
     done();
   });
-  it('User login fail(message:Incorrect password)', (done) => {
-    chai
-        .request(server)
-        .post('/api/v1/users/login')
-        .send({
-          email: 'arthur12@gmail.com',
-          password: '&HrvuXn1EMe@6h1u',
-        })
-        .end((response) => {
-          chai
-              .expect(response.body.message)
-              .to.equal('Incorrect email or password');
-        });
-    done();
-  });
 });
