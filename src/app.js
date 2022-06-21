@@ -43,8 +43,8 @@ server.use(cors());
 server.use("/roles",roleRouter);
 
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
-server.use("*", (req, res, next) => {
-	res.status(404).json({ error: "NOT FOUND", });
-});
+// server.use("*", (req, res, next) => {
+// 	res.status(404).json({ error: "NOT FOUND", });
+// });
  
 export default server;

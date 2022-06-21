@@ -9,8 +9,10 @@ const config = enVariables[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (config.url) {
+  sequelize = new Sequelize(config.url, {
+    dialect:"postgress"
+  });
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
@@ -31,5 +33,10 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+sequelize
+.authenticate()  
+.then(() => {    console.log('DB connected') })  
+.catch((err) => {    console.error('Failed to connect!', err);  });
 
 export default db;

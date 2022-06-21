@@ -15,7 +15,7 @@ export default (sequelize, DataTypes) => {
   }
   Roles.init(
     {
-      uuid: {
+      roleId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
@@ -23,15 +23,11 @@ export default (sequelize, DataTypes) => {
       roleName: {
         type: DataTypes.STRING,
         allowNull: false
-      },
-      permissions: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-        validate: {
-          notNull: { msg: 'Role must have permissions' },
-          notEmpty: { msg: 'permissions must not be empty' }
-        }
-      },
+       },
+       roleDescription: {
+        type: DataTypes.STRING,
+        allowNull: false
+       },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
@@ -39,7 +35,8 @@ export default (sequelize, DataTypes) => {
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE
-      }
+      },
+      
     },
     {
       sequelize,
