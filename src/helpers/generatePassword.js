@@ -1,14 +1,16 @@
+// eslint-disable-next-line require-jsdoc
 function generatePassword() {
   const chars =
-    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+?><:{}[]";
+      // eslint-disable-next-line max-len
+      '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+?><:{}[]';
 
 
-  var passwodLength = 15;
+  const passwodLength = 15;
 
-  var password = "";
+  let password = '';
 
-  for (var i = 0; i < passwodLength; i++) {
-    var randomNumber = Math.floor(Math.random() * chars.length);
+  for (let i = 0; i < passwodLength; i++) {
+    const randomNumber = Math.floor(Math.random() * chars.length);
     password += chars.substring(randomNumber, randomNumber + 1);
   }
   return password;

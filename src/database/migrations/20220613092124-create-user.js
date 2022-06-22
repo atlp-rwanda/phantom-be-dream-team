@@ -7,18 +7,19 @@ export default {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      firstName: {
         type: Sequelize.STRING
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        unique: true,
       },
       email: {
         allowNull: false,
         unique: true,
         type: Sequelize.STRING,
       },
-      phone: {
-        type: Sequelize.STRING,
-        unique: true,
-      },
+     
       password: {
         type: Sequelize.STRING
       },

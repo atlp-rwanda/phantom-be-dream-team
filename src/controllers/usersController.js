@@ -11,11 +11,11 @@ dotenv.config();
 
 const addUser = async (req, res) => {
   // static create(req, res) {
-  const { name, phone, email, role } = req.body;
+  const { firstName, lastName, email, role } = req.body;
   const userpassword = generatePassword();
   const password = await bcrypt.hash(userpassword, 10);
 
-  if (name === '' || phone === '' || email === '' || role === '') {
+  if (firstName === '' || lastName === '' || email === '' || role === '') {
     return res.status(500).json({
       message: req.t('required_field'),
     });
@@ -37,8 +37,8 @@ const addUser = async (req, res) => {
       }
       console.log(password);
       return User.create({
-        name,
-        phone,
+        firstName,
+        lastName,
         email,
         role,
         password,
@@ -125,7 +125,7 @@ const findOneUser = (req, res) => {
 
 const update = (req, res) => {
   const { id } = req.params;
-  const { name, phone, role } = req.body;
+  const { firstName, lastName, role } = req.body;
   User.findOne({
     where: {
       id,
@@ -141,16 +141,16 @@ const update = (req, res) => {
     }
     return user
       .update({
-        name: name || user.name,
-        phone: phone || user.phone,
+        firstName: firstName || user.firstName,
+        lastName: lastName || user.lastName,
         role: role || user.role,
       })
       .then((updatedUser) => {
         res.status(200).json({
           message: req.t(`user_update`),
           updatedUser: {
-            name: updatedUser.name,
-            phone: updatedUser.phone,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
             role: updatedUser.role,
             email: updatedUser.email,
           },
