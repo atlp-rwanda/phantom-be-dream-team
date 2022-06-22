@@ -1,21 +1,24 @@
+
+
+import assert from 'assert';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../src/index';
+import server from '../app';
 
 chai.should();
 chai.use(chaiHttp);
 describe('TESTING REGISTRATION OF USERS', () => {
   describe('POST /users/register', () => {
 
-
+// add a new user who is not in the database
     it('User successfully registered', (done) => {
       chai
         .request(server)
         .post('/users/register')
         .send({
-          name: 'kalimba',
+          name: 'benjamin',
           phone: '04525464',
-          email: 'umusaz3@gmail.com',
+          email: 'ben23@gmail.com',
           role: 'driver',
         })
         .end((err, response) => {
@@ -39,12 +42,12 @@ describe('TESTING REGISTRATION OF USERS', () => {
       done();
     });
   });
-  // GET one user tset
+  // GET one user with his/her id from the database
   describe('GET /users/:id', () => {
     it('User retreived', (done) => {
       chai
         .request(server)
-        .get('/users/4')
+        .get('/users/1')
     
         .end((err, response) => {
           chai.expect(response.statusCode).to.equal(200);
@@ -53,6 +56,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+  // update a user who is in the database by using his/her id
   describe('PUT /users/1', () => {
     it('User successfully updated', (done) => {
       chai
@@ -60,9 +64,9 @@ describe('TESTING REGISTRATION OF USERS', () => {
         .put('/users/1')
         
         .send({
-          name: 'KEVIN',
+          name: 'theodole',
           phone: '54564564',
-          email: 'kevin.kalimba54@gmail.com',
+          email: 'theodole.bizimana54@gmail.com',
           role: 'operator',
         })
         .end((err, response) => {
@@ -72,6 +76,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+  // delete a user whose id is in the database 
   describe('DELETE /users/:id', () => {
     it('User deleted', (done) => {
       chai
@@ -85,6 +90,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+  // find if the email exists by using an existing email from the database
   describe('Getting error messages', () => {
     it('email exists', (done) => {
       chai
@@ -94,7 +100,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
         .send({
           name: 'umuhanga',
           phone: '956849576',
-          email: 'kevin.kalimba54@gmail.com',
+          email: 'ben23@gmail.com',
           role: 'operator',
         })
         .end((error, response) => {
@@ -104,6 +110,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+  // no credentials and get error message
   describe('Getting error messages', () => {
     it('enter credentials', (done) => {
       chai
@@ -123,6 +130,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+  // get an id which doesn't exist in the database
   describe('GET /users/:id', () => {
     it('User with Id does not exist', (done) => {
       chai
@@ -136,6 +144,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+// update the user with a wrong id
   describe('PUT /users/20', () => {
     it('The user with id does not exist', (done) => {
       chai
@@ -143,9 +152,9 @@ describe('TESTING REGISTRATION OF USERS', () => {
         .put('/users/22')
         
         .send({
-          name: 'kevin',
+          name: 'theodole',
           phone: '645645645',
-          email: 'kevin.kalimba@gmail.com',
+          email: 'theodole.bizimana@gmail.com',
           role: 'operator',
         })
         .end((err, response) => {
@@ -155,11 +164,12 @@ describe('TESTING REGISTRATION OF USERS', () => {
     });
   });
 
+  // delete a user with a wrong id
   describe('DELETE /users/:id', () => {
     it('no user to be deleted', (done) => {
       chai
         .request(server)
-        .delete('/users/12')
+        .delete('/users/102')
         
         .end((err, response) => {
           chai.expect(response.statusCode).to.equal(404);
