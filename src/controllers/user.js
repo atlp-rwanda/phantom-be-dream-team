@@ -7,8 +7,9 @@ dotenv.config();
 
 const  getUser = async (req, res) => {
     const { id } = req.params;
-  
+    try{
     const user = await User.findOne({
+      
       where: {
         id,
       },
@@ -21,12 +22,17 @@ const  getUser = async (req, res) => {
     }
   
     return res.send(user);
+  }catch(err){
+    return res.status(500).send({
+      message: `Error:${err.message}`
+    });
+  }
   };
   
   const updateUser = async (req, res) => {
     const { name, email, phone, password } = req.body;
     const { id } = req.params;
-  
+    try {
     const user = await User.findOne({
       where: {
         id,
@@ -39,7 +45,7 @@ const  getUser = async (req, res) => {
       });
     }
   
-    try {
+    
       if (name) {
         user.name = name;
       }

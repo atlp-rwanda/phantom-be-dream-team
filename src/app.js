@@ -7,9 +7,8 @@ import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
 import cookieParser from 'cookie-parser';
-
-import userRoute from './routes/updateProfile'
-
+// import allRoutes from './routes/index'
+import profileRoutes from "./routes/api/updateProfile"
 i18next
   .use(Backend)
   .use(middleware.LanguageDetector)
@@ -23,6 +22,7 @@ i18next
 const server=express();
 server.use(middleware.handle(i18next));
 server.use(express.json());
+server.use('/api/v1/profile', profileRoutes);
 
 server.get("/", (req, res) => {
   res.status(200).json({
@@ -30,15 +30,12 @@ server.get("/", (req, res) => {
     message: req.t('message'),
   });
 });
-
-server.use(morgan("dev"));
-server.use(cors());
-server.use(cookieParser())
+    
 
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
 // server.use("*", (req, res, next) => {
 // 	res.status(404).json({ error: "NOT FOUND", });
 // });
-server.use("/profile",userRoute);
+// server.use("/api/v1",allRoutes);
 
 export default server;
