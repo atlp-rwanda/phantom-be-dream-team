@@ -1,11 +1,13 @@
-import app from './app';
-import config from './config/config';
+import app from './app.js';
+import express from 'express';
+import route from './routes/index'
+import 'dotenv/config';
 
-const currentConfig = config[process.env.NODE_ENV];
-const {port} = currentConfig;
+// const app = express();
 
-const App = app.listen(port, () =>
-  console.log(`App listening on ${port}!....`),
-);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-export default App;
+//To listen the server
+app.listen(process.env.PORT || 3000);
+console.log("Listening to port 3000");
