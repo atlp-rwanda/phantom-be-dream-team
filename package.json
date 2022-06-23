@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
+    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/*.test.js -watch ",
     "dev": "better-npm-run dev",
-    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/*.test.js -watch",
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
     "coverage:badge": "coverage-badge-creator",
     "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",
-    "seed": " sequelize db:seed:all"
+    "seed": " sequelize db:seed:all",
+    "migrate:undo": "sequelize db:migrate:undo:all",
+    "seed:undo": "sequelize db:seed:undo:all"
   },
   "betterScripts": {
     "dev": {
@@ -63,18 +65,21 @@
   "dependencies": {
     "@babel/node": "^7.17.10",
     "@babel/register": "^7.17.7",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
     "argon2": "^0.28.5",
     "bcryptjs": "^2.4.3",
     "better-npm-run": "^0.1.1",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.1",
     "gulp-spawn-mocha": "^6.0.0",
     "i18next": "^21.8.9",
     "i18next-fs-backend": "^1.1.4",
     "i18next-http-middleware": "^3.2.1",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.7.5",
     "nyc": "^15.1.0",
     "pg": "^8.7.3",
     "quotation": "^2.0.2",
