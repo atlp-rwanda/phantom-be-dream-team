@@ -12,7 +12,8 @@
     "coverage:badge": "coverage-badge-creator",
     "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",
-    "seed": " sequelize db:seed:all"
+    "seed": " sequelize db:seed:all",
+    "dockercompose": "docker compose up"
   },
   "betterScripts": {
     "dev": {
