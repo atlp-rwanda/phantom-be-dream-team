@@ -1,6 +1,6 @@
 import  jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
-import model from "../models";
+import model from "../../models/user";
 import "dotenv/config" 
 
 const User = model.User

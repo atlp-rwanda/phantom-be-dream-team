@@ -1,16 +1,24 @@
-require('dotenv').config()
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 module.exports = {
   development: {
-    url: process.env.DEV_DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    url: process.env.DB_DEVELOPMENT_URL,
     dialect: 'postgres',
+    port: process.env.PORT,
   },
   test: {
-    url: process.env.TEST_DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    url: process.env.DB_TESTING_URL,
     dialect: 'postgres',
+    port: process.env.PORT,
   },
   production: {
-    url: process.env.DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    url: process.env.DB_PRODUCTION_URL,
     dialect: 'postgres',
+    port: process.env.PORT,
   },
-}
+};

@@ -80,7 +80,7 @@
                 }
             }
         },
-        "/api/v1/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiS3dpemVyYSBTdGV2ZW4iLCJlbWFpbCI6ImRyZWFtdG04N0BnbWFpbC5jb20iLCJwaG9uZSI6IjA3ODcyMzk1MzQiLCJzdGF0dXMiOiJ5ZXMiLCJsYXN0X2xvZ2luX2F0IjoiMjAyMi0wNi0yMVQxMjozMTozNi45NTZaIiwibGFzdF9pcF9hZGRyZXNzIjoiMTkyLjE1OC4gMS4zOCIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjFUMTI6MzE6MzYuOTU2WiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjFUMTM6MTg6MjguMDQ4WiJ9LCJpYXQiOjE2NTU4MTc1NDQsImV4cCI6MTY1NTkwMzk0NH0.-nlUpbtEb2cXkQX48vnF-q1krejI3D3L_wNsPSrFo-M": {
+        "/api/v1/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJmaXJzdE5hbWUiOiJLd2l6ZXJhICIsImxhc3ROYW1lIjoiU3RldmVuIiwiZW1haWwiOiJkcmVhbXRtODdAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwaGFudG9tQDEyMyIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiJ9LCJpYXQiOjE2NTU5ODkyMzUsImV4cCI6MTY1NjAyNTIzNX0.ah1WJOA-Lr589Q_oCe8UC33QuLrzGe78CFoDFez2qeA": {
             "post": {
                 "tags": [
                     "Reset password"
@@ -118,6 +118,39 @@
                 "responses": {
                     "401": {
                         "description": "The password entered dont match"
+                    }
+                }
+            }
+        },
+
+
+        "/api/v1/users/login": {
+            "post": {
+                "tags": ["Sign-in to Phantom"],
+                "summary": "User Login | Admin | Operator | Driver",
+                "description": "user's login either admin , operator and driver",
+                "operationId": "userLogin",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Resource payload",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["email", "password"]
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Login Successfully"
                     }
                 }
             }

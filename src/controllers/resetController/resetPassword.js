@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import model from "../models";
+import model from "../../models";
 import "dotenv/config" 
 
 const User = model.User
