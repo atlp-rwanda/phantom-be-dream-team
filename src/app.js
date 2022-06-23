@@ -6,8 +6,9 @@ import cors from "cors";
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
-// import roleRouter from './src/Roles/routes/roles.routes';
 import roleRouter from './routes/roles.routes'
+import PermissionsRouter from './routes/Permissions.routes'
+
 
 
 i18next
@@ -41,10 +42,9 @@ server.use(morgan("dev"));
 server.use(cors());
 
 server.use("/roles",roleRouter);
+server.use("/permissions",PermissionsRouter);
 
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
-// server.use("*", (req, res, next) => {
-// 	res.status(404).json({ error: "NOT FOUND", });
-// });
+
  
 export default server;

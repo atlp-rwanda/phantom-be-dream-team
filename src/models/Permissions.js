@@ -1,7 +1,7 @@
 'use strict';
 import { Model } from 'sequelize';
 export default (sequelize, DataTypes) => {
-  class Roles extends Model {
+  class Permissions extends Model {
     
     static associate(models) {
     
@@ -13,18 +13,18 @@ export default (sequelize, DataTypes) => {
       };
     }
   }
-  Roles.init(
+  Permissions.init(
     {
-      roleId: {
+        PermissionId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
 
-      roleName: {
+      PermissionName: {
         type: DataTypes.STRING,
         allowNull: false
        },
-       roleDescription: {
+       PermissionDescription: {
         type: DataTypes.STRING,
         allowNull: false
        },
@@ -40,9 +40,9 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      tableName: 'Roles',
-      modelName: 'Roles'
+      tableName: 'Permissions',
+      modelName: 'Permissions'
     }
   );
-  return Roles;
+  return Permissions;
 };
