@@ -1,16 +1,19 @@
 import dotenv from 'dotenv';
 import model from '../models';
 import { Sequelize } from 'sequelize';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
 
 const User = model.User;
 dotenv.config();
 
-const  getUser = async (req, res) => {
+const  getUser =  async (req, res) => {
     const { id } = req.params;
     try{
     const user = await User.findOne({
       
-      where: {
+     where: {
         id,
       },
     });
@@ -30,7 +33,21 @@ const  getUser = async (req, res) => {
   };
   
   const updateUser = async (req, res) => {
-    const { name, email, phone, password } = req.body;
+    var logged=false
+    const token = req.header('auth-token');
+    if(!token) return res.status(401).send('Access Denied');
+
+    try{
+      const verified = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = verified; 
+      logged=true
+    }catch(err){
+        res.status(401).send('Access Denied (wrong token)');
+    }
+    if(logged==true){
+
+  
+    const { firstName, lastName, email, phone, Newpassword,Oldpassword } = req.body;
     const { id } = req.params;
     try {
     const user = await User.findOne({
@@ -46,18 +63,30 @@ const  getUser = async (req, res) => {
     }
   
     
-      if (name) {
-        user.name = name;
+      if (firstName) {
+        user.firstName = firstName;
       }
-      
+      if (lastName) {
+        user.lastName = lastName;
+      }
       if (email) {
           user.email = email;
         }
       if (phone) {
         user.phone = phone;
       }
-      if(password){
-        user.password = password;  
+      if(Newpassword){
+       
+        const correctPassword = async function( Oldpassword, Newpassword) {
+          return await bcrypt.compare( Oldpassword,  Newpassword);
+        };
+        if(await correctPassword(Oldpassword, user.password)){
+          const Npassword = await bcrypt.hash(Newpassword, 10);
+          user.password = Npassword;  
+        }
+        else{
+          res.send("Wrong old password");
+        }
       }
       user.updated = Sequelize.fn('NOW');
   
@@ -70,5 +99,5 @@ const  getUser = async (req, res) => {
         message: `Error: ${err.message}`,
       });
     }
-  };
+  }};
   export { getUser, updateUser };
