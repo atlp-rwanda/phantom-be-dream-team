@@ -6,11 +6,11 @@
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
     "dev": "better-npm-run dev",
-    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/index.test.js",
+    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/index.test.js ",
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
     "coverage:badge": "coverage-badge-creator",
-    "coverage": "rm -rf .nyc_output && nyc npm run test",
+    "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",
     "seed": " sequelize db:seed:all",
     "migrate:undo": "sequelize db:migrate:undo:all",

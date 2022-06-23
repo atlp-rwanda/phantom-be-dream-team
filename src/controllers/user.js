@@ -13,12 +13,12 @@ const  getUser =  async (req, res) => {
 
     
     try{
-    const user = await User.findAll({
-      where: {
-          id
+    const user = await User.findOne({
+      
+     where: {
+        id,
       },
-      attributes: ['id', 'firstName','lastName','email','role'], 
-    })
+    });
   
     if (!user) {
       return res.status(400).send({
