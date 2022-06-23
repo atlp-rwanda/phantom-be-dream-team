@@ -12,6 +12,7 @@
     "coverage:badge": "coverage-badge-creator",
     "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",
+    "undo-migrate": "sequelize-cli db:migrate:undo",
     "seed": " sequelize db:seed:all"
   },
   "betterScripts": {
@@ -44,9 +45,9 @@
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
+    "@types/node": "^17.0.41",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
-    "@types/node": "^17.0.41",
     "cors": "^2.8.5",
     "coveralls": "^3.1.1",
     "eslint": "^8.17.0",
@@ -81,6 +82,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1",
+    "sequelize-slugify": "^1.6.1",
     "uuid": "^8.3.2"
   }
 }
