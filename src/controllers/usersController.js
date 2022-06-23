@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
-
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import generatePassword from '../helpers/generatePassword';
 import sendEmail from '../helpers/sendEmail';
 import model from '../models';
