@@ -125,7 +125,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should return status 400 if the user is not found', (done) => {
         chai.request(server)
         .patch('/api/v1/profile/update/900')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
         .end((err, res) => {
               res.should.have.status(400);
           done();
@@ -136,7 +136,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
         .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
         .send(name)
         .end((err, res) => {
               res.should.have.status(200);
@@ -147,7 +147,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
         .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
         .send(name)
         .end((err, res) => {
               res.should.have.status(200);
@@ -160,7 +160,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
         .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
         .set('Accept-Language', 'fr') 
         .send(name)
         .end((err, res) => {
@@ -175,7 +175,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
         .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
         .set('Accept-Language', 'kiny') 
         .send(name)
         .end((err, res) => {
@@ -189,7 +189,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
     const name={Newpassword:"GYSSA Prince",Oldpassword:"indsm d"}
         chai.request(server)
         .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
         .set('Accept-Language', 'eng') 
         .send(name)
         .end((err, res) => {

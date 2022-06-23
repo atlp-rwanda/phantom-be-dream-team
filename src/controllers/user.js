@@ -10,13 +10,15 @@ dotenv.config();
 
 const  getUser =  async (req, res) => {
     const { id } = req.params;
+
+    
     try{
-    const user = await User.findOne({
-      
-     where: {
-        id,
+    const user = await User.findAll({
+      where: {
+          id
       },
-    });
+      attributes: ['id', 'firstName','lastName','email','role'], 
+    })
   
     if (!user) {
       return res.status(400).send({
