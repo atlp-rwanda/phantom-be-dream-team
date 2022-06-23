@@ -85,7 +85,9 @@ const  getUser =  async (req, res) => {
           user.password = Npassword;  
         }
         else{
-          res.send("Wrong old password");
+          return res.send({
+            message: req.t('WOP')
+          });
         }
       }
       user.updated = Sequelize.fn('NOW');

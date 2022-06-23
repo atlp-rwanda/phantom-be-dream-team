@@ -1,10 +1,10 @@
 import chai from "chai";
 import chaiHttp from 'chai-http';
-import server from '../app';
+import server from '../index';
 chai.should();
 
 chai.use(chaiHttp);
-describe('/PROFILE ROOT', () => {
+
   it('it should return status 200 on right root', (done) => {
         chai.request(server)
         .get('/api/v1/profile/1')
@@ -13,19 +13,59 @@ describe('/PROFILE ROOT', () => {
           done();
         });
   });
-});
-describe('/PROFILE ROOT', () => {
-  it('it should return status 404 if the id is not found', (done) => {
+
+
+  it('it should return status 200 on right root', (done) => {
         chai.request(server)
-        .get('/api/v1/profile/900')
+        .post('/api/v1/profile/1')
         .end((err, res) => {
-              res.should.have.status(400);
-              res.body.message.should.be.equal('No user who has this id  900')
+              res.should.have.status(404);
           done();
         });
   });
+
+  it('it should return status 400 if the id is not found', (done) => {
+    chai.request(server)
+    .get('/api/v1/profile/900')
+    .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.equal('No user who has this id  900')
+      done();
+    });
 });
-describe('/PROFILE ROOT', () => {
+
+  it('it should return status 400 if the id is not found in FRENCH', (done) => {
+        chai.request(server)
+        .get('/api/v1/profile/900')
+        .set('Accept-Language', 'fr') 
+        .end((err, res) => {
+              res.should.have.status(400);
+              res.body.message.should.be.equal('Aucun utilisateur ne possède cet identifiant  900')
+          done();
+        });
+  });
+
+  it('it should return status 400 if the id is not found in KINYARWANDA', (done) => {
+    chai.request(server)
+    .get('/api/v1/profile/900')
+    .set('Accept-Language', 'kiny') // Works.
+    .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.equal('Nta mukoresha ufite uyu mubare umuranga 900')
+      done();
+    });
+});
+
+it('it should return status 400 if the id is not found in English', (done) => {
+  chai.request(server)
+  .get('/api/v1/profile/900')
+  .end((err, res) => {
+        res.should.have.status(400);
+        res.body.message.should.be.equal('No user who has this id  900')
+    done();
+  });
+});
+
   it('it should return status 404 if there is no id provided', (done) => {
         chai.request(server)
         .get('/api/v1/profile')
@@ -34,29 +74,27 @@ describe('/PROFILE ROOT', () => {
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
+
   it('it should return status 200 if the id is found', (done) => {
         chai.request(server)
-        .post('/api/v1/profile/update/1')
+        .patch('/api/v1/profile/update/1')
         .end((err, res) => {
-              res.should.have.status(200);
-              res.body.message.should.be.equal('Profile updated successfully')
+              res.should.have.status(401);
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
+
+
   it('it should return status 400 if the id is not found', (done) => {
         chai.request(server)
-        .post('/api/v1/profile/update/900')
+        .patch('/api/v1/profile/update/900')
         .end((err, res) => {
-              res.should.have.status(400);
+              res.should.have.status(401);
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
+
+
   it('it should return status 404 if there is no id provided', (done) => {
         chai.request(server)
         .post('/api/v1/profile/update')
@@ -65,8 +103,7 @@ describe('/UPDATE PROFILE ROOT', () => {
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
+
   it('it should return status 404 if the id is not found', (done) => {
         chai.request(server)
         .post('/api/v1/profile/update')
@@ -75,8 +112,7 @@ describe('/UPDATE PROFILE ROOT', () => {
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
+
   it('it should return status 404 if the method is get', (done) => {
         chai.request(server)
         .get('/api/v1/profile/update/1')
@@ -85,26 +121,82 @@ describe('/UPDATE PROFILE ROOT', () => {
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
+
   it('it should return status 400 if the user is not found', (done) => {
         chai.request(server)
-        .post('/api/v1/profile/update/900')
+        .patch('/api/v1/profile/update/900')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE')
         .end((err, res) => {
               res.should.have.status(400);
           done();
         });
   });
-});
-describe('/UPDATE PROFILE ROOT', () => {
-  it('it should return status 200 if the data is updated', (done) => {
-    const name={name:"GYSSA Prince"}
+
+  it('it should return status 200 if the data is update', (done) => {
+    const name={firstName:"GYSSA Prince"}
         chai.request(server)
-        .post('/api/v1/profile/update/1')
+        .patch('/api/v1/profile/update/1')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
         .send(name)
         .end((err, res) => {
               res.should.have.status(200);
           done();
         });
   });
-});
+  it('it should return status 200 if the data is update', (done) => {
+    const name={firstName:"GYSSA Prince"}
+        chai.request(server)
+        .patch('/api/v1/profile/update/1')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .send(name)
+        .end((err, res) => {
+              res.should.have.status(200);
+              res.body.message.should.be.equal('Profile updated successfully')
+
+          done();
+        });
+  });
+  it('it should return status 200 if the data is update', (done) => {
+    const name={firstName:"GYSSA Prince"}
+        chai.request(server)
+        .patch('/api/v1/profile/update/1')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('Accept-Language', 'fr') 
+        .send(name)
+        .end((err, res) => {
+              res.should.have.status(200);
+              res.body.message.should.be.equal('Mise à jour du profil réussie')
+
+          done();
+        });
+  });
+
+  it('it should return status 200 if the data is update', (done) => {
+    const name={firstName:"GYSSA Prince"}
+        chai.request(server)
+        .patch('/api/v1/profile/update/1')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('Accept-Language', 'kiny') 
+        .send(name)
+        .end((err, res) => {
+              res.should.have.status(200);
+              res.body.message.should.be.equal('umwirondoro wavuguruwe neza')
+
+          done();
+        });
+  });
+  it('it should not update password if the old is incorrect', (done) => {
+    const name={Newpassword:"GYSSA Prince",Oldpassword:"indsm d"}
+        chai.request(server)
+        .patch('/api/v1/profile/update/1')
+        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5ODkxMjMsImV4cCI6MTY1NTk5MjcyM30.YsjY9OYBmdxXCJl4IqL8c-DW2O0XyfpzGUui4WgaEvE') // Works.
+        .set('Accept-Language', 'eng') 
+        .send(name)
+        .end((err, res) => {
+              res.should.have.status(200);
+              res.body.message.should.be.equal('Wrong old password')
+
+          done();
+        });
+  });
+  
