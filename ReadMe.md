@@ -70,6 +70,18 @@ To run the app in production build of the app, use either of the following.
  npm run seed
 
 ```
+## Running the docker container
+
+```bash
+ npm run dockercompose
+
+```
+## Running postgres in docker container
+
+```bash
+ docker run -it -e "POSTGRES_HOST_AUTH_METHOD=trust" -p 5432:5432 postgres
+
+```
 ## Collaborators
 -[Dodo](#https://github.com/mukunzidd)
 -[Achillesonga](#https://github.com/songa1)
