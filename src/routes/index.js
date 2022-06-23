@@ -1,10 +1,9 @@
-import AuthController from '../controllers/AuthController'
+import express from 'express';
+import userRoutes from './api/userRoutes';
 
-export default (app) => {
-  app.post('/register', AuthController.signUp);
+// eslint-disable-next-line new-cap
+const routes = express.Router();
 
-// Create a catch-all route for testing the installation.
-app.all('*', (req, res) => res.status(200).send({
-  message: 'Hello World!',
-}));
-};
+routes.use('/users', userRoutes);
+
+export default routes;

@@ -3,6 +3,9 @@ name: CI/CD
 on:
   push:
     branches: [ develop, ch-setup-continous-continous-integration-#18 ]
+  pull_request:
+    branches: [ develop ]
+
  
 jobs:
   build:
