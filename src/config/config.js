@@ -7,7 +7,7 @@ module.exports = {
     JWT_SECRET: process.env.JWT_SECRET,
     url: process.env.DB_DEVELOPMENT_URL,
     dialect: 'postgres',
-    port: 3000,
+    port: process.env.PORT,
   },
   test: {
     JWT_SECRET: process.env.JWT_SECRET,
