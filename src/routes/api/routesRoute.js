@@ -7,16 +7,16 @@ import {
   removeRoute,
   deleteAll,
 } from '../../controllers/routeController';
-
+import {checkAdmin} from '../../middleware/check';
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/', findAll);
-router.get('/:id', findOne);
-router.put('/:id', updateRoute);
-router.post('/', addRoute);
-router.delete('/:id', removeRoute);
-router.delete('/', deleteAll);
+router.get('/', checkAdmin, findAll);
+router.get('/:id', checkAdmin, findOne);
+router.put('/:id', checkAdmin, updateRoute);
+router.post('/', checkAdmin, addRoute);
+router.delete('/:id', checkAdmin, removeRoute);
+router.delete('/', checkAdmin, deleteAll);
 
 export default router;
