@@ -4,8 +4,6 @@ import resetPassword from '../../controllers/resetController/resetPassword'
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-// router.post('/login', authController.login);
-// router.post('/register', addUser);
 router.post("/forgotpassword", forgotPassword)
 router.post('/reset/:token', resetPassword)
 
