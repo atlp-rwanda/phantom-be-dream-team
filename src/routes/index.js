@@ -6,6 +6,6 @@ import resetRoute from './api/resetRoute'
 const routes = express.Router();
 
 routes.use('/users', userRoutes);
-routes.use('/users', resetRoute);
+routes.use('/users1', resetRoute);
 
 export default routes;
