@@ -12,16 +12,18 @@ module.exports = {
      * }], {});
     */
      await queryInterface.bulkInsert(
-      'Routes',
+      'AssignBustoRoutes',
       [
         {
-          id: 2,
-          name: 'downtown-nyamirambo',
-          routeCode: '401',
-          startLocation: 'downtown',
-          endLocation: 'nyamirambo',
-          distance: '30km',
-          duration: '1h',
+          id:2,
+          routeName: "nyamirambo-downtown",
+          routeCode: "401",
+          startingPoint: "nyamirambo",
+          endingPoint: "downtown",
+          plateNumber: "raa003a",
+          distance:"50km",
+          duration: "1h",
+          busId:"002",
           createdAt: new Date(),
           updatedAt: new Date(),
         }
@@ -32,6 +34,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Routes', null, {});
+    await queryInterface.bulkDelete('AssignBustoRoutes', null, {});
   },
 };

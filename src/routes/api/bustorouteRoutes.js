@@ -6,8 +6,8 @@ import {createAssignment, getAllAssignments,getAssignment, unAssign,} from '../.
 const router = express.Router();
 
 router.post("/:routeId/:busId", createAssignment);
-// router.get("/",getAllAssignments)
-// router.get("/:uuid",getAssignment)
-// router.delete("/:uuid",unAssign)
+router.get("/",getAllAssignments)
+// router.get("/:id",getAssignment)
+// router.delete("/:id",unAssign)
 
 export default router;

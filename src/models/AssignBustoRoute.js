@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   }
   AssignBustoRoute.init({
-    uuid: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-      },
+    id: {
+      type:DataTypes.INTEGER,
+      primaryKey: true
+  },
       routeName: DataTypes.STRING,
       routeCode: DataTypes.STRING,
       startingPoint: DataTypes.STRING,
