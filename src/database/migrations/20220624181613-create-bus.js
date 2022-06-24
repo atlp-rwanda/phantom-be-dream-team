@@ -1,33 +1,39 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Routes', {
+    await queryInterface.createTable('Buses', {
+      
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER,
+      },uuid: {
+        type: Sequelize.UUID
+      },
+      company: {
+        type: Sequelize.STRING
+      },
+      type: {
+        type: Sequelize.STRING
+      },
+      plateNumber: {
+        type: Sequelize.STRING
+      },
+      manufacturer: {
+        type: Sequelize.STRING
+      },
+      capacity: {
+        type: Sequelize.STRING
+      },
+      yearOfManufacturing: {
+        type: Sequelize.STRING
+      },
+      userId: {
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
-      name: {
-        type: Sequelize.STRING
-      },
-      routeCode: {
-        type: Sequelize.STRING
-      },
-      startLocation: {
-        type: Sequelize.STRING
-      },
-      endLocation: {
-        type: Sequelize.STRING
-      },
-      distance: {
-        type: Sequelize.STRING
-      },
-      duration: {
-        type: Sequelize.STRING
+      isAssigned: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Routes');
+    await queryInterface.dropTable('Buses');
   }
 };

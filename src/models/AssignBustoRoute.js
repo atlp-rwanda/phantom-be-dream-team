@@ -9,32 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-     static associate({Bus}) {
-        this.belongsTo(Bus,{ foreignKey:'busId',as:"buses"})
+    static associate(models) {
+      // define association here
     }
-  toJSON() {
-    return {
-        ...this.get(),
-        id:undefined,
-        createdAt:undefined,
-        updatedAt:undefined,
-        busId:undefined,
-      };
-  }
   }
   AssignBustoRoute.init({
-    id: {
-      type:DataTypes.INTEGER,
-      primaryKey: true
-  },
-      routeName: DataTypes.STRING,
-      routeCode: DataTypes.STRING,
-      startingPoint: DataTypes.STRING,
-      endingPoint: DataTypes.STRING,
-      plateNumber: DataTypes.STRING,
-      distance:DataTypes.STRING,
-      duration: DataTypes.STRING,
-      busId:DataTypes.INTEGER,
+    uuid: DataTypes.UUID,
+    routeName: DataTypes.STRING,
+    routeCode: DataTypes.STRING,
+    startingPoint: DataTypes.STRING,
+    endingPoint: DataTypes.STRING,
+    plateNumber: DataTypes.STRING,
+    distance: DataTypes.STRING,
+    duration: DataTypes.STRING,
+    busId: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'AssignBustoRoute',

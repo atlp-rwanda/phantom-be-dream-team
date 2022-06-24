@@ -15,7 +15,7 @@ module.exports = {
       'Buses',
       [
         {
-            id:2,
+          uuid: "8e3d2a6c-5484-4d86-8eb0-40098cd7a530",
             company:'ritco',
             type:'coaster',
             plateNumber:'raa003a',

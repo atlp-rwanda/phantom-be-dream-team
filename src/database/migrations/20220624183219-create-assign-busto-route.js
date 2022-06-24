@@ -6,7 +6,10 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+      },uuid: {
+        primaryKey: true,
+        type: Sequelize.UUID
       },
       routeName: {
         type: Sequelize.STRING
@@ -30,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       busId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

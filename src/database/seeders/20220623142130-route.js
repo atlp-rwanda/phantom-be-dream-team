@@ -15,7 +15,7 @@ module.exports = {
       'Routes',
       [
         {
-          id: 2,
+          uuid: "9e3d2a6c-5484-4d86-8eb0-40098cd7a540",
           name: 'downtown-nyamirambo',
           routeCode: '401',
           startLocation: 'downtown',

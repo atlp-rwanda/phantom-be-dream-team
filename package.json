@@ -6,14 +6,15 @@
   "scripts": {
     "dev:start": " nodemon --exec babel-node src/index.js",
     "dev": "better-npm-run dev",
-    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/*.test.js -watch",
+    "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/*.test.js ",
     "build": "babel src --out-dir dist",
     "start": "nodemon --exec babel-node src/index.js",
     "coverage:badge": "coverage-badge-creator",
     "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",
     "seed": " sequelize db:seed:all",
-    "migrate:undo": "sequelize db:migrate:undo:all"
+    "migrate:undo": "sequelize db:migrate:undo:all",
+    "seed:undo": "sequelize db:seed:undo:all"
   },
   "betterScripts": {
     "dev": {
@@ -54,7 +55,6 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.30.0",
     "express": "^4.18.1",
-    "mocha": "^10.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
     "nyc": "^15.1.0",
@@ -71,16 +71,16 @@
     "chai-http": "^4.3.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
-    "gulp-spawn-mocha": "^6.0.0",
     "i18next": "^21.8.9",
     "i18next-fs-backend": "^1.1.4",
     "i18next-http-middleware": "^3.2.1",
     "jsonwebtoken": "^8.5.1",
-    "nyc": "^15.1.0",
+    "mocha": "^10.0.0",
+    "p-locate": "^6.0.0",
     "pg": "^8.7.3",
     "quotation": "^2.0.2",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^6.21.0",
+    "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1",
     "uuid": "^8.3.2"
   }
