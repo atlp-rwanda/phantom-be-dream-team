@@ -76,6 +76,72 @@
                     }
                 }
             }
+        },
+        "/api/v1/buses": {
+            "post": {
+                "tags": ["Add a bus"],
+                "summary": "adding abus ",
+                "description": "adding a plate mumber,seeat and bustype",
+                "operationId": "addBus",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Resource payload",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "plate": {
+                                "type": "string"
+                            },
+                            "busType": {
+                                "type": "string"
+                            },
+                            "seat": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["plate", "busType","seat"]
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Bus successfully created"
+                    }
+                }
+            }
+        },
+
+        "/api/v1/buses:id": {
+            "get": {
+                "tags": ["Get a bus"],
+                "summary": "getting a bus ",
+                "description": "adding a plate mumber,seeat and bustype",
+                "operationId": "GetBus",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Resource payload",
+                    "required": true,
+                    "schema": {
+                        "id": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["id"]
+                    }
+                }],
+                "responses": {
+                    "400": {
+                        "description": "Buss found"
+                    }
+                }
+            }
         }
+
+
+
     }
 }
