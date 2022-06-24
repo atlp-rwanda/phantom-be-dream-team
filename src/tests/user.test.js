@@ -14,12 +14,12 @@ describe('TESTING REGISTRATION OF USERS', () => {
       .request(server)
       .post('/api/v1/users/register')
       .send({
-        id:5,
+      
         firstName:"byiri",
         lastName:"benjs",
-        email: "benafrica.009@gmail.com",
+        email: "benafrica009@gmail.com",
         role:"driver",
-        password:"123456"
+
       })
       .end((err, response) => {
         chai.expect(response.statusCode).to.equal(201);
@@ -39,7 +39,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
   it('User retreived', (done) => {
     chai
       .request(server)
-      .get('/api/v1/users/1')
+      .get('/api/v1/users/3')
   
       .end((err, response) => {
         chai.expect(response.statusCode).to.equal(200);
@@ -51,12 +51,11 @@ describe('TESTING REGISTRATION OF USERS', () => {
       .request(server)
       .put('/api/v1/users/1')
       .send({
-        id:1,
+       
       firstName:"byiri",
       lastName:"benjs",
       email: "benafrica.009@gmail.com",
       role:"driver",
-      password:"123456"
       })
       .end((err, response) => {
         chai.expect(response.statusCode).to.equal(200);
@@ -67,7 +66,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
   it('User deleted', (done) => {
     chai
       .request(server)
-      .delete('/api/v1/users/1')
+      .delete('/api/v1/users/3')
       
       .end((err, response) => {
         chai.expect(response.statusCode).to.equal(200);
