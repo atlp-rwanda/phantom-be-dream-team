@@ -3,6 +3,8 @@
     "success": "true",
     "profileUpdate":"Profile updated successfully",
     "noUserFound":"No user who has this id ",
-    "WOP":"Wrong old password"
+    "WOP":"Wrong old password",
+    "AccessDenied":"Access Denied",
+    "WrongToken":"Access Denied (wrong token)"
     
 }

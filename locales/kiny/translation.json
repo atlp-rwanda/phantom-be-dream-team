@@ -2,5 +2,8 @@
     "message": "Murakaza neza ku rubuga rwa Dream team Phantom",
     "success": "Success",
     "profileUpdate":"umwirondoro wavuguruwe neza",
-    "noUserFound":"Nta mukoresha ufite uyu mubare umuranga"
+    "noUserFound":"Nta mukoresha ufite uyu mubare umuranga",
+    "WOP":"Ijambo ryibanga rya kera siryo",
+    "AccessDenied":"Kwinjira byanze",
+    "WrongToken":"Kwinjira Byanze (ikimenyetso kitari cyo)"
 }

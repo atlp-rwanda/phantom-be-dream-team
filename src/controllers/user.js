@@ -13,14 +13,14 @@ const  getUser =  async (req, res) => {
 
     
     try{
-    const user = await User.findOne({
-      
-     where: {
-        id,
+    const user = await User.findAll({
+      where: {
+          id
       },
+      attributes: ['id', 'firstName','lastName','email'], 
     });
   
-    if (!user) {
+    if (user=='') {
       return res.status(400).send({
         message: req.t('noUserFound')+' '+id
       });
@@ -37,14 +37,18 @@ const  getUser =  async (req, res) => {
   const updateUser = async (req, res) => {
     var logged=false
     const token = req.header('auth-token');
-    if(!token) return res.status(401).send('Access Denied');
+    if(!token) return res.status(401).send({
+      message: req.t('AccessDenied')
+    });
 
     try{
       const verified = jwt.verify(token, process.env.JWT_SECRET);
       req.user = verified; 
       logged=true
     }catch(err){
-        res.status(401).send('Access Denied (wrong token)');
+        res.status(401).send({
+          message: req.t('WrongToken')
+        });
     }
     if(logged==true){
 
