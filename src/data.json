@@ -13,21 +13,21 @@
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
-    },
-    "securityDefinitions": {
+     },
+     "securityDefinitions": {
         "Bearer": {
             "type": "apiKey",
             "name": "Authorization",
             "in": "header"
         }
-    },
-    "servers": [
+     },
+     "servers": [
         {
             "url": "http://localhost:3000/",
             "name": "DEV"
         }
-    ],
-    "paths": {
+     ],
+     "paths": {
         "/": {
             "get": {
                 "tags": [
@@ -76,6 +76,39 @@
                     }
                 }
             }
-        }
-    }
+        },
+       
+        "/api/v1/users/logout": {
+            "post": {
+              "tags": ["Authentication"],
+              "summary": "This will logout a user",
+              "description": "",
+              "produces": ["application/json"],
+              "parameters": [
+                {
+                  "name": "Authorization",
+                  "in": "header",
+                  "required": false
+                }
+              ],
+              "responses": {
+                "200": {
+        
+                  "description": "Logged out successfully"
+        
+        
+                },
+        
+                
+                "401": {
+                  "description": "You are not allowed. Check Your token"
+                }
+                
+            
+                  }
+                    }
+            
+    
+}
+}
 }
