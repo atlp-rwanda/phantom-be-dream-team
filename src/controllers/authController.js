@@ -1,8 +1,33 @@
-import createSendToken from '../helpers/createSendToken';
+// import createSendToken from '../helpers/createSendToken';
 import jwt  from 'jsonwebtoken';
 import models from '../models';
 import bcrypt from 'bcryptjs';
+import { promisify } from 'util';
+import { deleteToken, setToken } from '../config/redix';
 
+
+  const signToken = (id) =>{
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+  
+}
+
+const createSendToken = async(user, statusCode, res) => {
+  const token =  signToken(user.dataValues.id);
+ await setToken(token, token);
+
+  //remove the password from the output
+  user.password = undefined;
+
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user,
+    },
+  });
+};
 
 exports.login = async (req, res, next) => {
   const {email, password} = req.body;
