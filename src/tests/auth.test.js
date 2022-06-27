@@ -24,7 +24,7 @@ describe('TESTING USER AUTHENTICATION', () => {
   //       .request(server)
   //       .post('/api/v1/users/login')
   //       .send({
-  //         email: 'arthur12kkgmaom',
+  //         email: 'arthur12kk@gmaom',
   //         password: '&HrvuXn1EMe@6h1',
   //       })
   //       .end((error, response) => {
