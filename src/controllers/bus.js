@@ -9,6 +9,7 @@ class Buses {
     const { plate, busType, seat } = req.body
     if (plate === '' || busType === '' || seat === '') {
       return res.status(400).send({
+        status:"fail",
         message: req.t('required_field'),
 
       })
@@ -20,11 +21,13 @@ class Buses {
     }
     if (!/^[A-Za-z]+$/.test(busType)) {
       return res.status(400).send({
+        status:"fail",
         message: req.t('busType_required'),
       })
     }
     if (!/^[0-9]*$/.test(seat)) {
       return res.status(400).send({
+        status:"fail",
         message: req.t("seats_require"),
       })
     }
@@ -34,7 +37,8 @@ class Buses {
       seat
     })
       .then((bus) =>
-        res.status(201).send({
+        res.status(200).send({
+          status:"success",
           message: req.t("bus_created"),
           bus
         })
@@ -50,6 +54,7 @@ class Buses {
         if (listbus.length === 0) {
           res.status(200).send({
             data: listbus,
+            status:"success",
             message: req.t("all_buses_found")
           })
         } else {
@@ -74,6 +79,7 @@ class Buses {
       .then((busObject) => {
         if (!busObject) {
           res.status(400).json({
+            status:"success",
             message: req.t("bus_found")
           })
         } else {
@@ -90,78 +96,87 @@ class Buses {
 
   // update
 
-  //  static modify (req, res) {
+   static modify (req, res) {
 
-  //   const { plate, busType, seat } = req.body
-  //   if (plate === '' || busType === '' || seat === '') {
-  //     return res.status(400).send({
-  //       message: "fill all the field"
-  //     })
-  //   }
-  //   if (!/^[R]*[A-Z]{2}[0-9]{3}[A-Z]{1}$/.test(plate)) {
-  //     return res.status(400).send({
-  //       message: "fill the plate number"
-  //     })
-  //   }
-  //   if (!/^[A-Za-z]+$/.test(busType)) {
-  //     return res.status(400).send({
-  //       message: "fill the busType"
-  //     })
-  //   }
-  //   if (!/^[0-9]*$/.test(seat)) {
-  //     return res.status(400).send({
-  //       message: "fill the seat"
-  //     })
-  //   }
-  //   return Bus.findByPk(req.params.id)
-  //     .then((bus) => {
-  //       Bus
-  //         .update({
-  //           plate: plate || bus.plate,
-  //           busType: busType || bus.busType,
-  //           seat: seat || bus.seat,
-  //         })
-  //         .then((updatedBus) => {
-  //           res.status(200).send({
-  //             message: "bus updated",
-  //             data: {
-  //               plate: plate || updatedBus.plate,
-  //               busType: busType || updatedBus.busType,
-  //               seat: seat || updatedBus.seat,
-  //             }
-  //           })
-  //         })
-  //         .catch((error) => {
-  //           res.status(400).send({
-  //             message: "bus exits"
-  //           })
-  //         })
-  //     })
-  //     .catch((error) => {
-  //       res.status(400).send({
-  //         message: "bus not found"
-  //       })
-  //     })
-  // }
+    const { plate, busType, seat } = req.body
+    if (plate === '' || busType === '' || seat === '') {
+      return res.status(400).send({
+        message: "fill all the field"
+      })
+    }
+    if (!/^[R]*[A-Z]{2}[0-9]{3}[A-Z]{1}$/.test(plate)) {
+      return res.status(400).send({
+        status:"fail",
+        message: "fill the plate number"
+      })
+    }
+    if (!/^[A-Za-z]+$/.test(busType)) {
+      return res.status(400).send({
+        status:"fail",
+        message: "fill the busType"
+      })
+    }
+    if (!/^[0-9]*$/.test(seat)) {
+      return res.status(400).send({
+        status:"fail",
+        message: "fill the seat"
+      })
+    }
+    return Bus.findByPk(req.params.id)
+      .then((bus) => {
+        bus
+          .update({
+            plate: plate || bus.plate,
+            busType: busType || bus.busType,
+            seat: seat || bus.seat,
+          })
+          .then((updatedBus) => {
+            res.status(200).send({
+              status:"success",
+              message: "bus updated",
+              data: {
+                plate: plate || updatedBus.plate,
+                busType: busType || updatedBus.busType,
+                seat: seat || updatedBus.seat,
+              }
+            })
+          })
+          .catch((error) => {
+            res.status(400).send({
+              status:"fail",
+              message: error.message
+            })
+          })
+      })
+
+      .catch((error) => {
+        res.status(400).send({
+          status:"fail",
+          message: "bus not found"
+        })
+      })
+  }
 
   // delete
 
-  // static delete (req, res) {
-  //   return Bus.findByPk(req.params.id)
-  //     .then((bus) => {
-  //       if (!bus) {
-  //         return res.status(400).send({
-  //           message: "Bus id not found"
-  //         })
-  //       }
-  //       return bus.destroy().then(() =>
-  //         res.status(200).send({
-  //           message: "Bus deleted"
-  //         })
-  //       )
-  //     })
-  //     .catch((error) => res.status(400).send(error))
-  // }
+  static delete (req, res) {
+    return Bus.findByPk(req.params.id)
+      .then((bus) => {
+        if (!bus) {
+          return res.status(400).send({
+            status:"fail",
+            message: "Bus id not found"
+          })
+        }
+        return bus.destroy().then(() =>
+          res.status(200).send({
+            status:"success",
+            message: "Bus deleted"
+          })
+        )
+      })
+      .catch((error) => res.status(400).send(error))
+  }
 
 }
 

@@ -77,9 +77,11 @@
                 }
             }
         },
+
+
         "/api/v1/buses": {
             "post": {
-                "tags": ["Add a bus"],
+                "tags": ["Crud operation for Buses"],
                 "summary": "adding abus ",
                 "description": "adding a plate mumber,seeat and bustype",
                 "operationId": "addBus",
@@ -112,36 +114,79 @@
             }
         },
 
-        "/api/v1/buses:id": {
+        "/api/v1/buses/": {
             "get": {
-                "tags": ["Get a bus"],
-                "summary": "getting a bus ",
-                "description": "adding a plate mumber,seeat and bustype",
+                "tags": ["Crud operation for Buses"],
+                "summary": "getting all bus ",
+                "description": "getting a plate mumber,seeat and bustype",
                 "operationId": "GetBus",
-                "parameters": [{
-                    "in": "body",
-                    "name": "body",
-                    "description": "Resource payload",
-                    "required": true,
-                    "schema": {
-                        "id": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["id"]
-                    }
-                }],
+                "produces": [
+                    "application/json"
+                ],
+                
                 "responses": {
-                    "400": {
-                        "description": "Buss found"
+                    "200": {
+                        "description": "All buses found"
+                    }
+                }
+            }
+        },
+
+        "/api/v1/buses/{id}": {
+            "get": {
+                "tags": ["Crud operation for Buses"],
+                "summary": "getting a bus ",
+                "description": "getting a plate mumber,seeat and bustype",
+                "operationId": "GetBus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "Bus ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bus found"
+                    }
+                }
+            }
+        },
+
+
+
+        "/api/v1/buses/{id}/": {
+            "delete": {
+                "tags": ["Crud operation for Buses"],
+                "summary": "deleting a bus ",
+                "description": "deleting a plate mumber,seeat and bustype",
+                "operationId": "DeleteBus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "Bus ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bus deleted"
                     }
                 }
             }
         }
 
-
+       
 
     }
 }
