@@ -10,7 +10,7 @@ describe('TESTING USER AUTHENTICATION', () => {
       .request(server)
       .post('/api/v1/users/login')
       .send({
-        email: 'admin8@test.com',
+        email: 'admin2@test.com',
         password: 'pass12345',
       })
       .end((error, response) => {

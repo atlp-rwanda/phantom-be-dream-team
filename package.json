@@ -79,6 +79,7 @@
     "p-locate": "^6.0.0",
     "pg": "^8.7.3",
     "quotation": "^2.0.2",
+    "redis": "^4.1.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1",
