@@ -15,7 +15,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
       
         firstName:"byiri",
         lastName:"benjs",
-        email: "benafrica009@gmail.com",
+        email: "benafrica.010@gmail.com",
         role:"driver",
 
       })
@@ -24,12 +24,28 @@ describe('TESTING REGISTRATION OF USERS', () => {
       });
     done();
   });
-
+ 
+  it('User successfully updated', (done) => {
+    chai
+      .request(server)
+      .put('/api/v1/users/1')
+      .send({
+       
+      firstName:"byiringiro",
+      lastName:"benja",
+      email: "benafrica009@gmail.com",
+      role:"driver",
+      })
+      .end((err, response) => {
+        chai.expect(response.statusCode).to.equal(200);
+      });
+    done();
+  });
 
   it('User deleted', (done) => {
     chai
       .request(server)
-      .delete('/api/v1/users/1')
+      .delete('/api/v1/users/3')
       
       .end((err, response) => {
         chai.expect(response.statusCode).to.equal(200);

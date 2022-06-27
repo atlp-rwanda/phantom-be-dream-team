@@ -4,6 +4,7 @@ import models from '../models';
 import bcrypt from 'bcryptjs';
 import { promisify } from 'util';
 import { deleteToken, setToken } from '../config/redix';
+import AppError from '../middleware/appError';
 
 
   const signToken = (id) =>{
