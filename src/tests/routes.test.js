@@ -8,7 +8,7 @@ const token = `Bearer ${process.env.ADMIN_TOKEN}`;
 chai.use(chaiHttp);
 
 const REQ_URL = '/api/v1/routes/';
-const ROUTE_ID= '1';
+const ROUTE_ID= '4c6f7805-36d0-4621-93e6-d56424d6869a';
 
 describe('TESTING ROUTES END POINTS', () => {
   it('MUST CREATE ROUTE', (done) => {
@@ -74,35 +74,6 @@ describe('TESTING ROUTES END POINTS', () => {
     done();
   });
 
-
-  it('BAD REQUEST, MISSING PARAMS', (done) => {
-    const data = {
-      origin: 'Kamonyi',
-      destination: 'Kinyinya',
-    };
-    chai.request(server)
-        .post(REQ_URL)
-        .set('Accept', 'application/json')
-        .set('Authorization', token)
-        .send(data)
-        .then((res) => {
-          chai.expect(res).have.status(400);
-          done();
-        }).catch((err) => done(err));
-  });
-
-  it('MUST FETCH SINGLE ROUTE', (done) => {
-    chai.request(server)
-        .get(`${REQ_URL}/${ROUTE_ID}`)
-        .set('Accept', 'application/json')
-        .set('Authorization', token)
-        .then((res) => {
-          chai.expect(res.status).to.equal(200);
-          done();
-        }).catch((err) => done(err));
-  });
-
-
   it('MUST UPDATE ROUTE', (done) => {
     const data = {
       distance: (Math.random() * 100).toString(),
@@ -118,50 +89,50 @@ describe('TESTING ROUTES END POINTS', () => {
         }).catch((err) => done(err));
   });
 
-  //   it('MUST NOT UPDATE, INVALID ID', (done) => {
-  //     const data = {
-  //       status: 'active',
-  //     };
-  //     chai.request(server)
-  //         .put(`${REQ_URL}/InvalidId`)
-  //         .set('Accept', 'application/json')
-  //         .set('Authorization', token)
-  //         .send(data)
-  //         .then((res) => {
-  //           chai.expect(res.status).to.equal(400);
-  //           done();
-  //         }).catch((err) => done(err));
-  //   });
+  it('MUST NOT UPDATE, INVALID ID', (done) => {
+    const data = {
+      status: 'active',
+    };
+    chai.request(server)
+        .put(`${REQ_URL}/InvalidId`)
+        .set('Accept', 'application/json')
+        .set('Authorization', token)
+        .send(data)
+        .then((res) => {
+          chai.expect(res.status).to.equal(400);
+          done();
+        }).catch((err) => done(err));
+  });
 
-  //   it('MUST DELETE ROUTE', (done) => {
-  //     chai.request(server)
-  //         .delete(`${REQ_URL}/${ROUTE_ID}`)
-  //         .set('Accept', 'application/json')
-  //         .set('Authorization', token)
-  //         .then((res) => {
-  //           chai.expect(res.status).to.equal(200);
-  //           done();
-  //         }).catch((err) => done(err));
-  //   });
+  it('MUST DELETE ROUTE', (done) => {
+    chai.request(server)
+        .delete(`${REQ_URL}/${ROUTE_ID}`)
+        .set('Accept', 'application/json')
+        .set('Authorization', token)
+        .then((res) => {
+          chai.expect(res.status).to.equal(200);
+          done();
+        }).catch((err) => done(err));
+  });
 
-  //   it('MUST NOT DELETE ROUTE, INVALID ID', (done) => {
-  //     chai.request(server)
-  //         .delete(`${REQ_URL}/InvalidId`)
-  //         .set('Accept', 'application/json')
-  //         .set('Authorization', token)
-  //         .then((res) => {
-  //           chai.expect(res.status).to.equal(400);
-  //           done();
-  //         }).catch((err) => done(err));
-  //   });
+  it('MUST NOT DELETE ROUTE, INVALID ID', (done) => {
+    chai.request(server)
+        .delete(`${REQ_URL}/InvalidId`)
+        .set('Accept', 'application/json')
+        .set('Authorization', token)
+        .then((res) => {
+          chai.expect(res.status).to.equal(400);
+          done();
+        }).catch((err) => done(err));
+  });
 
-//   it('MUST DELETE ALL ROUTE', (done) => {
-//     chai.request(server)
-//         .delete(REQ_URL)
-//         .set('Authorization', token)
-//         .then((res) => {
-//           chai.expect(res.status).to.equal(200);
-//           done();
-//         }).catch((err) => done(err));
-//   });
+  it('MUST DELETE ALL ROUTE', (done) => {
+    chai.request(server)
+        .delete(REQ_URL)
+        .set('Authorization', token)
+        .then((res) => {
+          chai.expect(res.status).to.equal(200);
+          done();
+        }).catch((err) => done(err));
+  });
 });
