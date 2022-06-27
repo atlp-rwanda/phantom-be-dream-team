@@ -35,16 +35,6 @@ describe('TESTING REGISTRATION OF USERS', () => {
       });
     done();
   });
-  // it('User retreived', (done) => {
-  //   chai
-  //     .request(server)
-  //     .get('/api/v1/users/3')
-  
-  //     .end((err, response) => {
-  //       chai.expect(response.statusCode).to.equal(200);
-  //     });
-  //   done();
-  // });
   it('User successfully updated', (done) => {
     chai
       .request(server)
