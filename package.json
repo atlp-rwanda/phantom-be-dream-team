@@ -71,7 +71,6 @@
     "chai-http": "^4.3.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
-    "gulp-spawn-mocha": "^6.0.0",
     "i18next": "^21.8.9",
     "i18next-fs-backend": "^1.1.4",
     "i18next-http-middleware": "^3.2.1",
