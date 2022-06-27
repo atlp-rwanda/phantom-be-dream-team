@@ -26,7 +26,7 @@ describe('TESTING ROUTES END POINTS', () => {
         .set('Authorization', token)
         .send(data)
         .then((res) => {
-          chai.expect(res).to.have.status(200);
+          chai.expect(res).to.have.status(201);
 
           done();
         }).catch((err) => done(err));

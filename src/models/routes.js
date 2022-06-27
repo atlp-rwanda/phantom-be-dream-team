@@ -20,10 +20,12 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.UUID,
           defaultValue: DataTypes.UUIDV4,
         },
+
         origin: DataTypes.STRING,
         destination: DataTypes.STRING,
         code: DataTypes.STRING,
         distance: DataTypes.STRING,
+        routeSlug: DataTypes.STRING,
         coordinates: DataTypes.ARRAY(DataTypes.DECIMAL),
       },
       {

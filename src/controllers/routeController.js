@@ -22,7 +22,7 @@ const addRoute = async (req, res) => {
     defaults: {coordinates: point},
   }).then((created) => {
         // eslint-disable-next-line max-len
-        created[1] ? responseHandler(res, 200, req.t('created_ok')) : responseHandler(res, 401, req.t('already_exist'));
+        created[1] ? responseHandler(res, 201, req.t('created_ok')) : responseHandler(res, 409, req.t('already_exist'));
   });
 };
 

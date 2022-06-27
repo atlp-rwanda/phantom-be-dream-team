@@ -19,6 +19,10 @@ module.exports = {
       distance: {
         type: Sequelize.STRING,
       },
+      routeSlug: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
       coordinates: {
         type: Sequelize.ARRAY(Sequelize.DECIMAL),
         allowNull: false,
