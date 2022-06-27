@@ -42,7 +42,8 @@ const  getUser =  async (req, res) => {
     });
 
     try{
-      const verified = jwt.verify(token, process.env.JWT_SECRET);
+      let tsec= process.env.JWT_SECRET|| "nmmskl77.;y6";
+      const verified = jwt.verify(token, tsec);
       req.user = verified; 
       logged=true
     }catch(err){

@@ -1,13 +1,14 @@
 import chai from "chai";
 import chaiHttp from 'chai-http';
-import server from '../index';
+import server from '../app';
 chai.should();
+const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTYzNjM3MTYsImV4cCI6MTY1NjM4MTcxNn0.W8Iw8-rO7G5JGlx9jJVf24lgGMmVY0kDBILKxJ9SqqU'
 
 chai.use(chaiHttp);
 
   it('it should return status 200 on right root', (done) => {
         chai.request(server)
-        .get('/api/v1/profile/1')
+        .get('/api/v1/profile/2')
         .end((err, res) => {
               res.should.have.status(200);
           done();
@@ -17,7 +18,7 @@ chai.use(chaiHttp);
 
   it('it should return status 200 on right root', (done) => {
         chai.request(server)
-        .post('/api/v1/profile/1')
+        .post('/api/v1/profile/2')
         .end((err, res) => {
               res.should.have.status(404);
           done();
@@ -77,7 +78,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
 
   it('it should return status 200 if the id is found', (done) => {
         chai.request(server)
-        .patch('/api/v1/profile/update/1')
+        .patch('/api/v1/profile/update/2')
         .end((err, res) => {
               res.should.have.status(401);
           done();
@@ -115,7 +116,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
 
   it('it should return status 404 if the method is get', (done) => {
         chai.request(server)
-        .get('/api/v1/profile/update/1')
+        .get('/api/v1/profile/update/2')
         .end((err, res) => {
               res.should.have.status(404);
           done();
@@ -125,7 +126,7 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should return status 400 if the user is not found', (done) => {
         chai.request(server)
         .patch('/api/v1/profile/update/900')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
+        .set('auth-token', token) 
         .end((err, res) => {
               res.should.have.status(400);
           done();
@@ -135,8 +136,8 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should return status 200 if the data is update', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
-        .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
+        .patch('/api/v1/profile/update/2')
+        .set('auth-token', token) 
         .send(name)
         .end((err, res) => {
               res.should.have.status(200);
@@ -146,8 +147,8 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should return status 200 if the data is update', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
-        .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
+        .patch('/api/v1/profile/update/2')
+        .set('auth-token', token) 
         .send(name)
         .end((err, res) => {
               res.should.have.status(200);
@@ -159,8 +160,8 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should return status 200 if the data is update', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
-        .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
+        .patch('/api/v1/profile/update/2')
+        .set('auth-token', token) 
         .set('Accept-Language', 'fr') 
         .send(name)
         .end((err, res) => {
@@ -174,8 +175,8 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should return status 200 if the data is update', (done) => {
     const name={firstName:"GYSSA Prince"}
         chai.request(server)
-        .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
+        .patch('/api/v1/profile/update/2')
+        .set('auth-token', token) 
         .set('Accept-Language', 'kiny') 
         .send(name)
         .end((err, res) => {
@@ -188,8 +189,8 @@ it('it should return status 400 if the id is not found in English', (done) => {
   it('it should not update password if the old is incorrect', (done) => {
     const name={Newpassword:"GYSSA Prince",Oldpassword:"indsm d"}
         chai.request(server)
-        .patch('/api/v1/profile/update/1')
-        .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU5OTMyNTUsImV4cCI6MTY1NTk5Njg1NX0.sH5S2NShcTQn3q8YubGStPsF4YL8TSU2U26WViazFHE') 
+        .patch('/api/v1/profile/update/2')
+        .set('auth-token', token) 
         .set('Accept-Language', 'eng') 
         .send(name)
         .end((err, res) => {
