@@ -154,7 +154,6 @@
                         "name": "id",
                         "in": "path",
                         "type": "string",
-                        "description": "Bus ID",
                         "description": "id of user",
                         "required": true
                     }

@@ -11,10 +11,7 @@ import routes from './routes/index';
 import 'dotenv/config';
 
 const server = express();
-const PORT= 3000 || process.env.PORT
-server.listen(PORT, () => {
-  console.log('Server listening on port ' + PORT);
-});
+server.listen(process.env.PORT || 3000);
 server.use(cors());
 server.use(express.json());
 
