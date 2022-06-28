@@ -1,4 +1,9 @@
 {
     "message": "Bienvenue dans l'application Dream Team Phantom",
-    "success": "Succès"
+    "success": "Succès",  
+    "profileUpdate":"Mise à jour du profil réussie",
+    "noUserFound":"Aucun utilisateur ne possède cet identifiant ",
+    "WOP":"Ancien mot de passe erroné",
+    "AccessDenied":"Accès refusé",
+    "WrongToken":"Accès refusé (mauvais jeton)"
 }
