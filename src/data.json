@@ -77,109 +77,172 @@
                 }
             }
         },
-        "/api/v1/routes": {
-            "post": {
-                "tags": ["Create route"],
-                "summary": "| Operator |",
-                "description": "create route",
-                "operationId": "",
-                "parameters": [{
-                    "in": "body",
-                    "name": "body",
-                    "description": "Resource payload",
+        "/api/v1/profile/{id}": {
+            "get": {
+                "tags": [
+                    "User profile"
+                ],
+                "summary": "User information",
+                "description": "The profile of user should be visible",
+                "operationId": "Profile",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "id of user",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile got successfully"
+                    }
+                }
+            }
+    },
+    "/api/v1/profile/update/{id}": {
+        "patch": {
+            "tags": [
+                "Update profile"
+            ],
+            "summary": "update user information",
+            "description": "The user should be able to update his/her information",
+            "operationId": "Update Profile",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "type": "string",
+                    "description": "id of user",
                     "required": true,
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "origin": {
-                                "type": "string"
-                            },
-                            "destination": {
-                                "type": "string"
-                            },
-                            "code": {
-                                "type": "string"
-                            },
-                            "distance": {
-                                "type": "string"
-                            },
-                            "longitude": {
-                                "type": "string"
-                            },
-                            "latitude": {
+                            "email": {
                                 "type": "string"
                             }
                         },
-                        "required": ["origin", "destination","code","distance","longiitude","latitude"]
-                    }
-                }],
-                "responses": {
-                    "201": {
-                        "description": "Login Successfully"
+                        "required": ["email"]
                     }
                 }
-            },
-            "get": {
-                
-                "summary": "get all routes",
-                "description": "get all routes",
-                "operationId": "get all routes",
-                "responses": {
-                    "200": {
-                        "description": "Get all routes"
+            ],
+            "responses": {
+                "200": {
+                    "description": "Profile updated successfully"
+                }
+            }
+        }
+},
+ "/api/v1/routes": {
+    "post": {
+        "tags": ["Create route"],
+        "summary": "| Operator |",
+        "description": "create route",
+        "operationId": "",
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "Resource payload",
+            "required": true,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "origin": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "distance": {
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
                     }
                 },
-                "security": [{
-                    "Bearer": []
-                }]
+                "required": ["origin", "destination","code","distance","longiitude","latitude"]
             }
-       
-        
+        }],
+        "responses": {
+            "201": {
+                "description": "Login Successfully"
+            }
+        }
     },
-    "/api/v1/routes/{id}": {
-        "get": {
-          
-            "summary": "Get Single route",
-            "description": "get single routes",
-            "operationId": "get single routes",
-            "security": [{
-                "Bearer": []
-            }],
-            "produces": ["application/json"],
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "type": "string",
-                "description": "Route Id",
-                "required": true
-            }],
-            "responses": {
-                "201": {
-                    "description": "get a route"
-                }
+    "get": {
+        
+        "summary": "get all routes",
+        "description": "get all routes",
+        "operationId": "get all routes",
+        "responses": {
+            "200": {
+                "description": "Get all routes"
             }
         },
-        "delete": {
-            "summary": "delete route",
-            "description": "delete route",
-            "operationId": "delete route",
-            "security": [{
-                "Bearer": []
-            }],
-            "produces": ["application/json"],
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "type": "string",
-                "description": "Route Id",
-                "required": true
-            }],
-            "responses": {
-                "201": {
-                    "description": "Route Deleted"
-                }
-            }
+        "security": [{
+            "Bearer": []
+        }]
+    }
+
+
+},
+"/api/v1/routes/{id}": {
+"get": {
+  
+    "summary": "Get Single route",
+    "description": "get single routes",
+    "operationId": "get single routes",
+    "security": [{
+        "Bearer": []
+    }],
+    "produces": ["application/json"],
+    "parameters": [{
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "description": "Route Id",
+        "required": true
+    }],
+    "responses": {
+        "201": {
+            "description": "get a route"
+        }
+    }
+},
+"delete": {
+    "summary": "delete route",
+    "description": "delete route",
+    "operationId": "delete route",
+    "security": [{
+        "Bearer": []
+    }],
+    "produces": ["application/json"],
+    "parameters": [{
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "description": "Route Id",
+        "required": true
+    }],
+    "responses": {
+        "201": {
+            "description": "Route Deleted"
         }
     }
 }
 }
+
+}}
