@@ -10,8 +10,13 @@
     "seats_require":"seats must be number",
     "bus_created":"Bus successfully created",
     "all_buses_found":"All buses found",
-    "bus_found":"bus found by ID"
+    "bus_found":"bus found by ID",
 
 
+    "profileUpdate":"Profile updated successfully",
+    "noUserFound":"No user who has this id ",
+    "WOP":"Wrong old password",
+    "AccessDenied":"Access Denied",
+    "WrongToken":"Access Denied (wrong token)"
     
 }

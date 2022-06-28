@@ -10,7 +10,13 @@
     "seats_require":"les places doivent être numérotées",
     "bus_created":"Bus créé avec succès",
     "all_buses_found":"Tous les bus trouvés",
-    "bus_found":"bus trouvé par ID"
+    "bus_found":"bus trouvé par ID",
 
 
+    "success": "Succès",  
+    "profileUpdate":"Mise à jour du profil réussie",
+    "noUserFound":"Aucun utilisateur ne possède cet identifiant ",
+    "WOP":"Ancien mot de passe erroné",
+    "AccessDenied":"Accès refusé",
+    "WrongToken":"Accès refusé (mauvais jeton)"
 }

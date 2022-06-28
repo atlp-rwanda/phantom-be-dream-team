@@ -10,7 +10,12 @@
     "seats_require":"uzuza umubare",
     "bus_created":"bus yujujwe",
     "all_buses_found":"bus zose zabonetse",
-    "bus_found":"bus yabonetse"
+    "bus_found":"bus yabonetse",
 
 
+    "profileUpdate":"umwirondoro wavuguruwe neza",
+    "noUserFound":"Nta mukoresha ufite uyu mubare umuranga",
+    "WOP":"Ijambo ryibanga rya kera siryo",
+    "AccessDenied":"Kwinjira byanze",
+    "WrongToken":"Kwinjira Byanze (ikimenyetso kitari cyo)"
 }
