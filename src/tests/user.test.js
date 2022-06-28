@@ -1,55 +1,29 @@
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../index';
+import server from '../app';
 
 chai.should();
 chai.use(chaiHttp);
 describe('TESTING REGISTRATION OF USERS', () => {
   // add a new user who is not in the database
-  it('User successfully registered', (done) => {
+  it('User will not be registered if not logged in', (done) => {
+    const user = {
+      
+      firstName:"byirigiro",
+      lastName:"benjamin",
+      email: "benafrica@gmail.com",
+      role:"oparator"
+
+    }
     chai
       .request(server)
       .post('/api/v1/users/register')
-      .send({
-      
-        firstName:"byirigiro",
-        lastName:"benjamin",
-        email: "benafrica10@gmail.com",
-        role:"driver",
-
-      })
+      .send(user)
       .end((err, response) => {
-        chai.expect(response.statusCode).to.equal(201);
+        chai.expect(response.statusCode).to.equal(500);
       });
     done();
   });
  
-  it('User successfully updated', (done) => {
-    chai
-      .request(server)
-      .put('/api/v1/users/1')
-      .send({
-       
-      firstName:"byiringiro",
-      lastName:"benja",
-      email: "benafrica009@gmail.com",
-      role:"driver",
-      })
-      .end((err, response) => {
-        chai.expect(response.statusCode).to.equal(200);
-      });
-    done();
-  });
-
-  it('User deleted', (done) => {
-    chai
-      .request(server)
-      .delete('/api/v1/users/3')
-      
-      .end((err, response) => {
-        chai.expect(response.statusCode).to.equal(200);
-      });
-    done();
-  });
 });
