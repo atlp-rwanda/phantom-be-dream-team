@@ -2,7 +2,7 @@ import chai from "chai";
 import chaiHttp from 'chai-http';
 import server from '../app';
 chai.should();
-const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTYzOTkwODUsImV4cCI6MTY1NjQxNzA4NX0.JYEZvHGZZ075L8SAA66TmeEznCo-PiCPgXug1l1qu-Q'
+const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0MDc3MDksImV4cCI6MTY1ODIwNzcwOX0.mi5-ZQVcbKSzKZc2i8nD2YujbwhDSXY0Ghw68Pzi4TQ'
 
 chai.use(chaiHttp);
 

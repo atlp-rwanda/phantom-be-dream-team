@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('/forgotpassword', () => {
     it('A registered email should be able to reset password/default language', (done) => {
         const user = {
-            email: "dreamtm87@gmail.com",
+            email: "kwiste06@gmail.com",
         }
 
         chai
@@ -48,13 +48,13 @@ describe('/resetpassword', () => {
     it('The password entered do not match/default language', (done) => {
 
         const user = {
-            email: "dreamtm87@gmail.com",
+            email: "kwiste06@gmail.com",
             password: "dream1234",
             comfirmPassword: "dream123"
         }
         chai
             .request(server)
-            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJmaXJzdE5hbWUiOiJLd2l6ZXJhICIsImxhc3ROYW1lIjoiU3RldmVuIiwiZW1haWwiOiJkcmVhbXRtODdAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwaGFudG9tQDEyMyIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiJ9LCJpYXQiOjE2NTU5ODkyMzUsImV4cCI6MTY1NjAyNTIzNX0.ah1WJOA-Lr589Q_oCe8UC33QuLrzGe78CFoDFez2qeA')
+            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdE5hbWUiOiJTdGV2ZW4iLCJsYXN0TmFtZSI6Ikt3aXplcmEiLCJlbWFpbCI6Imt3aXN0ZTA2QGdtYWlsLmNvbSIsInJvbGUiOiJvcGVyYXRvciIsInBhc3N3b3JkIjoiJDJhJDEwJGVUUGtBeTZzUEExdnM4bTJjWlROT09lRktSYzZVbmoydHJ5TzRSZ3ZsUWNLem5mUS5Tc3p1IiwiY3JlYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIn0sImlhdCI6MTY1NjQxMzM0MiwiZXhwIjoxNjU2NDQ5MzQyfQ.Z7WHW7jw0p1nNDt5ewRv9vqZy-R4Q_RmF9ufdO6Aw0M')
             .send(user)
             .end((err, res) => {
                 res.should.have.status(401)
@@ -73,7 +73,7 @@ describe('/resetpassword', () => {
         }
         chai
             .request(server)
-            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJmaXJzdE5hbWUiOiJLd2l6ZXJhICIsImxhc3ROYW1lIjoiU3RldmVuIiwiZW1haWwiOiJkcmVhbXRtODdAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwaGFudG9tQDEyMyIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiJ9LCJpYXQiOjE2NTU5ODkyMzUsImV4cCI6MTY1NjAyNTIzNX0.ah1WJOA-Lr589Q_oCe8UC33QuLrzGe78CFoDFez2qeA')
+            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdE5hbWUiOiJTdGV2ZW4iLCJsYXN0TmFtZSI6Ikt3aXplcmEiLCJlbWFpbCI6Imt3aXN0ZTA2QGdtYWlsLmNvbSIsInJvbGUiOiJvcGVyYXRvciIsInBhc3N3b3JkIjoiJDJhJDEwJGVUUGtBeTZzUEExdnM4bTJjWlROT09lRktSYzZVbmoydHJ5TzRSZ3ZsUWNLem5mUS5Tc3p1IiwiY3JlYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIn0sImlhdCI6MTY1NjQxMzM0MiwiZXhwIjoxNjU2NDQ5MzQyfQ.Z7WHW7jw0p1nNDt5ewRv9vqZy-R4Q_RmF9ufdO6Aw0M')
             .send(user)
             .end((err, res) => {
                 res.should.have.status(404)
@@ -85,13 +85,13 @@ describe('/resetpassword', () => {
     it('Your password is reset/default language', (done) => {
 
         const user = {
-            email: "dreamtm87@gmail.com",
+            email: "kwiste06@gmail.com",
             password: "dream1234",
             comfirmPassword: "dream1234"
         }
         chai
             .request(server)
-            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJmaXJzdE5hbWUiOiJLd2l6ZXJhICIsImxhc3ROYW1lIjoiU3RldmVuIiwiZW1haWwiOiJkcmVhbXRtODdAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwaGFudG9tQDEyMyIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiJ9LCJpYXQiOjE2NTU5ODkyMzUsImV4cCI6MTY1NjAyNTIzNX0.ah1WJOA-Lr589Q_oCe8UC33QuLrzGe78CFoDFez2qeA')
+            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdE5hbWUiOiJTdGV2ZW4iLCJsYXN0TmFtZSI6Ikt3aXplcmEiLCJlbWFpbCI6Imt3aXN0ZTA2QGdtYWlsLmNvbSIsInJvbGUiOiJvcGVyYXRvciIsInBhc3N3b3JkIjoiJDJhJDEwJGVUUGtBeTZzUEExdnM4bTJjWlROT09lRktSYzZVbmoydHJ5TzRSZ3ZsUWNLem5mUS5Tc3p1IiwiY3JlYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIn0sImlhdCI6MTY1NjQxMzM0MiwiZXhwIjoxNjU2NDQ5MzQyfQ.Z7WHW7jw0p1nNDt5ewRv9vqZy-R4Q_RmF9ufdO6Aw0M')
             .send(user)
             .end((err, res) => {
                 res.should.have.status(200)
@@ -109,7 +109,7 @@ describe('/resetpassword', () => {
         }
         chai
             .request(server)
-            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJmaXJzdE5hbWUiOiJLd2l6ZXJhICIsImxhc3ROYW1lIjoiU3RldmVuIiwiZW1haWwiOiJkcmVhbXRtODdAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwaGFudG9tQDEyMyIsImNyZWF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiIsInVwZGF0ZWRBdCI6IjIwMjItMDYtMjNUMTM6MDA6MTAuODUyWiJ9LCJpYXQiOjE2NTU5ODkyMzUsImV4cCI6MTY1NjAyNTIzNX0.ah1WJOA-Lr589Q_oCe8UC33QuLrzGe78CFoDFez2qeA')
+            .post('/api/v1/users/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdE5hbWUiOiJTdGV2ZW4iLCJsYXN0TmFtZSI6Ikt3aXplcmEiLCJlbWFpbCI6Imt3aXN0ZTA2QGdtYWlsLmNvbSIsInJvbGUiOiJvcGVyYXRvciIsInBhc3N3b3JkIjoiJDJhJDEwJGVUUGtBeTZzUEExdnM4bTJjWlROT09lRktSYzZVbmoydHJ5TzRSZ3ZsUWNLem5mUS5Tc3p1IiwiY3JlYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIn0sImlhdCI6MTY1NjQxMzM0MiwiZXhwIjoxNjU2NDQ5MzQyfQ.Z7WHW7jw0p1nNDt5ewRv9vqZy-R4Q_RmF9ufdO6Aw0M')
             .send(user)
             .end((err, res) => {
                 res.should.have.status(404)
