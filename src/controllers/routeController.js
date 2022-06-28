@@ -54,6 +54,7 @@ const updateRoute = async (req, res) => {
   const id = req.params.id;
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
+
   await busRoutes.findOne({where: {routeId: id}})
       .then((data) => {
         if (data != null) {
