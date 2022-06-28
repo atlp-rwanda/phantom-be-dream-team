@@ -13,9 +13,9 @@ describe('TESTING REGISTRATION OF USERS', () => {
       .post('/api/v1/users/register')
       .send({
       
-        firstName:"byiri",
-        lastName:"benjs",
-        email: "benafrica.010@gmail.com",
+        firstName:"byirigiro",
+        lastName:"benjamin",
+        email: "benafrica10@gmail.com",
         role:"driver",
 
       })
