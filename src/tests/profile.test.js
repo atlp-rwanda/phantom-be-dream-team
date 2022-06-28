@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import server from '../app';
 chai.should();
 // eslint-disable-next-line max-len
-const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTYzOTkwODUsImV4cCI6MTY1NjQxNzA4NX0.JYEZvHGZZ075L8SAA66TmeEznCo-PiCPgXug1l1qu-Q';
+const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0MjM4MzQsImV4cCI6MTY1NjUxMDIzNH0.Sc7QMHGx13LhmUEp_33cx72AHyfzjS9P35ij8u6aJJg';
 
 chai.use(chaiHttp);
 
