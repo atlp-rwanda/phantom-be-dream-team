@@ -42,17 +42,20 @@ it('it should return status 400 if the id is not found in FRENCH', (done) => {
       .set('Accept-Language', 'fr')
       .end((err, res) => {
         res.should.have.status(400);
+        // eslint-disable-next-line max-len
         res.body.message.should.be.equal('Aucun utilisateur ne possède cet identifiant  900');
         done();
       });
 });
 
+// eslint-disable-next-line max-len
 it('it should return status 400 if the id is not found in KINYARWANDA', (done) => {
   chai.request(server)
       .get('/api/v1/profile/900')
       .set('Accept-Language', 'kiny') // Works.
       .end((err, res) => {
         res.should.have.status(400);
+        // eslint-disable-next-line max-len
         res.body.message.should.be.equal('Nta mukoresha ufite uyu mubare umuranga 900');
         done();
       });
