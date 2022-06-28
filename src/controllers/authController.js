@@ -26,5 +26,6 @@ exports.login = async (req, res, next) => {
     return res.status(401).json({status: 'fail', message: 'Incorrect email or password'});
   }
   createSendToken(user, 200, res);
+  
 };
 
