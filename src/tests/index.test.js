@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../index';
@@ -16,7 +15,6 @@ describe('MAIN PAGE', () => {
     done();
   }});
 });
-=======
 // import chai from "chai";
 // import chaiHttp from 'chai-http';
 // import server from '../app';
@@ -283,4 +281,3 @@ describe('MAIN PAGE', () => {
 //         });
 //   });
   
->>>>>>> origin
