@@ -2,7 +2,7 @@ import {Model} from 'sequelize';
 
 module.exports = (sequelize, DataTypes) => {
   // eslint-disable-next-line require-jsdoc
-  class User extends Model {
+  class Driver extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init(
+  Driver.init(
       {
         firstName: {type: DataTypes.STRING, allowNull: false},
         lastName: {type: DataTypes.STRING, allowNull: false},
@@ -23,19 +23,19 @@ module.exports = (sequelize, DataTypes) => {
           validate: {isEmail: true},
           lowercase: true,
         },
-        role: {
-          type: DataTypes.STRING, allowNull: false},
         password: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {min: 4},
         },
+        role: {type: DataTypes.STRING, allowNull: false},
+        Assigned: {type: DataTypes.BOOLEAN, allowNull: false},
       },
       {
         sequelize,
-        modelName: 'User',
+        modelName: 'Driver',
       },
   );
 
-  return User;
+  return Driver;
 };

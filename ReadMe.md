@@ -68,18 +68,18 @@ To run the app in production build of the app, use either of the following.
 
 ```
 ## Documentations
--[migrations and seeding with sequelise](https://sequelize.org/docs/v6/other-topics/migrations/)
+- [migrations and seeding with sequelise](https://sequelize.org/docs/v6/other-topics/migrations/)
 
 ## Collaborators
-. [Dodo](https://github.com/mukunzidd) </br>
-. [Achillesonga](https://github.com/songa1) </br>
-. [shemalucien](https://github.com/shemalucien) </br>
-. [ArthurJunior](https://github.com/arthurjunior250) </br>
-. [JulesHabarurema](https://github.com/Juleshb) </br>
-. [KwizeraSteven](https://github.com/Stevenkwizera06) </br>
-. [GyssagaraPrince](https://github.com/gyssa-prince) </br>
-. [BenjaminByiringiro](https://github.com/Benafrica) </br>
-. [GermainRukundo](https://github.com/Rukundo725)
+- [Dodo](https://github.com/mukunzidd) </br>
+- [Achillesonga](https://github.com/songa1) </br>
+- [shemalucien](https://github.com/shemalucien) </br>
+- [ArthurJunior](https://github.com/arthurjunior250) </br>
+- [JulesHabarurema](https://github.com/Juleshb) </br>
+- [KwizeraSteven](https://github.com/Stevenkwizera06) </br>
+- [GyssagaraPrince](https://github.com/gyssa-prince) </br>
+- [BenjaminByiringiro](https://github.com/Benafrica) </br>
+- [GermainRukundo](https://github.com/Rukundo725)
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) 
 ## Badges
