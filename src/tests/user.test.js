@@ -22,7 +22,7 @@ describe('TESTING REGISTRATION OF USERS', () => {
       .post('/api/v1/users/register')
       .send(user)
       .end((err, response) => {
-        chai.expect(response.statusCode).to.equal(500);
+        chai.expect(response.statusCode).to.equal(401);
       });
     done();
   });
