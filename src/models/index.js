@@ -12,12 +12,12 @@ let sequelize;
 if (config.url) {
   sequelize = new Sequelize(config.url, {
     dialect: 'postgres',
-    // dialectOptions: {
-    //     ssl: {
-    //         require: true,
-    //         rejectUnauthorized: false
-    //     }
-    //  },
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+     },
   });
 } else {
   sequelize = new Sequelize(
