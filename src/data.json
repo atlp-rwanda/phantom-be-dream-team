@@ -154,10 +154,69 @@
                     }
                 }
             }
+        },
+        "/api/v1/profile/{id}": {
+            "get": {
+                "tags": [
+                    "User profile"
+                ],
+                "summary": "User information",
+                "description": "The profile of user should be visible",
+                "operationId": "Profile",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "id of user",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile got successfully"
+                    }
+                }
+            }
+    },
+    "/api/v1/profile/update/{id}": {
+        "patch": {
+            "tags": [
+                "Update profile"
+            ],
+            "summary": "update user information",
+            "description": "The user should be able to update his/her information",
+            "operationId": "Update Profile",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "type": "string",
+                    "description": "id of user",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["email"]
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Profile updated successfully"
+                }
+            }
         }
-
-
-        
-        
-    }
 }
+
+}}

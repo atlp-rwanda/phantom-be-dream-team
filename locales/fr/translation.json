@@ -1,9 +1,21 @@
 {
     "message": "Bienvenue dans l'application Dream Team Phantom",
     "success": "Succès",
-    "verificationEmail": "Veuillez vérifier votre e-mail pour réinitialiser votre mot de passe",
-    "WrongPassword": "Le mot de passe saisi ne correspond pas",
-    "UserNotFound": "L'utilisateur avec l'e-mail est introuvable",
-    "resetComfirmation": "Votre mot de passe est réinitialisé",
-    "failedComfirmation": "Oups votre mot de passe n'a pas été réinitialisé, réessayez"
+
+
+
+    "required_field":"Tous les champs requis",
+    "Plate_number_required": "Entrez un numéro de plaque valide",
+    "busType_required": "entrez un type de bus de bus valide",
+    "seats_require":"les places doivent être numérotées",
+    "bus_created":"Bus créé avec succès",
+    "all_buses_found":"Tous les bus trouvés",
+    "bus_found":"bus trouvé par ID",
+
+
+    "profileUpdate":"Mise à jour du profil réussie",
+    "noUserFound":"Aucun utilisateur ne possède cet identifiant ",
+    "WOP":"Ancien mot de passe erroné",
+    "AccessDenied":"Accès refusé",
+    "WrongToken":"Accès refusé (mauvais jeton)"
 }

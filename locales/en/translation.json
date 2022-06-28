@@ -6,5 +6,11 @@
     "UserNotFound": "The user with the email not found",
     "verificationEmailFailed": "Email not sent",
     "resetComfirmation": "Your password is reset",
-    "failedComfirmation": "Oops your password was not reset, Try again" 
+    "failedComfirmation": "Oops your password was not reset, Try again" ,
+    "profileUpdate":"Profile updated successfully",
+    "noUserFound":"No user who has this id ",
+    "WOP":"Wrong old password",
+    "AccessDenied":"Access Denied",
+    "WrongToken":"Access Denied (wrong token)"
+    
 }

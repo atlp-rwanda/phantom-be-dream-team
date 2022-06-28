@@ -5,5 +5,10 @@
     "WrongPassword": "Ijambobanga ryinjiye ntirihuye",
     "UserNotFound": "Ukoresha iyi email ntabonetse",
     "resetComfirmation": "Ijambo ryibanga ryongeye gushyirwaho",
-    "failedComfirmation": "Ijambo ryibanga ntirisubirwamo, Gerageza nanone"
+    "failedComfirmation": "Ijambo ryibanga ntirisubirwamo, Gerageza nanone",
+    "profileUpdate":"umwirondoro wavuguruwe neza",
+    "noUserFound":"Nta mukoresha ufite uyu mubare umuranga",
+    "WOP":"Ijambo ryibanga rya kera siryo",
+    "AccessDenied":"Kwinjira byanze",
+    "WrongToken":"Kwinjira Byanze (ikimenyetso kitari cyo)"
 }
