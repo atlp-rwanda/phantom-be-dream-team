@@ -1,6 +1,18 @@
 {
     "message": "Murakaza neza ku rubuga rwa Dream team Phantom",
     "success": "Success",
+
+
+
+    "required_field":"Uzuza hose",
+    "Plate_number_required": "Uzuza plake nyayo",
+    "busType_required": "Uzuza ubwoko bwa bus nyabwo",
+    "seats_require":"uzuza umubare",
+    "bus_created":"bus yujujwe",
+    "all_buses_found":"bus zose zabonetse",
+    "bus_found":"bus yabonetse",
+
+
     "profileUpdate":"umwirondoro wavuguruwe neza",
     "noUserFound":"Nta mukoresha ufite uyu mubare umuranga",
     "WOP":"Ijambo ryibanga rya kera siryo",
