@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ develop, ch-setup-continous-continous-integration-#18 ]
+    branches: [ develop ]
   pull_request:
     branches: [ develop ]
 
