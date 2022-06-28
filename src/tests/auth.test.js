@@ -32,6 +32,8 @@ describe('TESTING USER AUTHENTICATION', () => {
           chai
               .expect(response.body.message)
               .to.equal('Incorrect email or password');
+
+              chai.expect(response.statusCode).to.equal(401);
         });
     done();
   });
