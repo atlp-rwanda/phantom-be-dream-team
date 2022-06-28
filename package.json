@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:start": " nodemon --exec babel-node src/index.js",
+    "dev:start": " nodemon --exec babel-node src/app.js",
     "dev": "better-npm-run dev",
     "test": "mocha --recursive --exit --timeout 1000000 --require @babel/register src/tests/*.test.js ",
     "build": "babel src --out-dir dist",
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon --exec babel-node src/app.js",
     "coverage:badge": "coverage-badge-creator",
     "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",

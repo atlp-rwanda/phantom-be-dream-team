@@ -1,9 +1,7 @@
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../index';
+import server from '../app';
 chai.should();
-
 
 chai.use(chaiHttp);
 describe('MAIN PAGE', () => {

@@ -9,9 +9,10 @@ import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
 import globalErrorHandler from './controllers/errorController';
 import routes from './routes/index';
+import 'dotenv/config';
 
 const server = express();
-
+server.listen(process.env.PORT || 3000);
 server.use(cors());
 server.use(express.json());
 
