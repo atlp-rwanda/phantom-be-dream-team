@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   busInRoad.init(
       {
+        id:{type: DataTypes.STRING, allowNull: false,
+          primaryKey: true},
         bus_Id: {type: DataTypes.STRING, allowNull: false},
         time_Start: {type: DataTypes.STRING, allowNull: false},
         speed: {type: DataTypes.INTEGER},
@@ -27,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
         current_Loc: {
           type: DataTypes.STRING,
         },
-        route_Id:{type:DataTypes.STRING}
+        route_Id:{type:DataTypes.STRING},
+        Time_updated:{type:DataTypes.STRING}
 
       },
       {

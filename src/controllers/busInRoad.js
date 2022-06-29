@@ -16,7 +16,7 @@ const  getBusInRoad =  async (req, res) => {
     const buses = await busInRoad.findAll({
       where: {
         route_Id:id
-      },attributes: ['bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id']
+      },attributes: ['id','bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id','Time_updated']
     });
   
     if (buses=='') {
@@ -32,7 +32,59 @@ const  getBusInRoad =  async (req, res) => {
     });
   }
   };
+
+  const startBus =async (req, res) =>{
+    const {bus_Id,time_Start,speed,driver_Email,passangers,current_Loc,route_Id}=req.body;
+    const Time_updated=0,id=Math.round(Math.random()*100000);
+    if (bus_Id === '' || time_Start === '' || speed === '' || driver_Email === '' || route_Id==='') {
+      return res.status(500).json({
+        message: req.t('required_field'),
+      });
+    }
+    else{
+
+try{
+  busInRoad.create({
+    id,
+    bus_Id,
+    time_Start,
+    speed,
+    driver_Email,
+    passangers,
+    current_Loc,
+    route_Id,
+    Time_updated
+  });
+  return res.status(201).send({
+    message: `Bus `+bus_Id+ ' starts'
+  });
+}catch(err){
+  res.status(500).send({
+    message: err.message
+  });
+} }
+  }
   
+  const stopBus = async (req, res) =>{
+    const { id } = req.params;
+    busInRoad.findOne({
+      where: {
+        id,
+      },
+    }).then((busInRoad) => {
+      if (!busInRoad) {
+        return res.status(404).json({
+          message: "there is no ongoing bus of this id "+id+" !"
+        });
+      }
+      return busInRoad.destroy().then(() => {
+        res.status(200).json({
+          message: "Bus is stopped"
+        });
+      });
+    });
+  }
+
   const UpdateBusInfo = async (req, res) =>{
     var logged=false
     const token = req.header('auth-token');
@@ -84,4 +136,4 @@ const  getBusInRoad =  async (req, res) => {
     }
   }};
 
-  export { getBusInRoad, UpdateBusInfo};
+  export { startBus, getBusInRoad, UpdateBusInfo, stopBus};

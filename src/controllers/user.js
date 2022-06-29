@@ -35,24 +35,7 @@ const  getUser =  async (req, res) => {
   };
   
   const updateUser = async (req, res) => {
-    var logged=false
-    const token = req.header('auth-token');
-    if(!token) return res.status(401).send({
-      message: req.t('AccessDenied')
-    });
-
-    try{
-      let tsec= process.env.JWT_SECRET|| "nmmskl77.;y6";
-      const verified = jwt.verify(token, tsec);
-      req.user = verified; 
-      logged=true
-    }catch(err){
-        res.status(401).send({
-          message: req.t('WrongToken')
-        });
-    }
-    if(logged==true){
-
+  
   
     const { firstName, lastName, email, phone, Newpassword,Oldpassword } = req.body;
     const { id } = req.params;
@@ -108,5 +91,5 @@ const  getUser =  async (req, res) => {
         message: `Error: ${err.message}`,
       });
     }
-  }};
+  };
   export { getUser, updateUser };
