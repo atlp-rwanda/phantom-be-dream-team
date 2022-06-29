@@ -13,6 +13,7 @@
     "coverage": "nyc npm run test",
     "migrate": "sequelize db:migrate",
     "seed": " sequelize db:seed:all",
+    "dockercompose": "docker compose up",
     "migrate:undo": "sequelize db:migrate:undo:all",
     "seed:undo": "sequelize db:seed:undo:all"
   },
