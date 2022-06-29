@@ -3,7 +3,6 @@ import { startBus, getBusInRoad, UpdateBusInfo, stopBus } from '../../controller
 import verify from '../../helpers/verify';
 const router = express.Router()
 
-
 router.get('/:id', getBusInRoad);
 router.post('/start/', verify,startBus);
 router.post('/stop/:id', verify, stopBus);
