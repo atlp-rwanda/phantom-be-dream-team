@@ -4,6 +4,11 @@ module.exports = {
     [
       {
         id: 1,
+        firstName: 'John ',
+        lastName: 'Doe',
+        email: 'jondoe@example.com',
+        password:'34567dhhdhdh',
+        role: 'admin',
         name: 'Jon Doe',
         email: 'jondoe@example.com',
         phone:'123457688',
@@ -16,6 +21,11 @@ module.exports = {
       },
       {
         id: 2,
+        firstName: 'Kwizera ',
+        lastName: 'Steven',
+        email: 'dreamtm87@gmail.com',
+        password:'phantom@123',
+        role: 'admin',
         name: 'Kwizera Steven',
         email: 'dreamtm87@gmail.com',
         phone:'0787239534',

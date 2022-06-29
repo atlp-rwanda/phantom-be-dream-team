@@ -46,6 +46,84 @@
                 }
             }
         },
+        "/api/v1/forgotpassword": {
+            "post": {
+                "tags": [
+                    "Forgot Password"
+                ],
+                "summary": "",
+                "description": "u",
+                "operationId": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Please check your email to reset your password"
+                    }
+                }
+            }
+        },
+        "/api/v1/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdE5hbWUiOiJTdGV2ZW4iLCJsYXN0TmFtZSI6Ikt3aXplcmEiLCJlbWFpbCI6Imt3aXN0ZTA2QGdtYWlsLmNvbSIsInJvbGUiOiJvcGVyYXRvciIsInBhc3N3b3JkIjoiJDJhJDEwJGVUUGtBeTZzUEExdnM4bTJjWlROT09lRktSYzZVbmoydHJ5TzRSZ3ZsUWNLem5mUS5Tc3p1IiwiY3JlYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIn0sImlhdCI6MTY1NjQxMzM0MiwiZXhwIjoxNjU2NDQ5MzQyfQ.Z7WHW7jw0p1nNDt5ewRv9vqZy-R4Q_RmF9ufdO6Aw0M": {
+            "post": {
+                "tags": [
+                    "Reset password"
+                ],
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "comfirmPassword": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email",
+                                "password",
+                                "comfirmPassword"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "The password entered dont match"
+                    }
+                }
+            }
+        },
+
+
         "/api/v1/users/login": {
             "post": {
                 "tags": ["Sign-in to Phantom"],
