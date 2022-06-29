@@ -43,11 +43,13 @@ const forgotPassword = (req,res) => {
                 `
             })
             res.status(200).json({
+                status: "success",
                 message : req.t('verificationEmail')
             })
         }
         else {
             res.status(400).json({
+                status: "fail",
                 message : req.t('verificationEmailFailed'),
                 error: `The email ${email} wasn't found`
             })
