@@ -33,6 +33,30 @@ const  getBusInRoad =  async (req, res) => {
   }
   };
 
+  const  getAllBusInRoad =  async (req, res) => {
+    const {id} = req.params;
+
+    
+    try{
+    const buses = await busInRoad.findAll({
+     attributes: ['id','bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id','Time_updated']
+    });
+  
+    if (buses=='') {
+      return res.status(400).send({
+        message: `There is no bus in route `+id
+      });
+    }
+  
+    return res.send(buses);
+  }catch(err){
+    return res.status(500).send({
+      message: `Error:${err.message}`
+    });
+  }
+  };
+
+
   const startBus =async (req, res) =>{
     const {bus_Id,time_Start,speed,driver_Email,passangers,current_Loc,route_Id}=req.body;
     const Time_updated=0,id=Math.round(Math.random()*100000);
@@ -136,4 +160,4 @@ try{
     }
   }};
 
-  export { startBus, getBusInRoad, UpdateBusInfo, stopBus};
+  export { startBus, getBusInRoad, getAllBusInRoad, UpdateBusInfo, stopBus};
