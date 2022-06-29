@@ -56,4 +56,9 @@ sequelize
       console.error('Failed to connect! Database Status : OFF:', err);
     });
 
+sequelize
+.authenticate()  
+.then(() => {    console.log('DB connected') })  
+.catch((err) => {    console.error('Failed to connect!', err);  });
+
 export default db;
