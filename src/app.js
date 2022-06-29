@@ -9,12 +9,11 @@ import middleware from 'i18next-http-middleware';
 import globalErrorHandler from './controllers/errorController';
 import routes from './routes/index';
 import 'dotenv/config';
-
 const server = express();
-server.listen(process.env.PORT || 3000);
+
 server.use(cors());
 server.use(express.json());
-
+server.listen(process.env.PORT || 3000);
 i18next
     .use(Backend)
     .use(middleware.LanguageDetector)
