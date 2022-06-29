@@ -67,12 +67,21 @@ To run the app in production build of the app, use either of the following.
  npm run seed
 
 ```
-## Documentations
 - [migrations and seeding with sequelise](https://sequelize.org/docs/v6/other-topics/migrations/)
 
+## Running the docker container
+```bash
+ npm run dockercompose
+
+```
+## Running postgres in docker container
+
+```bash
+ docker run -it -e "POSTGRES_HOST_AUTH_METHOD=trust" -p 5432:5432 postgres
+
+```
 ## Collaborators
 - [Dodo](https://github.com/mukunzidd) </br>
-- [Achillesonga](https://github.com/songa1) </br>
 - [shemalucien](https://github.com/shemalucien) </br>
 - [ArthurJunior](https://github.com/arthurjunior250) </br>
 - [JulesHabarurema](https://github.com/Juleshb) </br>
