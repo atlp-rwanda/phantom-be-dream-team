@@ -6,15 +6,14 @@ import cors from 'cors';
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
+import cookieParser from 'cookie-parser';
+
 import globalErrorHandler from './controllers/errorController';
 import routes from './routes/index';
 import 'dotenv/config';
 
 const server = express();
-const PORT= 3000 || process.env.PORT
-server.listen(PORT, () => {
-  console.log('Server listening on port ' + PORT);
-});
+server.listen(process.env.PORT || 3000);
 server.use(cors());
 server.use(express.json());
 
@@ -29,12 +28,23 @@ i18next
     });
 
 server.use(middleware.handle(i18next));
+server.use(express.json());
+
 
 server.get('/api/v1', (req, res) => {
   res.status(200).json({
     message: req.t('welcome_message'),
   });
 });
+
+server.use(morgan("dev"));
+server.use(cors());
+server.use(cookieParser())
+
+server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc, { explorer: true }));
+
+// server.use(forgotPasssword)
+// server.use(resetPassword)
 
 server.use(cors());
 server.use(express.json());
