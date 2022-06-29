@@ -1,13 +1,11 @@
 {
     "message": "Murakaza neza ku rubuga rwa Dream team Phantom",
     "success": "Success",
-<<<<<<< HEAD
     "verificationEmail": "Nyamuneka reba imeri yawe kugirango usubize ijambo ryibanga",
     "WrongPassword": "Ijambobanga ryinjiye ntirihuye",
     "UserNotFound": "Ukoresha iyi email ntabonetse",
     "resetComfirmation": "Ijambo ryibanga ryongeye gushyirwaho",
     "failedComfirmation": "Ijambo ryibanga ntirisubirwamo, Gerageza nanone",
-=======
 
 
 
@@ -20,7 +18,6 @@
     "bus_found":"bus yabonetse",
 
 
->>>>>>> origin
     "profileUpdate":"umwirondoro wavuguruwe neza",
     "noUserFound":"Nta mukoresha ufite uyu mubare umuranga",
     "WOP":"Ijambo ryibanga rya kera siryo",
