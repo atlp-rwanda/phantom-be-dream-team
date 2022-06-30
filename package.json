@@ -86,6 +86,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.20.1",
     "sequelize-cli": "^6.4.1",
+    "sequelize-slugify": "^1.6.1",
     "uuid": "^8.3.2"
   }
 }

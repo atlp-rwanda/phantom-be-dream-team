@@ -1,8 +1,9 @@
 import express from 'express';
 import userRoutes from './api/userRoutes';
 import driverToBusRoute from './api/driverToBusRoute'
-import resetRoute from './api/resetRoute'
-import busRoute from './api/busRoute'
+import busRoutes from './api/routesRoute';
+import busRoute from './api/busRoute';
+import resetRoute from './api/resetRoute';
 import Profilerouter from './api/updateProfile';
 import simulateRouter from './api/busInRoad';
 
@@ -11,9 +12,11 @@ const routes = express.Router();
 
 routes.use('/users', userRoutes);
 routes.use('/driverstobuses',driverToBusRoute);
+routes.use('/routes', busRoutes);
+routes.use('/profile', Profilerouter);
+routes.use('/simulate', simulateRouter);
+routes.use('/buses', busRoute);
 routes.use('/users1', resetRoute);
-routes.use('/buses', busRoute)
-routes.use('/profile',Profilerouter);
-routes.use('/simulate',simulateRouter);
+
 
 export default routes;
