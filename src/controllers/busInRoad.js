@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 
+
 const busInRoad = model.busInRoad;
 dotenv.config();
 
@@ -32,6 +33,32 @@ const  getBusInRoad =  async (req, res) => {
     });
   }
   };
+
+  const  SpecificBusinRoad = async (req,res) =>{
+    const {id} = req.params;
+    try{
+      const bus = await busInRoad.findAll({
+        where: {
+          id:id
+        },
+       attributes: ['id','bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id','Time_updated']
+      });
+    
+      if (bus=='') {
+        return res.status(400).send({
+          message: `There is no bus in route `+id
+        });
+      }
+      else{
+        return res.status(200).send(bus)
+      }
+    }catch(err){
+      return res.status(500).send({
+        message: `Error:${err.message}`
+      });
+    }
+
+  }
 
   const  getAllBusInRoad =  async (req, res) => {
     const {id} = req.params;
@@ -110,36 +137,41 @@ try{
   }
 
   const UpdateBusInfo = async (req, res) =>{
-   
+
         const { speed, passangers, current_Loc} = req.body;
         const { id } = req.params;
-    try {
-        const buses = await busInRoad.findOne({
-            where: {
-              id:id
-            },attributes: ['id','bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id']
+        try {
+        const aBus = await busInRoad.findOne({
+          where: {
+            id,
+          },
+        });
+      
+        if (!aBus) {
+          return res.status(400).send({
+            message: 'There is no such ongoing bus'+' '+id
           });
-          if (buses=='') {
-                  return res.status(400).send({
-                    message: `There is no ongoing  bus with this `+id
-                  });
-                }else{
-                  buses.speed = speed,
-                  buses.passangers = passangers,
-                  buses.current_Loc = current_Loc
-                  buses.save();
-                  return res.status(200).send({
-                    message: `Bus info updated`+id
-                  });
-                }
+        }
       
-      
-    } catch (err) {
-      return res.status(500).send({
-        message: `Error: ${err.message}`,
-      });
-    }
- 
-};
-
-  export { startBus, getBusInRoad, getAllBusInRoad, UpdateBusInfo, stopBus};
+        
+          if (speed) {
+            busInRoad.speed = speed;
+          }
+          if (passangers) {
+            busInRoad .passangers = passangers;
+          }
+          if (current_Loc) {
+              busInRoad .current_Loc = current_Loc;
+            }
+            busInRoad.Time_updated = '1656590753032'
+             aBus.save()
+             return res.status(200).send({
+              message: `Updated`,
+            });
+        } catch (err) {
+          return res.status(500).send({
+            message: `Error: ${err.message}`,
+          });
+        }
+      };
+  export { startBus, getBusInRoad, SpecificBusinRoad, getAllBusInRoad, UpdateBusInfo, stopBus};
