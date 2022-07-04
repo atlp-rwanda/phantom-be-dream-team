@@ -7,14 +7,7 @@ const router = express.Router()
 router.get('/:id', getBusInRoad);
 router.post('/start/', checkAdmin,startBus);
 router.post('/stop/:id', checkAdmin, stopBus);
-router.patch('/update/:id', checkAdmin, UpdateBusInfo);
+router.patch('/update/:id',checkAdmin, UpdateBusInfo);
 router.get('/alltracks/bus', checkAdmin, getAllBusInRoad);
 
-
 export default router
-
-
-
-
-
-

@@ -110,54 +110,36 @@ try{
   }
 
   const UpdateBusInfo = async (req, res) =>{
-    var logged=false
-    const token = req.header('auth-token');
-    if(!token) return res.status(401).send({
-      message: req.t('AccessDenied')
-    });
-
-    try{
-      const verified = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = verified; 
-      logged=true
-    }catch(err){
-        res.status(401).send({
-          message: req.t('WrongToken')
-        });
-    }
-    if(logged==true){
+   
         const { speed, passangers, current_Loc} = req.body;
         const { id } = req.params;
     try {
-        const buses = await busInRoad.findAll({
+        const buses = await busInRoad.findOne({
             where: {
               id:id
-            },attributes: ['bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id']
+            },attributes: ['id','bus_Id','time_Start','speed','driver_Email','passangers','current_Loc','route_Id']
           });
           if (buses=='') {
                   return res.status(400).send({
                     message: `There is no ongoing  bus with this `+id
                   });
+                }else{
+                  buses.speed = speed,
+                  buses.passangers = passangers,
+                  buses.current_Loc = current_Loc
+                  buses.save();
+                  return res.status(200).send({
+                    message: `Bus info updated`+id
+                  });
                 }
       
-      if (speed) {
-        busInRoad.speed = speed;
-      }
-      if (passangers) {
-        busInRoad.passangers = passangers;
-      }
-      if (current_Loc) {
-        busInRoad.email = current_Loc;
-        }
-        busInRoad.save();
-      return res.status(200).send({
-        message: `Bus info updated`+id
-      });
+      
     } catch (err) {
       return res.status(500).send({
         message: `Error: ${err.message}`,
       });
     }
-  }};
+ 
+};
 
   export { startBus, getBusInRoad, getAllBusInRoad, UpdateBusInfo, stopBus};
