@@ -19,7 +19,6 @@ describe('TESTING USER AUTHENTICATION', () => {
         });
     done();
   });
-
   it('User login fail(message:Incorrect email)', (done) => {
     chai
         .request(server)
@@ -30,24 +29,10 @@ describe('TESTING USER AUTHENTICATION', () => {
         })
         .end((error, response) => {
           chai
+              .expect(response.statusCode).to.equal(401)
               .expect(response.body.message)
               .to.equal('Incorrect email or password');
         });
     done();
   });
-  // it('User login fail(message:Incorrect password)', (done) => {
-  //   chai
-  //       .request(server)
-  //       .post('/api/v1/users/login')
-  //       .send({
-  //         email: 'arthur12kk@gmail.m',
-  //         password: 'kigali',
-  //       })
-  //       .end((error, response) => {
-  //         chai
-  //             .expect(response.body.message)
-  //             .to.equal('Incorrect email or password');
-  //       });
-  //   done();
-  // });
 });

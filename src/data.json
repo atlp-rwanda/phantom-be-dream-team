@@ -46,6 +46,84 @@
                 }
             }
         },
+        "/api/v1/forgotpassword": {
+            "post": {
+                "tags": [
+                    "Forgot Password"
+                ],
+                "summary": "",
+                "description": "u",
+                "operationId": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Please check your email to reset your password"
+                    }
+                }
+            }
+        },
+        "/api/v1/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdE5hbWUiOiJTdGV2ZW4iLCJsYXN0TmFtZSI6Ikt3aXplcmEiLCJlbWFpbCI6Imt3aXN0ZTA2QGdtYWlsLmNvbSIsInJvbGUiOiJvcGVyYXRvciIsInBhc3N3b3JkIjoiJDJhJDEwJGVUUGtBeTZzUEExdnM4bTJjWlROT09lRktSYzZVbmoydHJ5TzRSZ3ZsUWNLem5mUS5Tc3p1IiwiY3JlYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0yOFQwNjoyMjoyNy43MDJaIn0sImlhdCI6MTY1NjQxMzM0MiwiZXhwIjoxNjU2NDQ5MzQyfQ.Z7WHW7jw0p1nNDt5ewRv9vqZy-R4Q_RmF9ufdO6Aw0M": {
+            "post": {
+                "tags": [
+                    "Reset password"
+                ],
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "comfirmPassword": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "email",
+                                "password",
+                                "comfirmPassword"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "The password entered dont match"
+                    }
+                }
+            }
+        },
+
+
         "/api/v1/users/login": {
             "post": {
                 "tags": ["Sign-in to Phantom"],
@@ -238,6 +316,110 @@
                 }
             }
         }
+},
+ "/api/v1/routes": {
+    "post": {
+        "tags": ["Create route"],
+        "summary": "| Operator |",
+        "description": "create route",
+        "operationId": "",
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "Resource payload",
+            "required": true,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "origin": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "distance": {
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    }
+                },
+                "required": ["origin", "destination","code","distance","longiitude","latitude"]
+            }
+        }],
+        "responses": {
+            "201": {
+                "description": "Login Successfully"
+            }
+        }
+    },
+    "get": {
+        
+        "summary": "get all routes",
+        "description": "get all routes",
+        "operationId": "get all routes",
+        "responses": {
+            "200": {
+                "description": "Get all routes"
+            }
+        },
+        "security": [{
+            "Bearer": []
+        }]
+    }
+
+
+},
+"/api/v1/routes/{id}": {
+"get": {
+  
+    "summary": "Get Single route",
+    "description": "get single routes",
+    "operationId": "get single routes",
+    "security": [{
+        "Bearer": []
+    }],
+    "produces": ["application/json"],
+    "parameters": [{
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "description": "Route Id",
+        "required": true
+    }],
+    "responses": {
+        "201": {
+            "description": "get a route"
+        }
+    }
+},
+"delete": {
+    "summary": "delete route",
+    "description": "delete route",
+    "operationId": "delete route",
+    "security": [{
+        "Bearer": []
+    }],
+    "produces": ["application/json"],
+    "parameters": [{
+        "name": "id",
+        "in": "path",
+        "type": "string",
+        "description": "Route Id",
+        "required": true
+    }],
+    "responses": {
+        "201": {
+            "description": "Route Deleted"
+        }
+    }
+}
 }
 
 }
