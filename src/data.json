@@ -45,6 +45,199 @@
                     }
                 }
             }
+        },
+        "/api/v1/users/login": {
+            "post": {
+                "tags": ["Sign-in to Phantom"],
+                "summary": "User Login | Admin | Operator | Driver",
+                "description": "user's login either admin , operator and driver",
+                "operationId": "userLogin",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Resource payload",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["email", "password"]
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Login Successfully"
+                    }
+                }
+            }
+        },
+
+
+        "/api/v1/buses": {
+            "post": {
+                "tags": ["Crud operation for Buses"],
+                "summary": "adding abus ",
+                "description": "adding a plate mumber,seeat and bustype",
+                "operationId": "addBus",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Resource payload",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "plate": {
+                                "type": "string"
+                            },
+                            "busType": {
+                                "type": "string"
+                            },
+                            "seat": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["plate", "busType","seat"]
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Bus successfully created"
+                    }
+                }
+            }
+        },
+
+        "/api/v1/buses/": {
+            "get": {
+                "tags": ["Crud operation for Buses"],
+                "summary": "getting all bus ",
+                "description": "getting a plate mumber,seeat and bustype",
+                "operationId": "GetBus",
+                "produces": [
+                    "application/json"
+                ],
+                
+                "responses": {
+                    "200": {
+                        "description": "All buses found"
+                    }
+                }
+            }
+        },
+
+        "/api/v1/buses/{id}": {
+            "get": {
+                "tags": ["Crud operation for Buses"],
+                "summary": "getting a bus ",
+                "description": "getting a plate mumber,seeat and bustype",
+                "operationId": "GetBus",
+        "/api/v1/profile/{id}": {
+            "get": {
+                "tags": [
+                    "User profile"
+                ],
+                "summary": "User information",
+                "description": "The profile of user should be visible",
+                "operationId": "Profile",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "id of user",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bus found"
+                    }
+                }
+            }
+        },
+
+
+
+        "/api/v1/buses/{id}/": {
+            "delete": {
+                "tags": ["Crud operation for Buses"],
+                "summary": "deleting a bus ",
+                "description": "deleting a plate mumber,seeat and bustype",
+                "operationId": "DeleteBus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "Bus ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bus deleted"
+                    }
+                }
+            }
         }
+
+       
+
     }
+},
+                        "description": "Profile got successfully"
+                    
+                
+            
+    },
+    "/api/v1/profile/update/{id}": {
+        "patch": {
+            "tags": [
+                "Update profile"
+            ],
+            "summary": "update user information",
+            "description": "The user should be able to update his/her information",
+            "operationId": "Update Profile",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "type": "string",
+                    "description": "id of user",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["email"]
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Profile updated successfully"
+                }
+            }
+        }
+}
+
 }

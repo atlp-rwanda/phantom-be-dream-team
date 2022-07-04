@@ -1,16 +1,49 @@
-require('dotenv').config()
+// import dotenv from 'dotenv';
+
+// dotenv.config();
+
+// module.exports = {
+//   development: {
+//     JWT_SECRET: process.env.JWT_SECRET,
+//     url: process.env.DB_DEVELOPMENT_URL,
+//     dialect: 'postgres',
+//     port: process.env.PORT,
+//   },
+//   test: {
+//     JWT_SECRET: process.env.JWT_SECRET,
+//     url: process.env.DB_TESTING_URL,
+//     dialect: 'postgres',
+//     port: process.env.PORT,
+//   },
+//   production: {
+//     JWT_SECRET: process.env.JWT_SECRET,
+//     url: process.env.DB_PRODUCTION_URL,
+//     dialect: 'postgres',
+//     port: process.env.PORT,
+//   },
+// };
+
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 module.exports = {
   development: {
-    url: process.env.DEV_DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    url: "postgres://postgres:Jules2020@localhost:5432/phantom_db",
     dialect: 'postgres',
+    port: process.env.DB_PORT,
   },
   test: {
-    url: process.env.TEST_DATABASE_URL,
+    JWT_SECRET:"nmmskl77.;y6",
+    url: "postgres://umcbxkwsqfxjsc:20ed564df25476051de8a4e4fd668a56151985de6009571a9f514841fbe45a4b@ec2-52-72-99-110.compute-1.amazonaws.com:5432/d70c5rp7hagi9n",
     dialect: 'postgres',
+    port: 3000,
   },
   production: {
-    url: process.env.DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    url: process.env.DB_PRODUCTION_URL,
     dialect: 'postgres',
+    port: process.env.DB_PORT,
   },
-}
+};
