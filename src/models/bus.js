@@ -1,5 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
+import model from '../models'
 module.exports = (sequelize, DataTypes) => {
   class Bus extends Model {
     /**
@@ -9,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-
+      this.hasMany(models.AssignedBusesToDrivers, {
+        foreignKey: 'BusId',
+        as: 'AssignedBusesToDrivers',
+      });
     }
   }
   Bus.init(

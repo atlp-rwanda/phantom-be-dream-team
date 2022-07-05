@@ -67,9 +67,11 @@ To run the app in production build of the app, use either of the following.
  npm run seed
 
 ```
+## Documentations
 - [migrations and seeding with sequelise](https://sequelize.org/docs/v6/other-topics/migrations/)
 
 ## Running the docker container
+
 ```bash
  npm run dockercompose
 
@@ -82,6 +84,7 @@ To run the app in production build of the app, use either of the following.
 ```
 ## Collaborators
 - [Dodo](https://github.com/mukunzidd) </br>
+- [Achillesonga](https://github.com/songa1) </br>
 - [shemalucien](https://github.com/shemalucien) </br>
 - [ArthurJunior](https://github.com/arthurjunior250) </br>
 - [JulesHabarurema](https://github.com/Juleshb) </br>

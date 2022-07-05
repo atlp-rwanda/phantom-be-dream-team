@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Buses', {
       id: {
         allowNull: false,
@@ -8,29 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      company: {
-        type: Sequelize.STRING
+      plate: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        unique: true
       },
-      type: {
-        type: Sequelize.STRING
+      busType: {
+        type: Sequelize.STRING,
+        notEmpty: true
       },
-      plateNumber: {
-        type: Sequelize.STRING
-      },
-      manufacturer: {
-        type: Sequelize.STRING
-      },
-      capacity: {
-        type: Sequelize.STRING
-      },
-      yearOfManufacturing: {
-        type: Sequelize.STRING
-      },
-      userId: {
-        type: Sequelize.INTEGER
-      },
-      isAssigned: {
-        type: Sequelize.BOOLEAN
+      seat: {
+        type: Sequelize.INTEGER,
+        notEmpty: true
       },
       createdAt: {
         allowNull: false,
@@ -40,9 +29,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Buses');
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('Buses')
   }
-};
+}

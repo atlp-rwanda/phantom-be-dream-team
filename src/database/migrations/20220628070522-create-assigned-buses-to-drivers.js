@@ -4,30 +4,33 @@ module.exports = {
     await queryInterface.createTable('AssignedBusesToDrivers', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
       },
-      firstName: {
-        type: Sequelize.STRING
+      UserId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
       },
-      lastName: {
-        type: Sequelize.STRING
-      },
-      plateNumber: {
-        type: Sequelize.STRING
+      BusId: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUID4,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('AssignedBusesToDrivers');
-  }
+  },
 };

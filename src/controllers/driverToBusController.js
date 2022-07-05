@@ -1,130 +1,196 @@
-import model from "../models";
-const assignments = model.AssignedBusesToDrivers;
-const Bus = model.Bus;
-const Driver = model.Driver;
+import model from '../models';
+import { getPagination, getPagingData } from '../utils/paginationHandler';
+import responseHandler from '../utils/responseHandler';
+import {
+  sendNotification,
+  sendNotficationUnAssigned,
+} from '../helpers/sendNotification';
+const AssignDriver = model.AssignedBusesToDrivers;
+const User = model.User;
+const getAllDriverAssignToBuses = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
 
-const createAssignment = async (req, res) => {
-  try {
-    const { busId, driverId } = req.params;
-    console.log(busId, driverId);
-    const bus = await Bus.findOne({ where:{ id: busId } });
-    console.log(bus);
-    if (!bus) {
-      return res.status(404).json({
-        status: "fail",
-        message: "No bus found with that ID",
-      });
-    }
-
-    const driver = await Driver.findOne({ where: { id: driverId } });
-
-    if (!driver) {
-      return res.status(404).json({
-        status: "fail", 
-        message: "No driver found with that ID",
-      });
-    }
-
-    const assignment = await assignments.create({
-      plateNumber: bus.plateNumber,
-      firstName: driver.firstName,
-      lastName: driver.lastName,
-    });
-    console.log(assignment);
-    res.status(200).json({
-      status: "success",
-      message: "Bus Assined Successfully",
-      data: {
-        assign: assignment,
+  await AssignDriver.findAndCountAll({
+    limit,
+    offset,
+    include: [
+      {
+        model: model.User,
+        as: 'Users',
       },
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "error",
-      message: "Error assigning bus to driver",
-      err: error.stack,
-    });
-    console.error(error);
-  }
+      {
+        model: model.Bus,
+        as: 'Buses',
+      },
+    ],
+  }).then((data) => {
+    const response = getPagingData(data, page, limit);
+    res.status(200).json({ data: response });
+  });
 };
-const getAllAssignments = async (req, res) => {
-  try {
-    const assignment = await assignments.findAll({});
-    console.log(assignment);
-    if (!assignment) {
-      return res.status(404).json({
-        status: "fail",
-        message: "No assignments found ",
-      });
-    }
-    res.status(200).json({
-      status: "success",
-      data: {
-        Assignments: assignment,
+const getAllDriverUnAssigned = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
+  await User.findAndCountAll({
+    limit,
+    offset,
+    exclude: [
+      {
+        model: model.AssignDriver,
+        as: 'AssignDriver',
       },
-    });
-  }
-  catch (error) {
-    res.status(500).json({
-      status: "error",
-      message: "Error while getting all drivers to buses assignment",
-    });
-  }
-}
-
-const getAssignment = async (req, res) => {
-  try {
-    const id = req.params.id;
-
-    const assignment = await assignments.findOne({ where: { id } });
-    if (!assignment) {
-      return res.status(404).json({
-        status: "fail",
-        message: "No assignment found with that ID",
-      });
-    }
-    res.status(200).json({
-      status: "success",
-      data: {
-        Assignments: assignment,
-      },
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: "error",
-      message: "Error assigning bus to driver",
-      err: error.stack,
-    });
-  }
+    ],
+  }).then((data) => {
+    const response = getPagingData(data, page, limit);
+    res.status(200).json({ data: response });
+  });
 };
 
-const unAssign = async (req, res) => {
+const PostAssignDriverToBuses = async (req, res) => {
+  if (
+    (!req.params.driverId && !req.params.busId) ||
+    req.params.driverId == '' ||
+    req.params.busId == ''
+  )
+    return responseHandler(res, 400, req.t('missing_params'), req);
   try {
-    const id = req.params.id;
-
-    const assignment = await assignments.findOne({ where: { id } });
-
-    if (!assignment) {
-      return res.status(404).json({
-        status: "fail",
-        message: "No assignment found with that ID",
-      });
-    }
-
-    await assignment.destroy();
-
-    res.status(200).json({
-      status: "success",
-      message: "Bus unAssigned Successfully",
+    AssignDriver.findOrCreate({
+      where: {
+        UserId: req.params.driverId,
+        BusId: req.params.busId,
+      },
+    }).then((created) => {
+      created[1]
+        ? responseHandler(
+            res,
+            201,
+            { message: req.t('driver_to_buses_create') },
+            req
+          ) +
+          User.findOne({
+            where: {
+              id: req.params.driverId,
+            },
+          }).then((data) => {
+            model.Bus.findOne({
+              where: {
+                id: req.params.busId,
+              },
+            }).then((buses) => {
+              const message = `
+                 <h2>Hello ${
+                   data.firstName + ' ' + data.lastName
+                 } You have been assigned Buse to drive with this PlateNumber ${
+                buses.prateNumber
+              }</h2>
+                 <p>please visit your Account and check new buse and be ready to start to drive</p>
+                 `;
+              sendNotification(message, data.email);
+            });
+          })
+        : responseHandler(
+            res,
+            400,
+            { message: req.t('driver_has_assigned_exit') },
+            req
+          );
     });
   } catch (error) {
-    res.status(500).json({
-      status: "error",
-      message: "Error assigning driver to bus",
-      err: error.stack,
+    res.send(error.message);
+  }
+};
+const findOneAssign = async (req, res) => {
+  const AssignedId = req.params.id;
+  try {
+    await AssignDriver.findOne({
+      where: {
+        id: AssignedId,
+      },
+      include: [
+        {
+          model: model.User,
+          as: 'Users',
+        },
+        {
+          model: model.Bus,
+          as: 'Buses',
+        },
+      ],
+    }).then((data) => {
+      null != data
+        ? res.status(200).json({ data: data })
+        : responseHandler(res, 404, req.t('record_not_found'), req);
     });
+  } catch (error) {
+    responseHandler(res, 500, req.t('fail'), req);
+  }
+};
+const UpdateOneAssign = (req, res) => {
+  try {
+    const AssignedId = req.params.id;
+    AssignDriver.update(
+      {
+        UserId: req.body.userId,
+        BuseId: req.body.buseId,
+      },
+      {
+        where: { id: AssignedId },
+      }
+    ).then((result) => {
+      result.length > 0 && responseHandler(res, 201, req.t('updated_ok'), req);
+    });
+  } catch (error) {
+    res.status(401).json({ error: error.message });
+  }
+};
+const UnAssignDriver = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const CurrentUser = AssignDriver.findOne({
+      where: {
+        id: id,
+      },
+      include: [
+        {
+          model: model.User,
+          as: 'Users',
+        },
+        {
+          model: model.Bus,
+          as: 'Buses',
+        },
+      ],
+    })
+      .then((data) => {
+        const message = `
+      <h2>Hello ${
+        data.Users.firstName + ' ' + data.Users.lastName
+      } You have been Unassigned Buse to drive with this PlateNumber ${
+          data.Buses.prateNumber
+        }</h2>
+      <p>please visit wait while the operator are still finding new buse to assigne to you</p>
+      `;
+        sendNotficationUnAssigned(message, data.Users.email);
+      })
+      .then(() => {
+        AssignDriver.destroy({
+          where: { id: id },
+        }).then((num) => {
+          1 == num
+            ? responseHandler(res, 200, req.t('deleted_ok'), req)
+            : responseHandler(res, 400, req.t('delete_invalid_req'), req);
+        });
+      });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 export {
-  getAllAssignments, createAssignment, getAssignment,unAssign
+  getAllDriverAssignToBuses,
+  PostAssignDriverToBuses,
+  getAllDriverUnAssigned,
+  findOneAssign,
+  UpdateOneAssign,
+  UnAssignDriver,
 };

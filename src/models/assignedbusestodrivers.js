@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+import {Model} from 'sequelize';
+
 module.exports = (sequelize, DataTypes) => {
   class AssignedBusesToDrivers extends Model {
     /**
@@ -11,15 +9,40 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: {
+          name: 'UserId',
+          allowNull: true,
+        },
+        as: 'Users',
+      });
+      this.belongsTo(models.Bus, {
+        foreignKey: {
+          name: 'BusId',
+          allowNull: false,
+        },
+        as: 'Buses',
+      });
     }
   }
-  AssignedBusesToDrivers.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    plateNumber: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'AssignedBusesToDrivers',
-  });
+  AssignedBusesToDrivers.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      UserId: DataTypes.INTEGER,
+      BusId: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        unique: true,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'AssignedBusesToDrivers',
+    }
+  );
   return AssignedBusesToDrivers;
 };
