@@ -419,7 +419,80 @@
             "description": "Route Deleted"
         }
     }
-}
-}
+},
+"/api/v1/simulate/{id}": {
+    "get": {
+      
+        "summary": "Get bus in the specific route",
+        "description": "get all bus in that route",
+        "operationId": "get all bus in that route",
+        "security": [{
+            "Bearer": []
+        }],
+        "produces": ["application/json"],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Route Id",
+            "required": true
+        }],
+        "responses": {
+            "200": {
+                "description": "get a bus"
+            }
+        }
+    }
+},
+"/api/v1/simulate/start": {
+        "post": {
+            "tags": ["start the bus"],
+            "summary": "| Driver |",
+            "description": "Start the bus",
+            "operationId": "",
+            "parameters": [{
+                "in": "body",
+                "name": "body",
+                "description": "Resource payload",
+                "required": true,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "bus_Id": {
+                            "type": "string"
+                        },
+                        "time_Start": {
+                            "type": "string"
+                        },
+                        "speed": {
+                            "type": "string"
+                        },
+                        "driver_Email": {
+                            "type": "string"
+                        },
+                        "passangers": {
+                            "type": "string"
+                        },
+                        "current_Lo": {
+                            "type": "string"
+                        },
+                        "route_Id": {
+                            "type": "string"
+                        },
+                        "Time_updated": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["origin", "destination","code","distance","longiitude","latitude"]
+                }
+            }],
+            "responses": {
+                "201": {
+                    "description": "Login Successfully"
+                }
+            }
+        }
 
+}
+}
 }
