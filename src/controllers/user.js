@@ -17,7 +17,7 @@ const  getUser =  async (req, res) => {
       where: {
           id
       },
-      attributes: ['id', 'firstName','lastName','email'], 
+      attributes: ['id', 'names','phone','email'], 
     });
   
     if (user=='') {
@@ -54,7 +54,7 @@ const  getUser =  async (req, res) => {
     if(logged==true){
 
   
-    const { firstName, lastName, email, phone, Newpassword,Oldpassword } = req.body;
+    const { names, phone, email, Newpassword,Oldpassword } = req.body;
     const { id } = req.params;
     try {
     const user = await User.findOne({
@@ -70,18 +70,15 @@ const  getUser =  async (req, res) => {
     }
   
     
-      if (firstName) {
-        user.firstName = firstName;
+      if (names) {
+        user.names = names;
       }
-      if (lastName) {
-        user.lastName = lastName;
+      if (phone) {
+        user.phone = phone;
       }
       if (email) {
           user.email = email;
         }
-      if (phone) {
-        user.phone = phone;
-      }
       if(Newpassword){
        
         const correctPassword = async function( Oldpassword, Newpassword) {
