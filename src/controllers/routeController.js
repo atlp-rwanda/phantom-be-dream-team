@@ -5,9 +5,9 @@ import {draw} from '../helpers/drawCoordinates';
 const busRoutes = model.routes;
 
 const addRoute = async (req, res) => {
-  // eslint-disable-next-line max-len
+  eslint-disable-next-line-max-len
   if (!(req.body.origin && req.body.destination && req.body.distance && req.body.code && req.body.latitude && req.body.longitude)) {
-    return responseHandler(res, 400, req.t('missing_params'));
+    return responseHandler(res, 400, res.send('missing_data'));
   };
 
   const point = draw(req.body.latitude, req.body.longitude);

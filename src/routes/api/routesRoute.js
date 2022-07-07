@@ -1,3 +1,4 @@
+import { verify } from 'crypto';
 import express from 'express';
 import {
   addRoute,
@@ -15,8 +16,8 @@ const router = express.Router();
 router.get('/', checkAdmin, findAll);
 router.get('/:id', checkAdmin, findOne);
 router.put('/:id', checkAdmin, updateRoute);
-router.post('/', checkAdmin, addRoute);
+router.post('/',  checkAdmin,addRoute);
 router.delete('/:id', checkAdmin, removeRoute);
-router.delete('/', checkAdmin, deleteAll);
+router.delete('/', checkAdmin,deleteAll);
 
 export default router;
