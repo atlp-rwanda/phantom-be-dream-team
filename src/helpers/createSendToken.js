@@ -13,7 +13,9 @@ const createSendToken = (user, statusCode, res) => {
     status: 'success',
     token,
     message: 'Login Successful',
+    userID:user.id
   });
 };
 
 export default createSendToken;
+
