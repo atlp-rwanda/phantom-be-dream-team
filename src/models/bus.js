@@ -1,6 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
-import model from '../models'
+// import model from '../models'
 module.exports = (sequelize, DataTypes) => {
   class Bus extends Model {
     /**
@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate (models) {
+    static associate () {
       // define association here
-      this.hasMany(models.AssignedBusesToDrivers, {
-        foreignKey: 'BusId',
-        as: 'AssignedBusesToDrivers',
-      });
+      Bus.associate = models => {
+        Bus.belongsTo(models.User);
+      };
+     
     }
   }
   Bus.init(
@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Bus seat required'
           }
         }
+      },
+      isAssigned: {
+        type: DataTypes.BOOLEAN, defaultValue: false,
       },
    
     }, {

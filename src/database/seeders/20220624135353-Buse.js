@@ -16,14 +16,15 @@ module.exports = {
       [
         {
           id: "125",
-            company:'ritco',
-            type:'coaster',
-            plateNumber:'raa003a',
-            manufacturer:'benz',
-            capacity:30,
-            yearOfManufacturing:2000,
-            userId:2,
-            isAssigned: false,
+            // company:'ritco',
+            busType:'coaster',
+            plate:'raa003a',
+            seat:'30',
+            // manufacturer:'benz',
+            // capacity:30,
+            // yearOfManufacturing:2000,
+            // userId:2,
+            // isAssigned: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         }

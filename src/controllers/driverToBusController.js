@@ -1,196 +1,76 @@
-import model from '../models';
-import { getPagination, getPagingData } from '../utils/paginationHandler';
-import responseHandler from '../utils/responseHandler';
-import {
-  sendNotification,
-  sendNotficationUnAssigned,
-} from '../helpers/sendNotification';
-const AssignDriver = model.AssignedBusesToDrivers;
-const User = model.User;
-const getAllDriverAssignToBuses = async (req, res) => {
-  const { page, size } = req.query;
-  const { limit, offset } = getPagination(page, size);
+import sendEmail from "../utils/Email";
+import Bus from "../models/bus"
+import User from "../models/user"
 
-  await AssignDriver.findAndCountAll({
-    limit,
-    offset,
-    include: [
-      {
-        model: model.User,
-        as: 'Users',
-      },
-      {
-        model: model.Bus,
-        as: 'Buses',
-      },
-    ],
-  }).then((data) => {
-    const response = getPagingData(data, page, limit);
-    res.status(200).json({ data: response });
-  });
-};
-const getAllDriverUnAssigned = async (req, res) => {
-  const { page, size } = req.query;
-  const { limit, offset } = getPagination(page, size);
-  await User.findAndCountAll({
-    limit,
-    offset,
-    exclude: [
-      {
-        model: model.AssignDriver,
-        as: 'AssignDriver',
-      },
-    ],
-  }).then((data) => {
-    const response = getPagingData(data, page, limit);
-    res.status(200).json({ data: response });
-  });
-};
+const AssignDriverToBus = async (req, res) => {
+  try {
+    const driverId = req.params.driverId;
+    const busId = req.params.busId;
 
-const PostAssignDriverToBuses = async (req, res) => {
-  if (
-    (!req.params.driverId && !req.params.busId) ||
-    req.params.driverId == '' ||
-    req.params.busId == ''
-  )
-    return responseHandler(res, 400, req.t('missing_params'), req);
-  try {
-    AssignDriver.findOrCreate({
-      where: {
-        UserId: req.params.driverId,
-        BusId: req.params.busId,
-      },
-    }).then((created) => {
-      created[1]
-        ? responseHandler(
-            res,
-            201,
-            { message: req.t('driver_to_buses_create') },
-            req
-          ) +
-          User.findOne({
-            where: {
-              id: req.params.driverId,
-            },
-          }).then((data) => {
-            model.Bus.findOne({
-              where: {
-                id: req.params.busId,
-              },
-            }).then((buses) => {
-              const message = `
-                 <h2>Hello ${
-                   data.firstName + ' ' + data.lastName
-                 } You have been assigned Buse to drive with this PlateNumber ${
-                buses.prateNumber
-              }</h2>
-                 <p>please visit your Account and check new buse and be ready to start to drive</p>
-                 `;
-              sendNotification(message, data.email);
-            });
-          })
-        : responseHandler(
-            res,
-            400,
-            { message: req.t('driver_has_assigned_exit') },
-            req
-          );
-    });
-  } catch (error) {
-    res.send(error.message);
-  }
-};
-const findOneAssign = async (req, res) => {
-  const AssignedId = req.params.id;
-  try {
-    await AssignDriver.findOne({
-      where: {
-        id: AssignedId,
-      },
-      include: [
-        {
-          model: model.User,
-          as: 'Users',
-        },
-        {
-          model: model.Bus,
-          as: 'Buses',
-        },
-      ],
-    }).then((data) => {
-      null != data
-        ? res.status(200).json({ data: data })
-        : responseHandler(res, 404, req.t('record_not_found'), req);
-    });
-  } catch (error) {
-    responseHandler(res, 500, req.t('fail'), req);
-  }
-};
-const UpdateOneAssign = (req, res) => {
-  try {
-    const AssignedId = req.params.id;
-    AssignDriver.update(
-      {
-        UserId: req.body.userId,
-        BuseId: req.body.buseId,
-      },
-      {
-        where: { id: AssignedId },
-      }
-    ).then((result) => {
-      result.length > 0 && responseHandler(res, 201, req.t('updated_ok'), req);
-    });
-  } catch (error) {
-    res.status(401).json({ error: error.message });
-  }
-};
-const UnAssignDriver = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const CurrentUser = AssignDriver.findOne({
-      where: {
-        id: id,
-      },
-      include: [
-        {
-          model: model.User,
-          as: 'Users',
-        },
-        {
-          model: model.Bus,
-          as: 'Buses',
-        },
-      ],
-    })
-      .then((data) => {
-        const message = `
-      <h2>Hello ${
-        data.Users.firstName + ' ' + data.Users.lastName
-      } You have been Unassigned Buse to drive with this PlateNumber ${
-          data.Buses.prateNumber
-        }</h2>
-      <p>please visit wait while the operator are still finding new buse to assigne to you</p>
-      `;
-        sendNotficationUnAssigned(message, data.Users.email);
-      })
-      .then(() => {
-        AssignDriver.destroy({
-          where: { id: id },
-        }).then((num) => {
-          1 == num
-            ? responseHandler(res, 200, req.t('deleted_ok'), req)
-            : responseHandler(res, 400, req.t('delete_invalid_req'), req);
-        });
+    const user = await User.findOne({ where: { id: driverId} });
+
+    if (!user) {
+      return res.status(404).josn({
+        status: "fail",
+        message: "No Driver found with that ID",
       });
+    } else if (user.role !== "driver") {
+      return res.status(403).json({
+        status: "fail",
+        message: "The user is not a Driver, try again",
+      });
+    } else if (user.isAssigned) {
+      return res.status(403).json({
+        status: "fail",
+        message: "Driver is already assigned to a Bus",
+      });
+    } else {
+      user.isAssigned = true;
+      await user.save();
+    }
+
+    const bus = await Bus.findOne({ where: { id: busId } });
+
+    if (!bus) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No Bus found with that ID",
+      });
+    } else if (bus.isAssigned) {
+      return res.status(403).json({
+        status: "fail",
+        message: `This Bus is already assigned to someone`,
+      });
+    } else {
+      bus.userId = user.id;
+      bus.isAssigned = true;
+      await bus.save();
+    }
+
+    const message = `
+    Dear ${user.name},
+    Congratulations, you have been given a new Bus having the following characteristics
+    __________________________________________________________________________________
+    Type:${bus.type}, Plate Number :${bus.plateNumber}.`;
+
+    await sendEmail({
+      email: user.email,
+      subject: "Congratulations, You have been Assigned to a new Bus.",
+      message,
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "Email has been sent successfully to Driver's Email",
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      status: "Error",
+      message: "Error while Assigning Driver To Bus",
+    });
   }
 };
-export {
-  getAllDriverAssignToBuses,
-  PostAssignDriverToBuses,
-  getAllDriverUnAssigned,
-  findOneAssign,
-  UpdateOneAssign,
-  UnAssignDriver,
+
+module.exports = {
+  AssignDriverToBus,
 };

@@ -8,12 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate() {
       // define association here
-      this.hasOne(models.AssignedBusesToDrivers, {
-        foreignKey: 'UserId',
-        as: 'AssignedBusesToDrivers',
-      });
     }
     
   }
@@ -34,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {min: 4},
+        },
+        isAssigned: {
+          type: DataTypes.BOOLEAN, defaultValue: false,
         },
       },
       {
