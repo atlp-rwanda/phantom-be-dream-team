@@ -8,13 +8,26 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate () {
+     static associate({ User }) {
       // define association here
-      Bus.associate = models => {
-        Bus.belongsTo(models.User);
-      };
+      // Bus.associate = models => {
+      //   Bus.belongsTo(models.User);
+      // };
+      
+        this.belongsTo(User, { foreignKey: "userId",as:"user" });
+      
      
     }
+    // toJSON() {
+    //   return {
+    //     ...this.get(),
+    //     id: undefined,
+    //     UserId: undefined,
+    //     createdAt: undefined,
+    //     updatedAt:undefined,
+    //   };
+    // }
+  
   }
   Bus.init(
     {
@@ -49,6 +62,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       isAssigned: {
         type: DataTypes.BOOLEAN, defaultValue: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        defaultValue:null
       },
    
     }, {

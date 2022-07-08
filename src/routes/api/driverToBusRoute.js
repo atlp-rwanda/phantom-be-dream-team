@@ -2,18 +2,33 @@ import express from 'express';
 import {
   AssignDriverToBus,
   unAssignDriverToBus,
+  AllAssignedBuses,
   AllAssignedDrivers,
-  AllAssignedBusses,
   } from '../../controllers/driverToBusController';
-//   import {protect,UserOperator} from '../../controllers/authController';
 
 const router = express.Router();
 
 
   router.post(
-    '/bus/:busId/driver/:driverId',
+    '/assign/driver/:driverId/bus/:busId',
     AssignDriverToBus
   );
+
+  router.get(
+    '/all/assigned/buses',
+    AllAssignedBuses
+  );
+  router.get(
+    '/all/assigned/drivers',
+    AllAssignedDrivers,
+  ); 
+
+  router.put(
+    '/unassign/driver/:driverId/bus/:busId',
+    unAssignDriverToBus
+  );
+ 
+ 
  
   export default router;
 
