@@ -12,11 +12,10 @@ const createSendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: 'success',
     token,
-    data: {
-      user,
-    },
     message: 'Login Successful',
+    userID:user.id
   });
 };
 
 export default createSendToken;
+

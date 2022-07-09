@@ -1,5 +1,28 @@
 {
     "message": "Welcome To Dream Team Phantom App",
-    "success": "true"
+    "success": "true",
+    "verificationEmail": "Please check your email to reset your password",
+    "WrongPassword": "The password entered do not match",
+    "UserNotFound": "The user with the email not found",
+    "verificationEmailFailed": "Email not sent",
+    "resetComfirmation": "Your password is reset",
+    "failedComfirmation": "Oops your password was not reset, Try again" ,
+
+
+
+    "required_field":"All field required",
+    "Plate_number_required": "Enter valid plate number",
+    "busType_required": "enter valid bus busType",
+    "seats_require":"seats must be number",
+    "bus_created":"Bus successfully created",
+    "all_buses_found":"All buses found",
+    "bus_found":"bus found by ID",
+
+
+    "profileUpdate":"Profile updated successfully",
+    "noUserFound":"No user who has this id ",
+    "WOP":"Wrong old password",
+    "AccessDenied":"Access Denied",
+    "WrongToken":"Access Denied (wrong token)"
     
 }

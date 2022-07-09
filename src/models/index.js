@@ -4,7 +4,7 @@ import Sequelize, {DataTypes} from 'sequelize';
 import prop from '../config/config';
 
 const basename = _basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'test';
 const config = prop[env];
 const db = {};
 
@@ -12,6 +12,12 @@ let sequelize;
 if (config.url) {
   sequelize = new Sequelize(config.url, {
     dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+     },
   });
 } else {
   sequelize = new Sequelize(
@@ -49,5 +55,10 @@ sequelize
     .catch((err) => {
       console.error('Failed to connect! Database Status : OFF:', err);
     });
+
+sequelize
+.authenticate()  
+.then(() => {    console.log('DB connected') })  
+.catch((err) => {    console.error('Failed to connect!', err);  });
 
 export default db;

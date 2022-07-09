@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Bus extends Model {
     /**
@@ -9,75 +7,46 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate (models) {
       // define association here
+
     }
   }
-  Bus.init({
-    uuid: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-    },
-    company: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Bus must have a company" },
-        notEmpty: { msg: "company must not be empty" },
+  Bus.init(
+    {
+      plate: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            is: /^[R]*[A-Z]{2}[\w ][0-9]{3}[\w ][A-Z]{1}$/i,
+            args: false,
+            msg: 'Valid Plate number required'
+          }
+        },
+        unique: { msg: 'plate number already in use!' }
       },
-    },
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Bus must have a Type" },
-        notEmpty: { msg: "Type must not be empty" },
+      busType: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'bus type required'
+          }
+        }
       },
-    },
-    plateNumber: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Bus must have a plateNumber" },
-        notEmpty: { msg: "plateNumber must not be empty" },
+      seat: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'Bus seat required'
+          }
+        }
       },
-    },
-    manufacturer: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Bus must have a Manufacturer" },
-        notEmpty: { msg: "Manufacturer must not be empty" },
-      },
-    },
-    capacity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Bus must have a capacity" },
-        notEmpty: { msg: "Capacity must not be empty" },
-      },
-    },
-    yearOfManufacturing: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Bus must have a Year Of Manufacturing" },
-        notEmpty: { msg: "Year Of Manufacturing must not be empty" },
-      },
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull:true,
-      defaultValue:null
-    },
-    isAssigned: {
-      type: DataTypes.BOOLEAN,
-      defaultValue:false
-    }
-  }, {
-    sequelize,
-    modelName: 'Bus',
-  });
-  return Bus;
-};
+   
+    }, {
+      sequelize,
+      modelName: 'Bus'
+    })
+  return Bus
+}
