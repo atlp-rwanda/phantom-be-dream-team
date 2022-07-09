@@ -9,25 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
      static associate({ User }) {
-      // define association here
-      // Bus.associate = models => {
-      //   Bus.belongsTo(models.User);
-      // };
-      
-        this.belongsTo(User, { foreignKey: "userId",as:"user" });
+      // define association here   
+      this.belongsTo(User, { foreignKey: "userId",as:"user" });
       
      
     }
-    // toJSON() {
-    //   return {
-    //     ...this.get(),
-    //     id: undefined,
-    //     UserId: undefined,
-    //     createdAt: undefined,
-    //     updatedAt:undefined,
-    //   };
-    // }
-  
+    
   }
   Bus.init(
     {

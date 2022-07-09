@@ -1,10 +1,7 @@
 import express from 'express';
-import {
-  AssignDriverToBus,
-  unAssignDriverToBus,
-  AllAssignedBuses,
-  AllAssignedDrivers,
-  } from '../../controllers/driverToBusController';
+import {AssignDriverToBus,unAssignDriverToBus,AllAssignedBuses,AllAssignedDrivers,} from '../../controllers/driverToBusController';
+import models from "../../models"
+import {paginatedResult} from "../../middleware/driverToBusPagination"
 
 const router = express.Router();
 
@@ -15,7 +12,7 @@ const router = express.Router();
   );
 
   router.get(
-    '/all/assigned/buses',
+    '/all/assigned/buses', paginatedResult(models.Bus),
     AllAssignedBuses
   );
   router.get(
