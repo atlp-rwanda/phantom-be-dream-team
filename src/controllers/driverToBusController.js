@@ -1,5 +1,6 @@
 import sendEmail from "../utils/Email";
 import models from "../models"
+import { Op } from "sequelize";
 const AssignDriverToBus = async (req, res) => {
   try {
     const driverId = req.params.driverId;
@@ -71,7 +72,7 @@ const AssignDriverToBus = async (req, res) => {
 
 const AllAssignedBuses = async (req, res) => {
   try {
-    const buses = await models.Bus.findAll( { where: { isAssigned: true }, include: "user"});
+    const buses = await models.Bus.findAll( { where: { userId:{[Op.ne]: null}}, include: "user"});
 
     res.status(200).json({
       status: "success",
@@ -88,10 +89,50 @@ const AllAssignedBuses = async (req, res) => {
     });
   }
 };
+const AllUnAssignedBuses = async (req, res) => {
+  try {
+    const buses = await models.Bus.findAll( { where: { userId:{[Op.eq]: null}}});
+
+    res.status(200).json({
+      status: "success",
+      result: buses.length,
+      data: {
+        buses,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      status: "Error",
+      message: "Error while Getting all UnAssigned Buses",
+    });
+  }
+};
 
 const AllAssignedDrivers = async (req, res) => {
   try {
     const users = await models.User.findAll( { where: { isAssigned: true }});
+
+    res.status(200).json({
+      status: "success",
+      result: users.length,
+      data: {
+        users,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      status: "Error",
+      message: "Error while Getting all Assigned Drivers",
+    });
+  }
+};
+
+
+const AllUnAssignedDrivers = async (req, res) => {
+  try {
+    const users = await models.User.findAll( { where: { isAssigned: false }});
 
     res.status(200).json({
       status: "success",
@@ -181,5 +222,7 @@ module.exports = {
   AssignDriverToBus,
   AllAssignedBuses,
   unAssignDriverToBus,
-  AllAssignedDrivers
+  AllAssignedDrivers,
+  AllUnAssignedBuses,
+  AllUnAssignedDrivers
 };
