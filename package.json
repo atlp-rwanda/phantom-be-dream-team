@@ -81,7 +81,7 @@
     "import": "^0.0.6",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^10.0.0",
-    "nodemailer": "^6.7.5",
+    "nodemailer": "^6.7.7",
     "p-locate": "^6.0.0",
     "pg": "^8.7.3",
     "quotation": "^2.0.2",

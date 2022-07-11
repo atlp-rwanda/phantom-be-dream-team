@@ -1,11 +1,9 @@
-// import chai from 'chai';
-// import chaiHttp from 'chai-http';
-// import server from '../app';
-// chai.should();
-// // eslint-disable-next-line max-len
-// const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0OTkwNjgsImV4cCI6MTY1NjkzMTA2OH0.e4owAP-6LwF1Fes1cofiurLlyoQYWXpBLOZNU40jM_E';
-
-// chai.use(chaiHttp);
+import chai from "chai";
+import chaiHttp from 'chai-http';
+import server from '../app';
+chai.should();
+const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0MjM4MzQsImV4cCI6MTY1NjUxMDIzNH0.Sc7QMHGx13LhmUEp_33cx72AHyfzjS9P35ij8u6aJJg'
+chai.use(chaiHttp);
 
 // it('it should return status 200 on right root', (done) => {
 //   chai.request(server)
