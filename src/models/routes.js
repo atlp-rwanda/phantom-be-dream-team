@@ -3,24 +3,20 @@ import SequelizeSlugify from 'sequelize-slugify';
 const {Model} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   // eslint-disable-next-line require-jsdoc
-  class routes extends Model {
+  class Route extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate() {
+    static associate({Bus}) {
       // define association here
+      this.hasMany(Bus, { foreignKey: "routeId", as: "route"});
 
     }
   }
-  routes.init(
+  Route.init(
       {
-        routeId: {
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV4,
-        },
-
         origin: DataTypes.STRING,
         destination: DataTypes.STRING,
         code: DataTypes.STRING,
@@ -33,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'routes',
       },
   );
-  routes.removeAttribute('id');
+  Route.removeAttribute('id');
 
-  SequelizeSlugify.slugifyModel(routes, {
+  SequelizeSlugify.slugifyModel(Route, {
     source: ['origin'],
     suffixSource: ['code'],
     incrementalSeparator: '-',
@@ -44,5 +40,5 @@ module.exports = (sequelize, DataTypes) => {
     suffixSource: ['destination'],
     column: 'routeSlug',
   });
-  return routes;
+  return Route;
 };

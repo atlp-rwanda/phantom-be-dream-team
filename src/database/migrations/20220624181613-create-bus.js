@@ -1,39 +1,38 @@
-'use strict';
+'use strict'
+
+const sequelize = require("sequelize")
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Buses', {
-      
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },uuid: {
-        type: Sequelize.UUID
-      },
-      company: {
-        type: Sequelize.STRING
-      },
-      type: {
-        type: Sequelize.STRING
-      },
-      plateNumber: {
-        type: Sequelize.STRING
-      },
-      manufacturer: {
-        type: Sequelize.STRING
-      },
-      capacity: {
-        type: Sequelize.STRING
-      },
-      yearOfManufacturing: {
-        type: Sequelize.STRING
-      },
-      userId: {
         type: Sequelize.INTEGER
       },
-      isAssigned: {
-        type: Sequelize.BOOLEAN
+      plate: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        unique: true
+      },
+      busType: {
+        type: Sequelize.STRING,
+        notEmpty: true
+      },
+      seat: {
+        type: Sequelize.INTEGER,
+        notEmpty: true
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull:true,
+        defaultValue:null
+      },
+      routeId: {
+        type: Sequelize.INTEGER,
+        allowNull:true,
+        defaultValue:null
       },
       createdAt: {
         allowNull: false,
@@ -43,9 +42,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Buses');
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('Buses')
   }
-};
+}
