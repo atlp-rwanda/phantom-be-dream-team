@@ -10,14 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      */
      static associate({User,Route}) {
       // define association here   
-      Bus.belongsTo(User)
-      Bus.belongsTo(Route)
+      Bus.belongsTo(User,{ foreignKey: "userId",as:"user" })
+      Bus.belongsTo(Route,{ foreignKey: "routeId",as:"route" })
       
     }
     
   }
   Bus.init(
-    {
+    { id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
       plate: {
         type: DataTypes.STRING,
         validate: {
