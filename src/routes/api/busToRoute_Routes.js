@@ -1,5 +1,5 @@
 import express from 'express';
-import {AssignBusToRoute,AllBusesWithRoutes,AllBusesWithNoRoutes,unAssignBusToRoute} from '../../controllers/driverToBusController';
+import {AssignBusToRoute,AllBusesWithRoutes,AllBusesWithNoRoutes,unAssignBusToRoute} from '../../controllers/AssignBustoRouteController'
 // import models from "../../models"
 // import { checkAdmin } from "../../middleware/check";
 // import {paginatedResult} from "../../middleware/driverToBusPagination"
@@ -21,7 +21,7 @@ const router = express.Router();
     AllBusesWithNoRoutes
   );
   router.put(
-    '/unassign/bus/:busId/bus/:routeId',
+    '/unassign/bus/:busId/route/:routeId',
     unAssignBusToRoute
   ); 
   
