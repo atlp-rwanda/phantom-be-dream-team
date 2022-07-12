@@ -8,35 +8,40 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(Bus) {
+    static associate({Bus}) {
       // define association here
       this.hasOne(Bus,{ foreignKey: "userId",as:"user" });
     }
   }
   User.init(
-      {
-        names: {type: DataTypes.STRING, allowNull: false},
-        phone: {type: DataTypes.STRING, allowNull: false},
-        email: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          unique: true,
-          validate: {isEmail: true},
-          lowercase: true,
-        },
-        role: {
-          type: DataTypes.STRING, allowNull: false},
-        password: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          validate: {min: 4},
-        },
+    { id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+      firstName: {type: DataTypes.STRING, allowNull: false},
+      lastName: {type: DataTypes.STRING, allowNull: false},
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {isEmail: true},
+        lowercase: true,
       },
-      {
-        sequelize,
-        modelName: 'User',
+      role: {
+        type: DataTypes.STRING, allowNull: false},
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {min: 4},
       },
-  );
+    },
+    {
+      sequelize,
+      modelName: 'User',
+    },
+);
 
-  return User;
+return User;
 };
