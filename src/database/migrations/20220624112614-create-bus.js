@@ -24,11 +24,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         notEmpty: true
       },
-      isAssigned: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-      },
       userId: {
+        type: Sequelize.INTEGER,
+        allowNull:true,
+        defaultValue:null
+      },
+      routeId: {
         type: Sequelize.INTEGER,
         allowNull:true,
         defaultValue:null
