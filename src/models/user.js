@@ -10,37 +10,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({Bus}) {
       // define association here
-      this.hasOne(Bus, { foreignKey: "userId", as: "bus" });
+      this.hasOne(Bus,{ foreignKey: "userId",as:"user" });
     }
-    
   }
   User.init(
-      {
-        firstName: {type: DataTypes.STRING, allowNull: false},
-        lastName: {type: DataTypes.STRING, allowNull: false},
-        email: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          unique: true,
-          validate: {isEmail: true},
-          lowercase: true,
-        },
-        role: {
-          type: DataTypes.STRING, allowNull: false},
-        password: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          validate: {min: 4},
-        },
-        isAssigned: {
-          type: DataTypes.BOOLEAN, defaultValue: false,
-        },
+    { id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+      firstName: {type: DataTypes.STRING, allowNull: false},
+      lastName: {type: DataTypes.STRING, allowNull: false},
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {isEmail: true},
+        lowercase: true,
       },
-      {
-        sequelize,
-        modelName: 'User',
+      role: {
+        type: DataTypes.STRING, allowNull: false},
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {min: 4},
       },
-  );
+    },
+    {
+      sequelize,
+      modelName: 'User',
+    },
+);
 
-  return User;
+return User;
 };
