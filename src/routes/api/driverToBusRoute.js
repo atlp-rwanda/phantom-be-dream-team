@@ -8,29 +8,29 @@ const router = express.Router();
 
 
   router.post(
-    '/assign/driver/:driverId/bus/:busId',
+    '/assign/driver/:driverId/bus/:busId',checkAdmin,
     AssignDriverToBus
   );
 
   router.get(
-    '/all/assigned/buses',  paginatedResult(models.Bus),
+    '/all/assigned/buses', checkAdmin, paginatedResult(models.Bus),
     AllAssignedBuses
   );
   router.get(
-    '/all/unassigned/buses',
+    '/all/unassigned/buses',checkAdmin,
     AllUnAssignedBuses
   );
   router.get(
-    '/all/unassigned/drivers',
+    '/all/unassigned/drivers',checkAdmin,
     AllUnAssignedBuses
   );
   router.get(
-    '/all/assigned/drivers',
+    '/all/assigned/drivers',checkAdmin,
     AllAssignedDrivers,
   ); 
 
   router.put(
-    '/unassign/driver/:driverId/bus/:busId',
+    '/unassign/driver/:driverId/bus/:busId',checkAdmin,
     unAssignDriverToBus
   );
  

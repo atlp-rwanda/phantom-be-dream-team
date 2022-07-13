@@ -8,20 +8,20 @@ const router = express.Router();
 
 
   router.post(
-    '/assign/bus/:busId/route/:routeId',
+    '/assign/bus/:busId/route/:routeId',checkAdmin,
     AssignBusToRoute
   );
 
   router.get(
-    '/all/assigned/buses', paginatedResult(models.Bus),
+    '/all/assigned/buses',checkAdmin, paginatedResult(models.Bus),
     AllBusesWithRoutes
   );
   router.get(
-    '/all/unassigned/buses',
+    '/all/unassigned/buses',checkAdmin,
     AllBusesWithNoRoutes
   );
   router.put(
-    '/unassign/bus/:busId/route/:routeId',
+    '/unassign/bus/:busId/route/:routeId',checkAdmin,
     unAssignBusToRoute
   ); 
    
