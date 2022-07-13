@@ -17,7 +17,7 @@ const  getUser =  async (req, res) => {
       where: {
           id
       },
-      attributes: ['id', 'names','phone','email'], 
+      attributes: ['id', 'names','phone','email','role'], 
     });
   
     if (user=='') {
