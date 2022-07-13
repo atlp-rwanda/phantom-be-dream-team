@@ -1,5 +1,6 @@
 import express from 'express';
 import userRoutes from './api/userRoutes';
+import driverToBusRoute from './api/driverToBusRoute'
 import busRoutes from './api/routesRoute';
 import busRoute from './api/busRoute';
 import resetRoute from './api/resetRoute';
@@ -17,6 +18,7 @@ routes.use('/profile',Profilerouter);
 routes.use('/simulate',simulateRouter);
 routes.use('/permissions', permissionsRouter);
 routes.use('/roles', roleRouter)
+routes.use('/driverstobuses',driverToBusRoute);
 routes.use('/routes', busRoutes);
 routes.use('/profile', Profilerouter);
 
