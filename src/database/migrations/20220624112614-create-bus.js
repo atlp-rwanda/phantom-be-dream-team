@@ -1,4 +1,7 @@
 'use strict'
+
+const sequelize = require("sequelize")
+
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Buses', {
@@ -20,6 +23,16 @@ module.exports = {
       seat: {
         type: Sequelize.INTEGER,
         notEmpty: true
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull:true,
+        defaultValue:null
+      },
+      routeId: {
+        type: Sequelize.INTEGER,
+        allowNull:true,
+        defaultValue:null
       },
       createdAt: {
         allowNull: false,
