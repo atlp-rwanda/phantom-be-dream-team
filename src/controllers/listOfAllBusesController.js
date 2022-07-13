@@ -1,5 +1,5 @@
 import models from "../models"
-import { Op, where } from "sequelize";
+import { Op} from "sequelize";
 
 const AllBuses = async (req, res) => {
   try {
