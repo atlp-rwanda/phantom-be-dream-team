@@ -1,9 +1,22 @@
 import models from "../models"
-import { Op } from "sequelize";
+import { Op, where } from "sequelize";
 
 const AllBuses = async (req, res) => {
   try {
-    const buses = await models.Bus.findAll( { where: { routeId:{[Op.ne]: null}}, include: "route"});
+    const from= req.params.from;
+    const to= req.params.to;
+   
+    const route = await models.Route.findAll({ 
+    where: {
+        [Op.and]: [
+        { origin: from },
+        { destination: to}
+        ]
+    }
+    });
+
+    const buses = await models.Bus.findAll( { where: { routeId:{[Op.eq]: route[0].id}}});
+    
 
     res.status(200).json({
       status: "success",
@@ -16,7 +29,7 @@ const AllBuses = async (req, res) => {
     console.log(error);
     res.status(500).json({
       status: "Error",
-      message: "Error while Getting all Assigned buses to their corresponding routes ",
+      message: "Error while Getting all buses to their corresponding routesSlug ",
     });
   }
 };
