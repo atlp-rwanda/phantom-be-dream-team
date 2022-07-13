@@ -7,11 +7,12 @@ dotenv.config();
 
 const createPermissions = async (req, res) => {
   // static create(req, res) {
-  const { PermissionsName, PermissionsDescription } = req.body;
+  const { PermissionsName, PermissionsDescription,roleId } = req.body;
   try {
     await Permissions.create({
       PermissionsName,
       PermissionsDescription,
+      roleId,
       });
     return res.status(201).send({message: 'Permissions created successfully'});
   }
@@ -66,7 +67,7 @@ const getPermissions = (req, res) => {
 
 const updatePermissions = (req, res) => {
   const { id } = req.params;
-  const { PermissionsName, PermissionsDescription } = req.body;
+  const { PermissionsName, PermissionsDescription,} = req.body;
   Permissions.findOne()
   .then((data) => {
     if (!data) {
@@ -78,6 +79,7 @@ const updatePermissions = (req, res) => {
       .update({
         PermissionsName: PermissionsName || data.PermissionsName,
         PermissionsDescription: PermissionsDescription || data.PermissionsDescription,
+        
       })
       .then((updatePermissions) => {
         res.status(200).json({
@@ -85,6 +87,7 @@ const updatePermissions = (req, res) => {
           updatePermissions : {
             PermissionsName: updatePermissions .PermissionsName,
             PermissionsDescription: updatePermissions .PermissionsDescription,
+            
             
           },
         });

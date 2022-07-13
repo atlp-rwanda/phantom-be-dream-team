@@ -23,8 +23,12 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE
       },
-      Id: {
-        type: Sequelize.UUID
+      roleId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        referances:{
+        model:'roles',
+        key:'id'}
       },
       createdAt: {
         allowNull: false,
