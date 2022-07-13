@@ -1,9 +1,9 @@
-import chai from "chai";
-import chaiHttp from 'chai-http';
-import server from '../app';
-chai.should();
-const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0MjM4MzQsImV4cCI6MTY1NjUxMDIzNH0.Sc7QMHGx13LhmUEp_33cx72AHyfzjS9P35ij8u6aJJg'
-chai.use(chaiHttp);
+// import chai from "chai";
+// import chaiHttp from 'chai-http';
+// import server from '../app';
+// chai.should();
+// const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0MjM4MzQsImV4cCI6MTY1NjUxMDIzNH0.Sc7QMHGx13LhmUEp_33cx72AHyfzjS9P35ij8u6aJJg'
+// chai.use(chaiHttp);
 
 // it('it should return status 200 on right root', (done) => {
 //   chai.request(server)
@@ -45,16 +45,16 @@ chai.use(chaiHttp);
 //       });
 // });
 
-// //   it('it should return status 400 if the id is not found in KINYARWANDA', (done) => {
-// //     chai.request(server)
-// //     .get('/api/v1/profile/900')
-// //     .set('Accept-Language', 'kiny') // Works.
-// //     .end((err, res) => {
-// //           res.should.have.status(400);
-// //           res.body.message.should.be.equal('Nta mukoresha ufite uyu mubare umuranga 900')
-// //       done();
-// //     });
-// // });
+//   it('it should return status 400 if the id is not found in KINYARWANDA', (done) => {
+//     chai.request(server)
+//     .get('/api/v1/profile/900')
+//     .set('Accept-Language', 'kiny') // Works.
+//     .end((err, res) => {
+//           res.should.have.status(400);
+//           res.body.message.should.be.equal('Nta mukoresha ufite uyu mubare umuranga 900')
+//       done();
+//     });
+// });
 
 // it('it should return status 400 if the id is not found in English', (done) => {
 //   chai.request(server)
@@ -171,20 +171,20 @@ chai.use(chaiHttp);
 //       });
 // });
 
-// //   it('it should return status 200 if the data is update', (done) => {
-// //     const name={firstName:"GYSSA Prince"}
-// //         chai.request(server)
-// //         .patch('/api/v1/profile/update/2')
-// //         .set('auth-token', token)
-// //         .set('Accept-Language', 'kiny')
-// //         .send(name)
-// //         .end((err, res) => {
-// //               res.should.have.status(200);
-// //               res.body.message.should.be.equal('umwirondoro wavuguruwe neza')
+//   it('it should return status 200 if the data is update', (done) => {
+//     const name={firstName:"GYSSA Prince"}
+//         chai.request(server)
+//         .patch('/api/v1/profile/update/2')
+//         .set('auth-token', token)
+//         .set('Accept-Language', 'kiny')
+//         .send(name)
+//         .end((err, res) => {
+//               res.should.have.status(200);
+//               res.body.message.should.be.equal('umwirondoro wavuguruwe neza')
 
-// //           done();
-// //         });
-// //   });
+//           done();
+//         });
+//   });
 // it('it should not update password if the old is incorrect', (done) => {
 //   const name={Newpassword: 'GYSSA Prince', Oldpassword: 'indsm d'};
 //   chai.request(server)

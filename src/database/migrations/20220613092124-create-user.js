@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      firstName: {
+      names: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lastName: {
+      phone: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -32,9 +32,9 @@ module.exports = {
         allowNull: false,
         validate: {min: 4},
       },
-      isAssigned: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+      plateNumber: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

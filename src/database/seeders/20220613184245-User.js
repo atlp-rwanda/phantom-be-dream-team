@@ -4,8 +4,8 @@ module.exports = {
     [
       {
         id: 1,
-        firstName: 'John ',
-        lastName: 'Doe',
+        names: 'John ',
+        phone: '07835667',
         email: 'jondoe@example.com',
         password:'34567dhhdhdh',
         role: 'driver',
@@ -14,8 +14,8 @@ module.exports = {
       },
       {
         id: 2,
-        firstName: 'Kwizera ',
-        lastName: 'Steven',
+        names: 'Kwizera ',
+        phone: '04567890',
         email: 'dreamtm87@gmail.com',
         password:'phantom@123',
         role: 'admin',
@@ -24,8 +24,8 @@ module.exports = {
       },
       {
         id: 3,
-        firstName: 'Rukundo ',
-        lastName: 'Germain',
+        names: 'Rukundo ',
+        phone: '0787633333',
         email: 'gerukundo14@gmail.com',
         password:'phantom@12342',
         role: 'driver',

@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-      firstName: {type: DataTypes.STRING, allowNull: false},
-      lastName: {type: DataTypes.STRING, allowNull: false},
+    names: {type: DataTypes.STRING, allowNull: false},
+    phone: {type: DataTypes.STRING, allowNull: false},
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {min: 4},
+      },
+      plateNumber: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {
