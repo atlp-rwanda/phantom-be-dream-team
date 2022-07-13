@@ -12,7 +12,8 @@ const AllBuses = async (req, res) => {
         { origin: from },
         { destination: to}
         ]
-    }
+    },
+    order: ['id'],
     });
 
     const buses = await models.Bus.findAll( { where: { routeId:{[Op.eq]: route[0].id}}});
