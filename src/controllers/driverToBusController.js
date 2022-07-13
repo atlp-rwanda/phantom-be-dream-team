@@ -32,14 +32,13 @@ const AssignDriverToBus = async (req, res) => {
         status: "fail",
         message: "No Bus found with that ID",
       });
-    } else if (bus.isAssigned) {
+    } else if (bus.userId != null) {
       return res.status(403).json({
         status: "fail",
         message: `This Bus is already assigned to someone`,
       });
     } else {
       bus.userId = user.id;
-      bus.isAssigned = true;
       user.isAssigned = true;
       await user.save();
       await bus.save();
@@ -182,14 +181,13 @@ const unAssignDriverToBus = async (req, res) => {
         status: "fail",
         message: "No Bus found with that ID",
       });
-    } else if (!bus.isAssigned) {
+    } else if (bus.userId == null) {
       return res.status(403).json({
         status: "fail",
         message: "This Bus is not assigned to any one",
       });
     } else {
       bus.userId = null;
-      bus.isAssigned = false;
       user.isAssigned = false;
       await user.save();
       await bus.save();
