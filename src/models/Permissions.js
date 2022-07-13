@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-     static associate(models) {
+     static associate({Roles}) {
+      this.hasMany(Roles, { foreignKey: "roleId", as: "Permissions_roleId_fkey"});
       // define association here
     }
   }
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
                   allowNull: false,
                   type: DataTypes.DATE
                 },
-                Id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4,  foreignKey: true},
+                 roleId: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4,  foreignKey: true},
                 // Permissions_roleId_fkey
       },
       {
