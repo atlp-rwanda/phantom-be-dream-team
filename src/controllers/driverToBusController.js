@@ -18,7 +18,7 @@ const AssignDriverToBus = async (req, res) => {
         status: "fail",
         message: "The user is not a Driver, try again",
       });
-    } else if (user.isAssigned) {
+    } else if (user.plateNumber) {
       return res.status(403).json({
         status: "fail",
         message: "Driver is already assigned to a Bus",
@@ -39,13 +39,13 @@ const AssignDriverToBus = async (req, res) => {
       });
     } else {
       bus.userId = user.id;
-      user.isAssigned = true;
+      user.plateNumber = bus.plate;
       await user.save();
       await bus.save();
     }
 
     const message = `
-    Dear ${user.firstName},
+    Dear ${user.names},
     Congratulations, you have been given a new Bus having the following characteristics
     __________________________________________________________________________________
     Type:${bus.busType}, Plate Number :${bus.plate}.`;
@@ -110,7 +110,7 @@ const AllUnAssignedBuses = async (req, res) => {
 
 const AllAssignedDrivers = async (req, res) => {
   try {
-    const users = await models.User.findAll( { where: { isAssigned: true }});
+    const users = await models.User.findAll( { where: { plateNumber:{[Op.ne]: null}}});
 
     res.status(200).json({
       status: "success",
@@ -131,7 +131,7 @@ const AllAssignedDrivers = async (req, res) => {
 
 const AllUnAssignedDrivers = async (req, res) => {
   try {
-    const users = await models.User.findAll( { where: { isAssigned: false }});
+    const users = await models.User.findAll( { where: { plateNumber:{[Op.eq]: null} }});
 
     res.status(200).json({
       status: "success",
@@ -167,7 +167,7 @@ const unAssignDriverToBus = async (req, res) => {
         status: "fail",
         message: "The user is not a Driver, try again",
       });
-    } else if (!user.isAssigned) {
+    } else if (!user.plateNumber) {
       return res.status(403).json({
         status: "fail",
         message: "The user is not assigned to any bus, Please try again",
@@ -188,13 +188,13 @@ const unAssignDriverToBus = async (req, res) => {
       });
     } else {
       bus.userId = null;
-      user.isAssigned = false;
+      user.plateNumber = null;
       await user.save();
       await bus.save();
     }
 
     const message = `
-        Dear ${user.firstName},you have been un assigned from a Bus you have been driving having the following characteristics
+        Dear ${user.names},you have been un assigned from a Bus you have been driving having the following characteristics
         _________________________________________________________________________________________________________________
         Type:${bus.busType}, Plate Number :${bus.plate}.`;
 

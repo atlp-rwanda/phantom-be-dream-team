@@ -126,28 +126,35 @@
 
         "/api/v1/users/login": {
             "post": {
-                "tags": ["Sign-in to Phantom"],
+                "tags": [
+                    "Sign-in to Phantom"
+                ],
                 "summary": "User Login | Admin | Operator | Driver",
                 "description": "user's login either admin , operator and driver",
                 "operationId": "userLogin",
-                "parameters": [{
-                    "in": "body",
-                    "name": "body",
-                    "description": "Resource payload",
-                    "required": true,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "email": {
-                                "type": "string"
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Resource payload",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
                             },
-                            "password": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["email", "password"]
+                            "required": [
+                                "email",
+                                "password"
+                            ]
+                        }
                     }
-                }],
+                ],
                 "responses": {
                     "201": {
                         "description": "Login Successfully"
