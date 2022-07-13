@@ -28,8 +28,8 @@ const paginatedResult = (model) => {
         results.results = await model.findAndCountAll({
           include: "user",
           where: {
-            isAssigned: {
-              [Op.ne]: false,
+            userId: {
+              [Op.ne]: null,
             },
           },
           limit: limit,
@@ -39,8 +39,8 @@ const paginatedResult = (model) => {
         results.results = await model.findAndCountAll({
           include: "user",
           where: {
-            isAssigned: {
-              [Op.ne]: false,
+            userId: {
+              [Op.ne]: null,
             },
           },
         });
