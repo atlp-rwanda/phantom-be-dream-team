@@ -9,8 +9,8 @@ import { addUser, allUsers, findOneUser, update, deleteUser} from '../../control
 const router = express.Router();
 
 router.post('/login', authController.login);
-router.post('/register',checkAdmin, addUser)
-router.get('/',checkAdmin, allUsers)
+router.post('/register', addUser)
+router.get('/', allUsers)
 router.get('/:id',checkAdmin, findOneUser)
 router.put('/:id',checkAdmin, update)
 router.delete('/:id',checkAdmin, deleteUser)

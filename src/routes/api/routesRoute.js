@@ -12,11 +12,11 @@ import {checkAdmin} from '../../middleware/check';
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/', checkAdmin, findAll);
+router.get('/',  findAll);
 router.get('/:id', checkAdmin, findOne);
-router.put('/:id', checkAdmin, updateRoute);
+router.put('/:id', updateRoute);
 router.post('/', checkAdmin, addRoute);
-router.delete('/:id', checkAdmin, removeRoute);
+router.delete('/:id',checkAdmin, removeRoute);
 router.delete('/', checkAdmin, deleteAll);
 
 export default router;

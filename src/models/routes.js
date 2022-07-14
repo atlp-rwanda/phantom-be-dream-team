@@ -17,8 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   routes.init(
       {
         routeId: {
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV4,
+          type: DataTypes.INTEGER,
         },
 
         origin: DataTypes.STRING,

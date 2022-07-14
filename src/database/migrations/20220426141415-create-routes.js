@@ -3,8 +3,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('routes', {
       routeId: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.INTEGER,
         primaryKey: true,
       },
       origin: {
