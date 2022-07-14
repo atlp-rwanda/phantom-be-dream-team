@@ -1,17 +1,17 @@
 import dotenv from 'dotenv';
 import model from '../models';
 
-const { Roles } = model;
+const { Role } = model;
 
 dotenv.config();
 
 const createRole = async (req, res) => {
   // static create(req, res) {
-  const { roleName, roleDescription } = req.body;
+  const { name, description } = req.body;
   try {
-    await Roles.create({
-      roleName,
-      roleDescription,
+    await Role.create({
+      name,
+      description,
       });
     return res.status(201).send({message: 'Role created successfully'});
   }
@@ -23,13 +23,13 @@ const createRole = async (req, res) => {
       
 }
 const allRoles = (req, res) => {
-  return Roles.findAll()
+  return Role.findAll()
 
     .then((data) => {
       console.log(data);
       if (data.length === 0) {
         return res.status(404).json({
-          message: req.t('no role'),
+          message: req.t('no role found'),
         });
       }
       return res.status(200).json({
@@ -46,7 +46,7 @@ const allRoles = (req, res) => {
 
 const getRole = (req, res) => {
   const { id } = req.params;
-  Roles.findOne()
+  Role.findOne()
     .then((data) => {
       if (!data) {
         return res.status(400).json({
@@ -66,8 +66,8 @@ const getRole = (req, res) => {
 
 const updateRole = (req, res) => {
   const { id } = req.params;
-  const { roleName, roleDescription } = req.body;
-  Roles.findOne()
+  const { name, description } = req.body;
+  Role.findOne()
   .then((data) => {
     if (!data) {
       return res.status(400).json({
@@ -76,15 +76,15 @@ const updateRole = (req, res) => {
     }
     return data
       .update({
-        roleName: roleName || data.roleName,
-        roleDescription: roleDescription || data.roleDescription,
+        name: name || data.name,
+        description: description || data.description,
       })
       .then((updateRole) => {
         res.status(200).json({
           message: req.t(`Role Updated`),
           updateRole : {
-            roleName: updateRole .roleName,
-            roleDescription: updateRole .roleDescription,
+            name: updateRole .name,
+            description: updateRole .description,
             
           },
         });
@@ -94,7 +94,7 @@ const updateRole = (req, res) => {
 
 const deleteRole = (req, res) => {
   const { id } = req.params;
-  Roles.findOne()
+  Role.findOne()
   .then((data) => {
     if (!data) {
       return res.status(404).json({

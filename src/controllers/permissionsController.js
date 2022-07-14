@@ -1,20 +1,19 @@
 import dotenv from 'dotenv';
 import model from '../models';
 
-const { Permissions } = model;
+const { Permission } = model;
 
 dotenv.config();
 
-const createPermissions = async (req, res) => {
+const createPermission = async (req, res) => {
   // static create(req, res) {
-  const { PermissionsName, PermissionsDescription,roleId } = req.body;
+  const { name, description } = req.body;
   try {
-    await Permissions.create({
-      PermissionsName,
-      PermissionsDescription,
-      roleId,
+    await Permission.create({
+      name,
+      description,
       });
-    return res.status(201).send({message: 'Permissions created successfully'});
+    return res.status(201).send({message: 'Permission created successfully'});
   }
   catch(e) {
     console.log(e);
@@ -24,7 +23,7 @@ const createPermissions = async (req, res) => {
       
 }
 const allPermissions = (req, res) => {
-  return Permissions.findAll()
+  return Permission.findAll()
 
     .then((data) => {
       console.log(data);
@@ -45,13 +44,13 @@ const allPermissions = (req, res) => {
 };
 
 
-const getPermissions = (req, res) => {
+const getPermission = (req, res) => {
   const { id } = req.params;
-  Permissions.findOne()
+  Permission.findOne()
     .then((data) => {
       if (!data) {
         return res.status(400).json({
-          message: req.t('Permissions does not exit'),
+          message: req.t('Permission does not exit'),
         });
       }
       return res.status(200).json({
@@ -65,10 +64,10 @@ const getPermissions = (req, res) => {
     );
 };
 
-const updatePermissions = (req, res) => {
+const updatePermission = (req, res) => {
   const { id } = req.params;
-  const { PermissionsName, PermissionsDescription,} = req.body;
-  Permissions.findOne()
+  const { name, description,} = req.body;
+  Permission.findOne()
   .then((data) => {
     if (!data) {
       return res.status(400).json({
@@ -77,16 +76,16 @@ const updatePermissions = (req, res) => {
     }
     return data
       .update({
-        PermissionsName: PermissionsName || data.PermissionsName,
-        PermissionsDescription: PermissionsDescription || data.PermissionsDescription,
+        name: name || data.name,
+        description: description || data.description,
         
       })
-      .then((updatePermissions) => {
+      .then((updatePermission) => {
         res.status(200).json({
-          message: req.t(`Role Updated`),
-          updatePermissions : {
-            PermissionsName: updatePermissions .PermissionsName,
-            PermissionsDescription: updatePermissions .PermissionsDescription,
+          message: req.t(`permission Updated`),
+          updatePermission : {
+            name: updatePermission .name,
+            description: updatePermission .description,
             
             
           },
@@ -96,13 +95,13 @@ const updatePermissions = (req, res) => {
 };
 
 
-const deletePermissions = (req, res) => {
+const deletePermission = (req, res) => {
   const { id } = req.params;
-  Permissions.findOne()
+  Permission.findOne()
   .then((data) => {
     if (!data) {
       return res.status(404).json({
-        message: req.t(`Permissions_exists`),
+        message: req.t(`Permission_exists`),
       });
     }
     return data.destroy().then(() => {
@@ -112,4 +111,4 @@ const deletePermissions = (req, res) => {
     });
   });
 };
-export { createPermissions,allPermissions,getPermissions,updatePermissions,deletePermissions}
+export { createPermission,allPermissions,getPermission,updatePermission,deletePermission}

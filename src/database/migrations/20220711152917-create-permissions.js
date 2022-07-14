@@ -6,15 +6,12 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      PermissionsId: {
-        type: Sequelize.UUID
-      },
-      PermissionsName: {
+        type: Sequelize.INTEGER,
+      }, 
+      name: {
         type: Sequelize.STRING
       },
-      PermissionsDescription: {
+      description: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -22,13 +19,6 @@ module.exports = {
       },
       updatedAt: {
         type: Sequelize.DATE
-      },
-      roleId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        referances:{
-        model:'roles',
-        key:'id'}
       },
       createdAt: {
         allowNull: false,
