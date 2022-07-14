@@ -19,7 +19,7 @@ const createRole = async (req, res) => {
     console.log(e);
     return res.status(500)
     .send(
-      {message: 'Could not perform operation at this time, kindly try again later.'});}
+      {message: 'Could not perform operation at this time or you are trying to create a role whic is already created , kindly try again later.'});}
       
 }
 const allRoles = (req, res) => {
