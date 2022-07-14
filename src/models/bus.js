@@ -1,19 +1,28 @@
-'use strict'
-const { Model } = require('sequelize')
+import {Model} from 'sequelize';
+
 module.exports = (sequelize, DataTypes) => {
+
   class Bus extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate (models) {
-      // define association here
-
+     static associate({User,routes}) {
+      // define association here   
+      Bus.belongsTo(User,{ foreignKey: "userId",as:"user" })
+      Bus.belongsTo(routes,{ foreignKey: "routeId",as:"route" })
+      
     }
+    
   }
   Bus.init(
-    {
+    { id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
       plate: {
         type: DataTypes.STRING,
         validate: {
@@ -42,6 +51,16 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Bus seat required'
           }
         }
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        defaultValue:null
+      },
+      routeId: {
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        defaultValue:null
       },
    
     }, {

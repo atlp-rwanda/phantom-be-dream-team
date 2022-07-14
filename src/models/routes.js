@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       {
         routeId: {
           type: DataTypes.INTEGER,
+          primaryKey:true
         },
 
         origin: DataTypes.STRING,
