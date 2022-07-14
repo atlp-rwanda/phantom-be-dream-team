@@ -13,7 +13,7 @@ const AssignDriverToBus = async (req, res) => {
         status: "fail",
         message: "The Driver found with that ID",
       });
-    } else if (user.role !== "driver") {
+    } else if (user.role !== "Driver") {
       return res.status(403).json({
         status: "fail",
         message: "The user is not a Driver, try again",
