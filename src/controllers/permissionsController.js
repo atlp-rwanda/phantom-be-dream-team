@@ -19,7 +19,7 @@ const createPermission = async (req, res) => {
     console.log(e);
     return res.status(500)
     .send(
-      {message: 'Could not perform operation at this time, kindly try again later.'});}
+      {message: 'Could not perform operation at this time or you are trying to create a permission whic is already created , kindly try again later.'});}
       
 }
 const allPermissions = (req, res) => {
