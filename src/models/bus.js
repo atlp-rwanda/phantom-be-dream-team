@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-     static associate({User,Route}) {
+     static associate({User,routes}) {
       // define association here   
       Bus.belongsTo(User,{ foreignKey: "userId",as:"user" })
-      Bus.belongsTo(Route,{ foreignKey: "routeId",as:"route" })
+      Bus.belongsTo(routes,{ foreignKey: "routeId",as:"route" })
       
     }
     

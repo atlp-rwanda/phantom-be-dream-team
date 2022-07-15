@@ -6,6 +6,7 @@ const busRoutes = model.routes;
 
 const addRoute = async (req, res) => {
   // eslint-disable-next-line max-len
+  const ID=Math.round(Math.random()*10000)
   if (!(req.body.origin && req.body.destination && req.body.distance && req.body.code && req.body.latitude && req.body.longitude)) {
     return responseHandler(res, 400, req.t('missing_params'));
   };
@@ -14,6 +15,7 @@ const addRoute = async (req, res) => {
 
   await busRoutes.findOrCreate({
     where: {
+      routeId:ID,
       origin: req.body.origin,
       destination: req.body.destination,
       code: req.body.code,
@@ -30,10 +32,10 @@ const findAll = async (req, res) => {
   const {page, size} = req.query;
   const {limit, offset} = getPagination(page, size);
 
-  await busRoutes.findAndCountAll({limit, offset})
+  await busRoutes.findAndCountAll()
       .then((data) => {
-        const response = getPagingData(data, page, limit);
-        res.send(response);
+        // const response = getPagingData(data, page, limit);
+        res.send(data.rows);
       });
 };
 
@@ -55,6 +57,7 @@ const updateRoute = async (req, res) => {
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
 
+
   await busRoutes.findOne({where: {routeId: id}})
       .then((data) => {
         if (data != null) {
@@ -66,16 +69,21 @@ const updateRoute = async (req, res) => {
           responseHandler(res, 400, req.t('updated_invalid_req'));
         }
       });
-  // eslint-disable-next-line max-len
-  const passMap = () => req.body.latitude || req.body.longitude ? {coordinates: draw(latitude, longitude)} : req.body;
-
-  await busRoutes.update(passMap(), {
-    where: {
-      routeId: id,
-    },
-  }).then((num) => {
-    num[1].length > 0 && responseHandler(res, 200, req.t('updated_ok'));
-  });
+  await busRoutes
+      .update(
+          {
+            origin: req.body.origin,
+            destination: req.body.destination,
+            code: req.body.code,
+            distance: req.body.distance,
+            Coordinates: draw(latitude, longitude),
+          },
+          {
+            where: {routeId: id},
+          },
+      ).then((num) => {
+        num[1].length > 0 && responseHandler(res, 200, req.t('updated_ok'));
+      });
 };
 
 const removeRoute = async (req, res) => {
