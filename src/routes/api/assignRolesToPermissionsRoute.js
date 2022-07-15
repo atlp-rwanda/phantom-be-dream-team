@@ -1,31 +1,12 @@
 import express from 'express';
 import {AssignRoleToPermission} from '../../controllers/assignRolesToPermissionsController'
-import models from "../../models"
-// import { checkAdmin } from "../../middleware/check";
-// import {paginatedResult} from "../../middleware/busToRoutePagination"
+import { checkAdmin } from "../../middleware/check";
 
 const router = express.Router();
 
 
   router.post(
-    '/assign/role/:RoleId/permission/:PermissionId',
+    '/assign/role/:RoleId/permission/:PermissionId',checkAdmin,
     AssignRoleToPermission
-  );
-
-//   router.get(
-//     '/all/assigned/buses',checkAdmin, paginatedResult(models.Bus),
-//     AllBusesWithRoutes
-//   );
-//   router.get(
-//     '/all/unassigned/buses',checkAdmin,
-//     AllBusesWithNoRoutes
-//   );
-//   router.put(
-//     '/unassign/bus/:busId/route/:routeId',checkAdmin,
-//     unAssignBusToRoute
-//   ); 
-   
- 
- 
- 
+  ); 
   export default router;
