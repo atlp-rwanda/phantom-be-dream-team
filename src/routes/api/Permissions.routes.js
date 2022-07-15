@@ -5,7 +5,7 @@ import { checkAdmin } from '../../middleware/check';
 const router = express.Router()
 
 
-router.post('/',checkAdmin, createPermission)
+router.post('/', createPermission)
 router.get('/', checkAdmin,allPermissions)
 router.get('/:Id',checkAdmin, getPermission)
 router.delete('/:Id', checkAdmin,deletePermission)
