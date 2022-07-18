@@ -17,7 +17,7 @@ const  getUser =  async (req, res) => {
       where: {
           id
       },
-      attributes: ['id', 'firstName','lastName','email'], 
+      attributes: ['id', 'names','phone','email','role'], 
     });
   
     if (user=='') {
@@ -35,9 +35,26 @@ const  getUser =  async (req, res) => {
   };
   
   const updateUser = async (req, res) => {
+    var logged=false
+    const token = req.header('auth-token');
+    if(!token) return res.status(401).send({
+      message: req.t('AccessDenied')
+    });
+
+    try{
+      let tsec= process.env.JWT_SECRET|| "nmmskl77.;y6";
+      const verified = jwt.verify(token, tsec);
+      req.user = verified; 
+      logged=true
+    }catch(err){
+        res.status(401).send({
+          message: req.t('WrongToken')
+        });
+    }
+    if(logged==true){
+
   
-  
-    const { firstName, lastName, email, phone, Newpassword,Oldpassword } = req.body;
+    const { names, phone, email, Newpassword,Oldpassword } = req.body;
     const { id } = req.params;
     try {
     const user = await User.findOne({
@@ -53,18 +70,15 @@ const  getUser =  async (req, res) => {
     }
   
     
-      if (firstName) {
-        user.firstName = firstName;
+      if (names) {
+        user.names = names;
       }
-      if (lastName) {
-        user.lastName = lastName;
+      if (phone) {
+        user.phone = phone;
       }
       if (email) {
           user.email = email;
         }
-      if (phone) {
-        user.phone = phone;
-      }
       if(Newpassword){
        
         const correctPassword = async function( Oldpassword, Newpassword) {
@@ -91,5 +105,5 @@ const  getUser =  async (req, res) => {
         message: `Error: ${err.message}`,
       });
     }
-  };
+  }};
   export { getUser, updateUser };

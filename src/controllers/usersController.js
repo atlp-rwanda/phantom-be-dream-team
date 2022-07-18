@@ -10,11 +10,11 @@ dotenv.config();
 
 const addUser = async (req, res) => {
   // static create(req, res) {
-  const { firstName, lastName, email, role } = req.body;
+  const { names, phone, email, role } = req.body;
   const userpassword = generatePassword();
   const password = await bcrypt.hash(userpassword, 10);
 
-  if (firstName === '' || lastName === '' || email === '' || role === '') {
+  if (names === '' || phone === '' || email === '' || role === '') {
     return res.status(500).json({
       message: req.t('required_field'),
     });
@@ -36,8 +36,8 @@ const addUser = async (req, res) => {
       }
       console.log(password);
       return User.create({
-        firstName,
-        lastName,
+        names,
+        phone,
         email,
         role,
         password,
@@ -52,7 +52,7 @@ const addUser = async (req, res) => {
               `;
             sendEmail(message, data.email);
             res.status(201).json({
-              message: req.t('user_created'),
+              message: req.t(message),
               data,
             });
           }
@@ -124,7 +124,7 @@ const findOneUser = (req, res) => {
 
 const update = (req, res) => {
   const { id } = req.params;
-  const { firstName, lastName, role } = req.body;
+  const { names, phone, role } = req.body;
   User.findOne({
     where: {
       id,
@@ -140,16 +140,16 @@ const update = (req, res) => {
     }
     return user
       .update({
-        firstName: firstName || user.firstName,
-        lastName: lastName || user.lastName,
+        names: names || user.names,
+        phone: phone || user.phone,
         role: role || user.role,
       })
       .then((updatedUser) => {
         res.status(200).json({
           message: req.t(`user_update`),
           updatedUser: {
-            firstName: updatedUser.firstName,
-            lastName: updatedUser.lastName,
+            names: updatedUser.names,
+            phone: updatedUser.phone,
             role: updatedUser.role,
             email: updatedUser.email,
           },
@@ -179,3 +179,4 @@ const deleteUser = (req, res) => {
 };
 
 export { addUser, allUsers, findOneUser, update, deleteUser };
+
