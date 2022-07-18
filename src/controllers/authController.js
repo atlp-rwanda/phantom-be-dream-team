@@ -16,14 +16,14 @@ exports.login = async (req, res, next) => {
 
   const user = await models.User.findOne({where: {email}});
   // eslint-disable-next-line max-len
-  if (!user) return res.status(401).json({status: 'fail', message: 'Incorrect email or password'});
+  if (!user) return res.status(401).json({status: 'fail', message: 'Incorrect email'});
   const correctPassword = async function(candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
   };
 
   if (!user || !(await correctPassword(password, user.password))) {
     // eslint-disable-next-line max-len
-    return res.status(401).json({status: 'fail', message: 'Incorrect email or password'});
+    return res.status(401).json({status: 'fail', message: 'Incorrect password'});
   }
   createSendToken(user, 200, res);
 };
